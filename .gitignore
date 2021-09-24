@@ -18,6 +18,7 @@
 .nfs*
 
 ### macOS ###
+# General
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -213,4 +214,4 @@ $RECYCLE.BIN/
 /coverage
 
 # production
-/build
+build
