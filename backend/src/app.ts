@@ -1,11 +1,13 @@
-'use strict';
-import express from 'express'
-const app = express();
+'use strict'
 
-app.get('/', (req: express.Request, res: express.Response) => {
-  res.send('Hello World!');
-});
+import express, { Request, Response } from 'express'
+
+const app = express()
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!')
+})
 
 app.listen(8080, () => {
-  console.log('Example app listening on port 8080!');
-});
+  console.log('Example app listening on port 8080!')
+})
