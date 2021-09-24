@@ -1,7 +1,7 @@
 # Project name or Logo
 Army Form
 
-## 프로잭트 소개
+## 프로젝트 소개
  - TODO
 
 ## 기능 설명
