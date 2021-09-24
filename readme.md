@@ -36,6 +36,7 @@ $ npm start
  - [민승기](https://github.com/ironore15) (AI)
  - [이형창](https://github.com/AnOldStory) (WEB)
  - [홍태성](https://github.com/tshong3) (WEB)
+ - [채현우](https://github.com/hyunwoo0081) (WEB)
 
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
  - TODO
