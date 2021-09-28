@@ -7,29 +7,27 @@ import apiRouter from './api';
 /**
  * routes for web or api
  */
-class Routes{
+class Routes {
+  private mountWeb (_express: Application): Application {
+    /**
+      * handle web server url
+      */
+    return _express.use('/', webRouter);
+  }
 
-    private mountWeb(_express: Application): Application {
-        /**
-         * handle web server url
-         */
-        return _express.use("/", webRouter)
-    }
+  private mountApi (_express: Application): Application {
+    /**
+      * handle web server url
+      */
+    return _express.use('/api', apiRouter);
+  }
 
-    private mountApi(_express: Application): Application {
-        /**
-         * handle web server url
-         */
-        return _express.use("/api", apiRouter)
-    }
+  public init (_express: Application): Application {
+    _express = this.mountWeb(_express);
+    _express = this.mountApi(_express);
 
-    public init(_express: Application): Application{
-        _express = this.mountWeb(_express);
-        _express = this.mountApi(_express);
-
-        return _express;
-    }
+    return _express;
+  }
 }
 
-
-export default new Routes;
+export default new Routes();

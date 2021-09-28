@@ -1,23 +1,22 @@
-'use strict'
+'use strict';
 
 /* Import Module */
 import express from 'express';
 import session from 'express-session';
 import Routes from './route/Routes';
-import CONFIG from "./config/config";
+import CONFIG from './config';
 
 class App {
   public express: express.Application;
 
-  constructor(){
+  constructor () {
     this.express = express();
 
     this.mountMiddleware();
     this.mountRoutes();
   }
 
-
-  /** 
+  /**
    * mount all Module
    */
 
@@ -26,10 +25,10 @@ class App {
       session({
         secret: CONFIG.SESSION_SECRET,
         resave: true,
-        saveUninitialized: true,
-        //cookie: { secure: true }
+        saveUninitialized: true
+        // cookie: { secure: true }
       })
-    )
+    );
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
   }
@@ -40,7 +39,7 @@ class App {
   public mountRoutes (): void {
     this.express = Routes.init(this.express);
   }
-  
+
   /**
    * initialize
    */
@@ -49,11 +48,10 @@ class App {
 
     this.express.listen(port, () => {
       return console.log(`Express server listening at ${port}`);
-    }).on('error',(_error:any) => {
+    }).on('error', (_error:any) => {
       return console.log(_error);
-    })
+    });
   }
 }
 
-
-export default new App;
+export default new App();
