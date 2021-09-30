@@ -48,8 +48,9 @@ Each response will be returned with one of the following HTTP status codes:
 ## Resources
 
 ### [Accounts][]
-- **[<code>POST</code> Register](/accounts/POST_register.md)**
-- **[<code>POST</code> Login](/accounts/POST_login.md)**
-- **[<code>GET</code> Account](/accounts/GET_account.md)**
+
+### [Utils][]
+- **[<code>GET</code> Military Units](/utils/GET_military-units.md)**
 
 [Accounts]: /accounts/
+[Utils]: /utils/
