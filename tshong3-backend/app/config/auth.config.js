@@ -1,4 +1,4 @@
 // 비밀 키
 module.exports = {
-    secret: "bezkoder-secret-key"
+    secret: "Army-Form-Super-Secret-Key"
 };
