@@ -3,8 +3,9 @@
 /* Import Module */
 import express from 'express';
 import session from 'express-session';
-import Routes from './route/Routes';
-import CONFIG from './config';
+import WebRoute from './routes/WebRoute';
+import ApiRoute from './routes/ApiRoute';
+import AppConfig from './configs/AppConfig';
 
 class App {
   public express: express.Application;
@@ -23,7 +24,7 @@ class App {
   public mountMiddleware (): void {
     this.express.use(
       session({
-        secret: CONFIG.SESSION_SECRET,
+        secret: AppConfig.SESSION_SECRET,
         resave: true,
         saveUninitialized: true
         // cookie: { secure: true }
@@ -37,14 +38,15 @@ class App {
    * mount all routes
    */
   public mountRoutes (): void {
-    this.express = Routes.init(this.express);
+    this.express.use('/', WebRoute);
+    this.express.use('/api', ApiRoute);
   }
 
   /**
    * initialize
    */
   public run (): any {
-    const port: number = CONFIG.PORT || 3000;
+    const port: number = AppConfig.PORT || 3000;
 
     this.express.listen(port, () => {
       return console.log(`Express server listening at ${port}`);

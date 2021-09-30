@@ -3,8 +3,8 @@
  */
 
 import express, { Request, Response, NextFunction } from 'express';
-import MainController from '../controller/Main';
-import SurveyController from '../controller/Survey';
+import MainController from '../controllers/MainController';
+import SurveyController from '../controllers/SurveyController';
 
 const router = express.Router();
 

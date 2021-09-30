@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-class Survey {
+class SurveyController {
   public static index (req: Request, res: Response, next: NextFunction): any {
     return res.json({
       msg: 'Survey controll'
@@ -8,4 +8,4 @@ class Survey {
   }
 }
 
-export default Survey;
+export default SurveyController;
