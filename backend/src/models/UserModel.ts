@@ -11,6 +11,8 @@ const sequelize = new Sequelize(
   }
 );
 
+sequelize.sync({ force: true });
+
 interface UserAttributes {
     userid: string;
     passwd: string;

@@ -18,7 +18,10 @@ class AuthController {
       passwd: await bcrypt.hash(req.body.passwd, 10),
       name: req.body.name
     });
-    return res.json({ msg: user.userid });
+    if (user === null) {
+      return res.status(500).json({ result: 'Database error' });
+    }
+    return res.status(200).json({ result: 'Signup success' });
   }
 
   public static async signin (req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -28,16 +31,16 @@ class AuthController {
       }
     });
     if (user === null) {
-      return res.status(404).send({ result: 'Userid not found' });
+      return res.status(404).json({ result: 'Userid not found' });
     }
     if (!await bcrypt.compare(req.body.passwd, user.passwd)) {
-      return res.status(401).send({ result: 'Invalid passwd' });
+      return res.status(401).json({ result: 'Invalid passwd' });
     }
     const token = jwt.sign({ userid: user.userid }, AuthConfig.SECRET, {
       expiresIn: 3600
     });
 
-    return res.status(200).send({
+    return res.status(200).json({
       result: {
         userid: user.userid,
         access_token: token
