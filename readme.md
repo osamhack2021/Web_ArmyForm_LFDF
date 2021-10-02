@@ -5,6 +5,8 @@ Army Form
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT"></a>
     <a href="https://github.com/osamhack2021/Web_ArmyForm_LFDF/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/osamhack2021/Web_ArmyForm_LFDF/Build%20&%20deploy"></a>
 </p>
+## 팀 로고
+<img src="ArmyForm_Logo.png"/>
 
 ## 프로젝트 소개
  - Army Form은 용사들이 부대를 직접 만들어 나간다는 의미를 담고 있는 프로젝트입니다. 최근 이슈가 된 병영 식당을 선두로 해서 많은 용사들이 부대에 갖고 있던 건의사항을 듣고, 이를 각 부대 지휘관에게 효율적으로 전달할 수 있는 어플리케이션 개발을 목표로 하고 있습니다. 군 부대에서 사용하기 적합하고 광범위한 용도에  설문조사 프로그램입니다.
