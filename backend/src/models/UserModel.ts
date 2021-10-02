@@ -14,28 +14,35 @@ const sequelize = new Sequelize(
 sequelize.sync({ force: true });
 
 interface UserAttributes {
-    userid: string;
-    passwd: string;
+  userid: string;
+  passwd: string;
 
-    name: string;
+  name: string;
 
-    createdAt?: Date;
-    updatedAt?: Date;
-    deletedAt?: Date;
+  type: string;
+  serial: string;
+  rank: string;
+  unit: string;
+
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
 };
 
-// export interface UserInput extends Optional<UserAttributes, 'userid'> {};
-
-// class User extends Model<UserAttributes, UserInput> implements UserAttributes
 class User extends Model<UserAttributes> implements UserAttributes {
-    public userid!: string
-    public passwd!: string
-    public name!: string
+  public userid!: string
+  public passwd!: string
 
-    // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public readonly deletedAt!: Date;
+  public name!: string
+
+  public type!: string
+  public serial!: string
+  public rank!: string
+  public unit!: string
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+  public readonly deletedAt!: Date;
 };
 
 User.init(
@@ -50,8 +57,19 @@ User.init(
       allowNull: false
     },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
+    },
+    type: {
+      type: DataTypes.STRING
+    },
+    serial: {
+      type: DataTypes.STRING
+    },
+    rank: {
+      type: DataTypes.STRING
+    },
+    unit: {
+      type: DataTypes.STRING
     }
   },
   {

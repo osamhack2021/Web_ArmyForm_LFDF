@@ -16,7 +16,11 @@ class AuthController {
     const user = await User.create({
       userid: req.body.userid,
       passwd: await bcrypt.hash(req.body.passwd, 10),
-      name: req.body.name
+      name: req.body.name,
+      type: req.body.type,
+      serial: req.body.serial,
+      rank: req.body.rank,
+      unit: req.body.unit
     });
     if (user === null) {
       return res.status(500).json({ result: 'Database error' });
@@ -43,7 +47,7 @@ class AuthController {
     return res.status(200).json({
       result: {
         userid: user.userid,
-        access_token: token
+        jsonwebtoken: token
       }
     });
   }
