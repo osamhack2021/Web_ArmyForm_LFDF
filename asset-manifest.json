@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/Web_ArmyForm_LFDF/static/css/main.23d2b780.chunk.css",
-    "main.js": "/Web_ArmyForm_LFDF/static/js/main.efabf48b.chunk.js",
-    "main.js.map": "/Web_ArmyForm_LFDF/static/js/main.efabf48b.chunk.js.map",
+    "main.css": "/Web_ArmyForm_LFDF/static/css/main.bf5549f2.chunk.css",
+    "main.js": "/Web_ArmyForm_LFDF/static/js/main.c709728b.chunk.js",
+    "main.js.map": "/Web_ArmyForm_LFDF/static/js/main.c709728b.chunk.js.map",
     "runtime-main.js": "/Web_ArmyForm_LFDF/static/js/runtime-main.6a0d554f.js",
     "runtime-main.js.map": "/Web_ArmyForm_LFDF/static/js/runtime-main.6a0d554f.js.map",
-    "static/js/2.e8cc1480.chunk.js": "/Web_ArmyForm_LFDF/static/js/2.e8cc1480.chunk.js",
-    "static/js/2.e8cc1480.chunk.js.map": "/Web_ArmyForm_LFDF/static/js/2.e8cc1480.chunk.js.map",
+    "static/js/2.9c3246be.chunk.js": "/Web_ArmyForm_LFDF/static/js/2.9c3246be.chunk.js",
+    "static/js/2.9c3246be.chunk.js.map": "/Web_ArmyForm_LFDF/static/js/2.9c3246be.chunk.js.map",
     "index.html": "/Web_ArmyForm_LFDF/index.html",
-    "static/css/main.23d2b780.chunk.css.map": "/Web_ArmyForm_LFDF/static/css/main.23d2b780.chunk.css.map",
-    "static/js/2.e8cc1480.chunk.js.LICENSE.txt": "/Web_ArmyForm_LFDF/static/js/2.e8cc1480.chunk.js.LICENSE.txt"
+    "static/css/main.bf5549f2.chunk.css.map": "/Web_ArmyForm_LFDF/static/css/main.bf5549f2.chunk.css.map",
+    "static/js/2.9c3246be.chunk.js.LICENSE.txt": "/Web_ArmyForm_LFDF/static/js/2.9c3246be.chunk.js.LICENSE.txt",
+    "static/media/logo.3d6fe946.png": "/Web_ArmyForm_LFDF/static/media/logo.3d6fe946.png"
   },
   "entrypoints": [
     "static/js/runtime-main.6a0d554f.js",
-    "static/js/2.e8cc1480.chunk.js",
-    "static/css/main.23d2b780.chunk.css",
-    "static/js/main.efabf48b.chunk.js"
+    "static/js/2.9c3246be.chunk.js",
+    "static/css/main.bf5549f2.chunk.css",
+    "static/js/main.c709728b.chunk.js"
   ]
 }
