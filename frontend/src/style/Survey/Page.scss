@@ -1,0 +1,33 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 40px;
+}
+
+.spread_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.big_card {
+  margin-bottom: 16px;
+}
+
+.move_bar_layout {
+  padding: 16px;
+}
+
+h2 {
+  font-size: 36px;
+  padding: 10px 0;
+}
+
+p {
+  padding-bottom: 80px;
+}
+
+button > img {
+  width: 40px;
+  height: 40px;
+}

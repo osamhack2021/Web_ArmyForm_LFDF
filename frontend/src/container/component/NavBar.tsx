@@ -9,7 +9,7 @@ const Navbar = () => {
     <ul className="App-nav-list">
       {navItems.map((navItem, idx) => (
         <li key={idx} className="App-nav-item">
-          <Link to={navItem.route}>{navItem.name}</Link>
+          <Link to={navItem.path}>{navItem.name}</Link>
         </li>
       ))}
     </ul>

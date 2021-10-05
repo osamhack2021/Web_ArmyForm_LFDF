@@ -2,31 +2,27 @@ import React from "react";
 
 import LeftArrow from "static/left-arrow.png";
 
-import "style/Login.scss";
+import "style/Findaccount.scss";
 
-function Login() {
+function Findaccount() {
   return (
     <>
       <nav className="simple_nav">
-        {/* <button className="flat" onClick="history.back()"> */}
         <button className="flat">
+          {/* <button className="flat" onclick="history.back()"> */}
           <img id="back_icon" src={LeftArrow} alt="<" />
         </button>
       </nav>
 
       <div>
-        <h1>로그인</h1>
+        <h1>비밀번호 찾기</h1>
         <input type="text" placeholder="아이디" />
         <input type="password" placeholder="비밀번호" />
-        <button>로그인</button>
-        <div>
-          <a href="./signup.html">회원가입</a>
-          <p>또는</p>
-          <a href="find_account.html">비밀번호 찾기</a>
-        </div>
+        <input type="password" placeholder="비밀번호 확인" />
+        <button>저장하기</button>
       </div>
     </>
   );
 }
 
-export default Login;
+export default Findaccount;
