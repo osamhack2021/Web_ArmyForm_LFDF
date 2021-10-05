@@ -4,13 +4,18 @@
 
 import express, { Request, Response, NextFunction } from 'express';
 import MainController from '../controllers/MainController';
-import SurveyController from '../controllers/SurveyController';
+import AuthRoute from './AuthRoute';
+import SurveyRoute from './SurveyRoute';
+import ResultRoute from './ResultRoute';
 
 const router = express.Router();
 
 router.get('/', MainController.index);
 
-router.get('/survey', SurveyController.index);
+// TODO: Reorganize routing rules to AuthRoute
+router.use('/auth', AuthRoute);
+router.use('/survey', SurveyRoute);
+router.use('/result', ResultRoute);
 
 router.get('*', (req: Request, res: Response, next: NextFunction) => {
   /* TODO: error handle */

@@ -1,6 +1,5 @@
 const config = {
-  SESSION_SECRET: 'Armyform',
-  PORT: 3000
+  SECRET: 'Army-Form-Super-Secret-Key'
 };
 
 export default config;
