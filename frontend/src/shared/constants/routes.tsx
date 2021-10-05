@@ -71,7 +71,7 @@ const routes = [
   },
   {
     name: "설문 페이지",
-    path: "/Survey/Dashboard",
+    path: "/Survey/Page",
     exact: false,
     component: SurveyPage,
     subRoutes: [],
