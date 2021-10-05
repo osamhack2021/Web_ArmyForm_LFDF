@@ -2,12 +2,13 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../configs/DatabaseConfig';
 
 // TODO: Add reference information to Sequelize. [owner: number > User.id: number] (many-to-one)
-interface SurveyAttributes {
+//                                               [surveyid: number > Survey.id: number] (many-to-one)
+interface ResultAttributes {
   id: number;
 
-  name: string;
   json: string;
 
+  surveyid: number;
   owner: number;
 
   createdAt?: Date;
@@ -15,12 +16,12 @@ interface SurveyAttributes {
   deletedAt?: Date;
 };
 
-class Survey extends Model<SurveyAttributes> implements SurveyAttributes {
+class Result extends Model<ResultAttributes> implements ResultAttributes {
   public id!: number;
 
-  public name!: string;
   public json!: string;
 
+  public surveyid!: number;
   public owner!: number;
 
   public readonly createdAt!: Date;
@@ -28,23 +29,22 @@ class Survey extends Model<SurveyAttributes> implements SurveyAttributes {
   public readonly deletedAt!: Date;
 };
 
-Survey.init(
+Result.init(
   {
     id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     json: {
       type: DataTypes.STRING
     },
-    owner: {
+    surveyid: {
       type: DataTypes.BIGINT,
       allowNull: false
+    },
+    owner: {
+      type: DataTypes.BIGINT
     }
   },
   {
@@ -54,4 +54,4 @@ Survey.init(
   }
 );
 
-export default Survey;
+export default Result;
