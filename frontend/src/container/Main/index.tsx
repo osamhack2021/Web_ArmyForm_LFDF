@@ -28,34 +28,34 @@ const Main = () => {
       </div>
 
       <div>
-				<div class="column_container">
-					<h3>기능제목</h3>
-					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting
-						industry. Lorem Ipsum has been the industry's standard dummy text
-						ever since the 1500s, when an unknown printer took a galley of type
-						and scrambled it to make a type specimen book.
-					</p>
-					<button>체험하기</button>
-				</div>
-			</div>
+        <div className="column_container">
+          <h3>기능제목</h3>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </p>
+          <button>체험하기</button>
+        </div>
+      </div>
 
-			<div class="background_gray">
-				<div class="column_container">
-					<h3>기능제목</h3>
-					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting
-						industry. Lorem Ipsum has been the industry's standard dummy text
-						ever since the 1500s, when an unknown printer took a galley of type
-						and scrambled it to make a type specimen book.
-					</p>
-					<button>시작하기</button>
-				</div>
-			</div>
+      <div className="background_gray">
+        <div className="column_container">
+          <h3>기능제목</h3>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.
+          </p>
+          <button>시작하기</button>
+        </div>
+      </div>
 
-			<footer>
-				<div>footer</div>
-			</footer>
+      <footer>
+        <div>footer</div>
+      </footer>
     </>
   );
 };
