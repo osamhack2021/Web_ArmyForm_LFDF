@@ -1,51 +1,14 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px 40px;
-}
-
-#main_container {
-  background-color: #1abc9c;
-}
-
-.background_gray {
-  background-color: #efefef;
-}
-
-footer {
-  background-color: #5e5e5e;
-}
-
 #title_container {
   padding: 240px 0;
 }
 
-nav.transparent {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-nav.transparent button {
-  color: white;
-}
-
-h1 {
+#title_container h1 {
   font-size: 80px;
   color: white;
 }
 
-h2 {
+#title_container h2 {
   font-size: 16px;
   padding: 10px;
   color: #eeeeee;
-}
-
-h3 {
-  font-size: 36px;
-  padding: 30px 10px;
-}
-
-p {
-  padding: 10px;
-  padding-bottom: 100px;
 }

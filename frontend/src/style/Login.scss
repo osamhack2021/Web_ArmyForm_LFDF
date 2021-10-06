@@ -1,12 +1,8 @@
-a {
-  display: inline;
-  color: #1abc9c;
+.login_bottom_layout * {
+	display: inline;
+	padding: 0 1px;
 }
 
-p {
-  display: inline;
-}
-
-button {
-  width: 140px;
+button.big_button {
+	width: 140px;
 }
