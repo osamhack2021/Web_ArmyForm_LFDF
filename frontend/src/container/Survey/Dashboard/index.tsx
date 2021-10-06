@@ -80,7 +80,7 @@ const Dashboard = () => {
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <div className="move_bar_layout">
+            <div className="slider_layout">
               <button className="rect highlight" />
               <button className="circle normal" />
               <button className="circle normal" />
