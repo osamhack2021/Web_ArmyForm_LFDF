@@ -8,6 +8,7 @@ import routes from "shared/constants/routes";
 import NavBar from "container/component/NavBar";
 
 import "style/App.scss";
+import Footer from "./component/Footer";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           })}
           <Route path="*" component={_404} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

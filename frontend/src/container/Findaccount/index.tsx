@@ -1,19 +1,13 @@
 import React from "react";
 
-import LeftArrow from "static/left-arrow.png";
+import NavBack from "container/component/NavBack";
 
 import "style/Findaccount.scss";
 
 function Findaccount() {
   return (
     <>
-      <nav className="simple_nav">
-        <button className="flat">
-          {/* <button className="flat" onclick="history.back()"> */}
-          <img id="back_icon" src={LeftArrow} alt="<" />
-        </button>
-      </nav>
-
+      <NavBack />
       <div>
         <h1>비밀번호 찾기</h1>
         <input type="text" placeholder="아이디" />
