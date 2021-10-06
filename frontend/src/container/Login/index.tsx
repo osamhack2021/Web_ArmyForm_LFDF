@@ -20,9 +20,11 @@ function Login() {
         <input type="password" placeholder="비밀번호" />
         <button className="big_button">로그인</button>
         <div className="login_bottom_layout">
-          <a onClick={() => move(history, "/Signup")}>회원가입</a>
+          <button onClick={() => move(history, "/Signup")}>회원가입</button>
           <p>또는</p>
-          <a onClick={() => move(history, "/Findaccount")}>비밀번호 찾기</a>
+          <button onClick={() => move(history, "/Findaccount")}>
+            비밀번호 찾기
+          </button>
         </div>
       </div>
     </>
