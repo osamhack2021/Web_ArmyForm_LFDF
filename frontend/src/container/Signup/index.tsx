@@ -1,18 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-import LeftArrow from "static/left-arrow.png";
+import NavBack from "container/component/NavBack";
 
 import "style/Signup.scss";
 
 const Signup = () => {
   return (
     <>
-      <nav className="simple_nav">
-        <button className="flat">
-          {/* <button className="flat" onclick="history.back()"> */}
-          <img id="back_icon" src={LeftArrow} alt="<" />
-        </button>
-      </nav>
+      <NavBack />
 
       <div>
         <h1>회원가입</h1>

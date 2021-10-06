@@ -1,10 +1,15 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
+import move from "shared/components/move";
 
 import Logo from "static/logo.png";
 
 import "style/Main.scss";
 
 const Main = () => {
+  const history = useHistory();
+
   return (
     <>
       <div className="background_lightgreen">
@@ -13,8 +18,18 @@ const Main = () => {
             <div>
               <img id="icon" src={Logo} alt="ArmyForm" />
               <div>
-                <button className="flat">Sign up</button>
-                <button className="flat">Sign in</button>
+                <button
+                  className="flat"
+                  onClick={() => move(history, "/Signup")}
+                >
+                  Sign up
+                </button>
+                <button
+                  className="flat"
+                  onClick={() => move(history, "/Login")}
+                >
+                  Sign in
+                </button>
               </div>
             </div>
           </nav>
@@ -52,10 +67,6 @@ const Main = () => {
           <button>시작하기</button>
         </div>
       </div>
-
-      <footer>
-        <div>footer</div>
-      </footer>
     </>
   );
 };
