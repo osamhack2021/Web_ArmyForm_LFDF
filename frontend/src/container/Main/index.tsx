@@ -7,7 +7,7 @@ import "style/Main.scss";
 const Main = () => {
   return (
     <>
-      <div class="background_lightgreen">
+      <div className="background_lightgreen">
         <div id="nav_container">
           <nav className="transparent">
             <div>
