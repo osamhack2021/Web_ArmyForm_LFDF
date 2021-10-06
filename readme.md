@@ -52,11 +52,18 @@ Army Form
     ```
  
 ## 팀 정보 (Team Information)
+이름 | 역할 | Github 
+----- | ----- | -----
+민승기 | AI | [:octocat: ironore15](https://github.com/ironore15)
+이형창 | WEB | [:octocat: AnOldStory](https://github.com/AnOldStory)
+홍태성 | WEB | [:octocat: tshong3](https://github.com/tshong3)
+채현우 | WEB | [:octocat: hyunwoo0081](https://github.com/hyunwoo0081)
+<!--
  - [민승기](https://github.com/ironore15) (AI)
  - [이형창](https://github.com/AnOldStory) (WEB)
  - [홍태성](https://github.com/tshong3) (WEB)
  - [채현우](https://github.com/hyunwoo0081) (WEB)
-
+-->
 ## 저작권 및 사용권 정보 (Copyleft / End User License)
 <p align="center">
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
