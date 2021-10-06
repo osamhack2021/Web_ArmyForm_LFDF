@@ -51,7 +51,7 @@ const routes = [
   {
     name: "설문",
     path: "/Survey",
-    exact: false,
+    exact: true,
     component: Survey,
     subRoutes: [],
   },

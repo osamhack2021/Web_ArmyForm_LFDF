@@ -7,7 +7,7 @@ import "style/Main.scss";
 const Main = () => {
   return (
     <>
-      <div id="main_container">
+      <div className="background_lightgreen">
         <div id="nav_container">
           <nav className="transparent">
             <div>
@@ -28,7 +28,7 @@ const Main = () => {
       </div>
 
       <div>
-        <div className="container">
+        <div className="column_container">
           <h3>기능제목</h3>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -41,7 +41,7 @@ const Main = () => {
       </div>
 
       <div className="background_gray">
-        <div className="container">
+        <div className="column_container">
           <h3>기능제목</h3>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -54,7 +54,7 @@ const Main = () => {
       </div>
 
       <footer>
-        <div className="container">footer</div>
+        <div>footer</div>
       </footer>
     </>
   );

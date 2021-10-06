@@ -1,51 +1,95 @@
-.container {
-  max-width: 1200px;
+.wide_column_container {
+  max-width: 1820px;
   margin: 0 auto;
-  padding: 30px 40px;
+  padding: 30px 0;
 }
 
-#main_container {
-  background-color: #1abc9c;
+.card_list{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
-.background_gray {
-  background-color: #efefef;
-}
-
-footer {
-  background-color: #5e5e5e;
-}
-
-#title_container {
-  padding: 240px 0;
-}
-
-nav.transparent {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-nav.transparent button {
-  color: white;
-}
-
-h1 {
-  font-size: 80px;
-  color: white;
-}
-
-h2 {
-  font-size: 16px;
-  padding: 10px;
-  color: #eeeeee;
-}
-
-h3 {
-  font-size: 36px;
+.card_layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 30px 10px;
 }
 
-p {
-  padding: 10px;
-  padding-bottom: 100px;
+.card {
+  width: 207px;
+  height: 344px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 20px 0px;	
+  position: relative;
+}
+
+.card_top{
+  position: relative;
+  height: 269px;
+  padding: 12px;
+  background-color: #16a085;
+}
+
+.card_top > div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card_icon {
+  width: 18px;
+  height: 18px;
+}
+
+.card h3 {
+  font-size: 18px;
+  color: white;
+  word-break: keep-all;
+  text-align: left;
+  padding: 10px 0;
+}
+
+.card h4 {
+  font-size: 18px;
+  color: white;
+  word-break: keep-all;
+  text-align: left;
+}
+
+.card p {
+  font-size: 12px;
+  margin: 12px;
+  padding: 0 2px;
+  color: #e0e0e0;
+  word-break: keep-all;
+  text-align: right;
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+button.card_circle {
+  padding: 0;
+  margin: 0;
+  width: 27px;
+  height: 27px;
+  border-radius: 100%;
+  background-color: #e0e0e0;
+}
+
+button.card_rect {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 12px;
+  width: 89px;
+  height: 25px;
+  font-size: 11px;
+  border-radius: 0;
+  background-color: #16a085;
 }

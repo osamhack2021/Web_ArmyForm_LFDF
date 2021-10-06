@@ -1,5 +1,6 @@
 import React from "react";
 
+import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 
 import "style/Survey/Page.scss";
@@ -8,9 +9,9 @@ const Page = () => {
   return (
     <>
       <div id="nav_container">
-        <nav className="nav_only_left">
+        <nav className="nav_only_left transparent">
           <div>
-            <img id="icon" src={LeftArrow} alt="ArmyForm" />
+            <img id="icon" src={Logo} alt="ArmyForm" />
             <h1>FormName</h1>
           </div>
         </nav>
@@ -37,7 +38,7 @@ const Page = () => {
             </p>
             <button>시작하기</button>
           </div>
-          <div className="move_bar_layout">
+          <div className="slider_layout">
             <button className="rect highlight" />
             <button className="circle normal" />
             <button className="circle normal" />
