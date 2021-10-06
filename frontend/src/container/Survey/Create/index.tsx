@@ -91,10 +91,6 @@ const SurveyCreate = () => {
           <img src={LeftArrow} alt=">" />
         </button>
       </div>
-
-      <footer>
-        <div>footer</div>
-      </footer>
     </>
   );
 };
