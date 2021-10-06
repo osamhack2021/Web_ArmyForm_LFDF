@@ -1,5 +1,6 @@
 import React from "react";
 
+import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 
 import "style/Survey/Create.scss";
@@ -8,10 +9,10 @@ const SurveyCreate = () => {
   return (
     <>
       <div id="nav_container">
-        <nav className="attached">
+        <nav>
           <div>
             <div>
-              <img id="icon" src={LeftArrow} alt="ArmyForm" />
+              <img id="icon" src={Logo} alt="ArmyForm" />
               <h1>FormName</h1>
             </div>
             <div>
@@ -25,7 +26,7 @@ const SurveyCreate = () => {
 
       <div className="spread_row background_green">
         <button className="flat">
-          <img src="../assets/left-arrow.png" alt="<" />
+          <img src={LeftArrow} alt="<" />
         </button>
         <div>
           <div className="big_card">
@@ -77,7 +78,7 @@ const SurveyCreate = () => {
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <div className="move_bar_layout">
+            <div className="slider_layout">
               <button className="rect highlight" />
               <button className="circle normal" />
               <button className="circle normal" />
@@ -87,12 +88,12 @@ const SurveyCreate = () => {
           </div>
         </div>
         <button className="flat">
-          <img src="../assets/left-arrow.png" alt=">" />
+          <img src={LeftArrow} alt=">" />
         </button>
       </div>
 
       <footer>
-        <div className="container">footer</div>
+        <div>footer</div>
       </footer>
     </>
   );

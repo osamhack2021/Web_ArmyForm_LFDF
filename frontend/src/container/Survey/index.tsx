@@ -1,17 +1,18 @@
 import React from "react";
 
+import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 
-import "style/Main.scss";
+import "style/Survey.scss";
 
 const Survey = () => {
   return (
     <>
       <div id="nav_container">
-        <nav className="attached">
+        <nav>
           <div>
             <div>
-              <img id="icon" src={LeftArrow} alt="ArmyForm" />
+              <img id="icon" src={Logo} alt="ArmyForm" />
               <h1>ArmyForm</h1>
             </div>
             <div>
@@ -23,7 +24,7 @@ const Survey = () => {
       </div>
 
       <div className="background_green">
-        <div className="container">
+        <div className="wide_column_container">
           <h2>진행중인 설문</h2>
           <div className="card_layout">
             <button className="flat">
@@ -50,7 +51,7 @@ const Survey = () => {
               <img src={LeftArrow} alt=">" />
             </button>
           </div>
-          <div>
+          <div className="slider_layout">
             <button className="circle highlighted" />
             <button className="circle normal" />
             <button className="circle normal" />
@@ -58,22 +59,22 @@ const Survey = () => {
         </div>
       </div>
 
-      <div className="container">
+      <div className="wide_column_container">
         <div className="card"></div>
       </div>
-      <div className="container background_green">
+      <div className="wide_column_container background_green">
         <div className="card"></div>
       </div>
-      <div className="container"></div>
-      <div className="container background_green"></div>
-      <div className="container"></div>
-      <div className="container background_green"></div>
-      <div className="container"></div>
-      <div className="container background_green"></div>
-      <div className="container"></div>
+      <div className="wide_column_container"></div>
+      <div className="wide_column_container background_green"></div>
+      <div className="wide_column_container"></div>
+      <div className="wide_column_container background_green"></div>
+      <div className="wide_column_container"></div>
+      <div className="wide_column_container background_green"></div>
+      <div className="wide_column_container"></div>
 
       <footer>
-        <div className="container">footer</div>
+        <div>footer</div>
       </footer>
     </>
   );
