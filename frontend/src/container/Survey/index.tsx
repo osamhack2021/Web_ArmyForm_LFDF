@@ -2,6 +2,7 @@ import React from "react";
 
 import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
+import RightArrow from "static/right-arrow.png";
 
 import "style/Survey.scss";
 
@@ -36,7 +37,7 @@ const Survey = () => {
                   <div>
                     <h4>D-3</h4>
                     <button className="card_circle">
-                      <img className="card_icon" src={LeftArrow} alt=">" />
+                      <img className="card_icon" src={RightArrow} alt=">" />
                     </button>
                   </div>
                   <h3>전군 성폭력 예방 설문조사</h3>
@@ -48,7 +49,7 @@ const Survey = () => {
               </div>
             </div>
             <button className="flat">
-              <img src={LeftArrow} alt=">" />
+              <img src={RightArrow} alt=">" />
             </button>
           </div>
           <div className="slider_layout">

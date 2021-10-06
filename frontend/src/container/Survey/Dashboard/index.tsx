@@ -2,6 +2,7 @@ import React from "react";
 
 import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
+import RightArrow from "static/right-arrow.png";
 
 import "style/Survey/Dashboard.scss";
 
@@ -30,6 +31,7 @@ const Dashboard = () => {
         </button>
         <div>
           <div className="big_card">
+            <h2>Lorem Ipsum</h2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -88,7 +90,7 @@ const Dashboard = () => {
           </div>
         </div>
         <button className="flat">
-          <img src={LeftArrow} alt=">" />
+          <img src={RightArrow} alt=">" />
         </button>
       </div>
     </>

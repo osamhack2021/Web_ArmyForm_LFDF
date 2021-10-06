@@ -2,6 +2,7 @@ import React from "react";
 
 import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
+import RightArrow from "static/right-arrow.png";
 
 import "style/Survey/Page.scss";
 
@@ -47,7 +48,7 @@ const Page = () => {
           </div>
         </div>
         <button className="flat">
-          <img src={LeftArrow} alt=">" />
+          <img src={RightArrow} alt=">" />
         </button>
       </div>
     </>
