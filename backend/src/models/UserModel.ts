@@ -1,17 +1,5 @@
-import { Sequelize, DataTypes, Model } from 'sequelize';
-
-// Temporary, should be reallocate to other files.
-const sequelize = new Sequelize(
-  'test',
-  'test',
-  'test',
-  {
-    host: 'localhost',
-    dialect: 'postgres'
-  }
-);
-
-sequelize.sync({ force: true });
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../configs/DatabaseConfig';
 
 interface UserAttributes {
   userid: string;
