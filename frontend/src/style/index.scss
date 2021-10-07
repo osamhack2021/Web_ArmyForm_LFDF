@@ -1,3 +1,13 @@
+$Color_Highlight: #1abc9c;
+$Color_Back_Green: #8bd0c2;
+$Color_Back_Gray: #efefef;
+$Color_Back_Dkgray: #5e5e5e;
+$Color_Slider_Highlight: #16a085;
+$Color_Slider_Normal: #e0e0e0;
+$Color_Red: #e74c3c;
+$Color_Yellow: #f1c40f;
+$Color_Green: #2ecc71;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -46,58 +56,65 @@ nav {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 1;
-}
 
-nav h1 {
-  padding: 0 20px;
-}
+  h1 {
+    padding: 0 20px;
+  }
 
-nav button {
-  color: black;
-  background: transparent;
-}
+  button {
+    color: black;
+    background: transparent;
+  }
 
-nav > div {
-  display: flex;
-  align-items: center;
-  width: 1200px;
-  justify-content: space-between;
-  padding: 0 20px;
-}
+  > div {
+    display: flex;
+    align-items: center;
+    width: 1200px;
+    justify-content: space-between;
+    padding: 0 20px;
 
-nav > div > div {
-  display: flex;
-  align-items: center;
-}
+    > div {
+      display: flex;
+      align-items: center;
+    }
+  }
 
-nav.nav_only_left > div {
-  justify-content: left;
-}
+  &.nav_only_left > div {
+    justify-content: left;
+  }
 
-nav.transparent {
-  background-color: transparent;
-  box-shadow: none;
-}
+  &.transparent {
+    background-color: transparent;
+    box-shadow: none;
 
-nav.transparent button {
-  color: white;
-}
+    button {
+      color: white;
+    }
+  }
 
-nav.simple_nav {
-  display: flex;
-  justify-content: left;
-  position: static;
-  width: 100%;
-  box-shadow: none;
-}
+  &.simple_nav {
+    display: flex;
+    justify-content: left;
+    position: static;
+    width: 100%;
+    box-shadow: none;
 
-nav.simple_nav button {
-  margin: 10px;
-  padding: 10px;
-  width: auto;
+    button {
+      margin: 10px;
+      padding: 10px;
+      width: auto;
+    }
+  }
 }
 
 /* layout styles */
+
+.column_container{
+  p {
+    padding-top: 20px;
+    padding-bottom: 100px;
+  }
+}
 
 .column_container,
 footer > div {
@@ -113,11 +130,6 @@ footer > div {
   padding: 30px 10px;
 }
 
-.column_container p {
-  padding-top: 20px;
-  padding-bottom: 100px;
-}
-
 .spread_row {
   display: flex;
   align-items: center;
@@ -126,13 +138,12 @@ footer > div {
 
 .slider_layout {
   padding: 16px;
-}
-
-.slider_layout > button {
-  padding: 0;
-  margin: 0 5px;
-  width: 10px;
-  height: 10px;
+  > button {
+    padding: 0;
+    margin: 0 5px;
+    width: 10px;
+    height: 10px;
+  }
 }
 
 .big_card {
@@ -142,11 +153,11 @@ footer > div {
   border-radius: 10px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 20px 0px;
-}
 
-.big_card p {
-  padding-top: 20px;
-  padding-bottom: 100px;
+  p {
+    padding-top: 20px;
+    padding-bottom: 100px;
+  }
 }
 
 /* widget styles */
@@ -157,7 +168,7 @@ h1 {
 }
 
 a {
-  color: #1abc9c;
+  color: $Color_Highlight;
 }
 
 input {
@@ -170,7 +181,7 @@ input {
   margin: 10px auto;
   border-radius: 3px;
   border: 1px solid #aaaaaa;
-  outline-color: #1abc9c;
+  outline-color: $Color_Highlight;
   text-align: left;
 }
 
@@ -182,63 +193,64 @@ button {
   font-size: 16px;
   color: white;
   border-radius: 4px;
-  background-color: #1abc9c;
-}
+  background-color: $Color_Highlight;
+  cursor: pointer;
 
-button.flat {
-  background-color: transparent;
-  width: auto;
-  padding: 5px;
-  margin: 5px;
-  color: black;
-}
+  &.flat {
+    background-color: transparent;
+    width: auto;
+    padding: 5px;
+    margin: 5px;
+    color: black;
+  }
 
-button.flat > img {
-  width: 40px;
-  height: 40px;
-  margin: 10px;
-}
+  &.flat > img {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+  }
 
-button.circle {
-  border-radius: 100%;
-}
+  &.circle {
+    border-radius: 100%;
+  }
 
-button.rect {
-  border-radius: 10%;
-}
+  &.rect {
+    border-radius: 10%;
+  }
 
-button.highlighted {
-  background-color: #16a085;
-}
+  &.highlighted {
+    background-color: $Color_Slider_Highlight;
+  }
 
-button.normal {
-  background-color: #e0e0e0;
+  &.normal {
+    background-color: $Color_Slider_Normal;
+  }
 }
 
 .background_lightgreen {
-  background-color: #1abc9c;
+  background-color: $Color_Highlight;
 }
 
 .background_green {
-  background-color: #8bd0c2;
+  background-color: $Color_Back_Green;
 }
 
 .background_gray {
-  background-color: #efefef;
+  background-color: $Color_Back_Gray;
 }
 
 footer {
-  background-color: #5e5e5e;
+  background-color: $Color_Back_Dkgray;
 }
 
 .red {
-  background-color: #e74c3c;
+  background-color: $Color_Red;
 }
 
 .yellow {
-  background-color: #f1c40f;
+  background-color: $Color_Yellow;
 }
 
 .green {
-  background-color: #2ecc71;
+  background-color: $Color_Green;
 }

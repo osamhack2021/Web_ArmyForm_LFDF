@@ -3,6 +3,15 @@
   padding: 0 1px;
 }
 
-button.big_button {
-  width: 140px;
+button {
+  &.big_button {
+    width: 140px;
+  }
+
+  &.link {
+    width: auto;
+    color: #1abc9c;
+    background-color: transparent;
+    text-decoration: underline; 
+  }
 }
