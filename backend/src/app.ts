@@ -6,6 +6,8 @@ import session from 'express-session';
 import WebRoute from './routes/WebRoute';
 import ApiRoute from './routes/ApiRoute';
 import AppConfig from './configs/AppConfig';
+const cors = require('cors');
+
 
 class App {
   public express: express.Application;
@@ -32,6 +34,7 @@ class App {
     );
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: true }));
+    this.express.use(cors());
   }
 
   /**
