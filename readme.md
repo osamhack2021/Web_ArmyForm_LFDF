@@ -18,13 +18,13 @@ Army Form
  - TODO
 
 ## 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
- - Node.js (v12.22.6)을 지원하는 운영 체제 [Node.js 다운로드](https://nodejs.org/download/release/v12.22.6/)
+ - Node.js (v14.17.6)을 지원하는 운영 체제 [Node.js 다운로드](https://nodejs.org/download/release/v12.22.6/)
  - ES6 이상 지원하는 브라우저
 
 ## 기술 스택 (Technique Used) 
 
 ### Server(back-end)
- - node.js : 12.22.6
+ - node.js : 14.17.6
  - express.js : ^4.17.1
  
 ### Front-end
