@@ -1,5 +1,4 @@
 .card_list{
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -13,25 +12,16 @@
   padding: 30px 10px;
 }
 
-.card {
-  width: 207px;
-  height: 344px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 20px 0px;	
-  position: relative;
-}
-
 .card_top{
   position: relative;
   height: 269px;
   padding: 12px;
   background-color: #16a085;
-}
-
-.card_top > div{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .card_icon {
@@ -39,52 +29,62 @@
   height: 18px;
 }
 
-.card h3 {
-  font-size: 18px;
-  color: white;
-  word-break: keep-all;
-  text-align: left;
-  padding: 10px 0;
+.card {
+  width: 207px;
+  height: 344px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 20px 0px;	
+  position: relative;
+
+  h3 {
+    font-size: 18px;
+    color: white;
+    word-break: keep-all;
+    text-align: left;
+    padding: 10px 0;
+  }
+
+  h4 {
+    font-size: 18px;
+    color: white;
+    word-break: keep-all;
+    text-align: left;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 12px;
+    padding: 0 2px;
+    color: #e0e0e0;
+    word-break: keep-all;
+    text-align: right;
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
 
-.card h4 {
-  font-size: 18px;
-  color: white;
-  word-break: keep-all;
-  text-align: left;
-}
+button {
+  &.card_circle {
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    width: 27px;
+    height: 27px;
+    border-radius: 100%;
+  }
 
-.card p {
-  font-size: 12px;
-  margin: 12px;
-  padding: 0 2px;
-  color: #e0e0e0;
-  word-break: keep-all;
-  text-align: right;
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-button.card_circle {
-  padding: 0;
-  margin: 0;
-  margin-left: 10px;
-  width: 27px;
-  height: 27px;
-  border-radius: 100%;
-}
-
-button.card_rect {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 0;
-  margin: 12px;
-  width: 89px;
-  height: 25px;
-  font-size: 11px;
-  border-radius: 0;
-  background-color: #16a085;
+  &.card_rect {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    margin: 12px;
+    width: 89px;
+    height: 25px;
+    font-size: 11px;
+    border-radius: 0;
+    background-color: #16a085;
+  }
 }

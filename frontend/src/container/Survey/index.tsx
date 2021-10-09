@@ -90,9 +90,9 @@ const Survey = () => {
               </button>
               <div className="card_list">
                 <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군"/>
-                <SurveyCard type="0"/>
-                <SurveyCard type="0"/>
-                <SurveyCard type="0"/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군"/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군"/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군"/>
               </div>
               <button className="flat">
                 <img src={RightArrow} alt=">" />
