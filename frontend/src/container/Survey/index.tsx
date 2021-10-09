@@ -1,11 +1,11 @@
-import React from "react";
+import React, {Component} from "react";
 
 import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
-import SurveyCard from "component/SurveyCard";
-import Slider from "component/Slider";
+import SurveyCard from "container/component/SurveyCard";
+import Slider from "container/component/Slider";
 
 import "style/Survey.scss";
 
@@ -59,7 +59,7 @@ class Survey extends Component {
 
     let page1_data = data1.slice(this.state.page1_pointer*column_count, (this.state.page1_pointer+1)*column_count);
     let page2_data = data2.slice(this.state.page2_pointer*column_count, (this.state.page2_pointer+1)*column_count);
-    let page3_data = data3.slice(this.state.page3_pointer*column_count, (this.state.page3_pointer+1)*column_count);
+    let page3_data = data1.slice(this.state.page3_pointer*column_count, (this.state.page3_pointer+1)*column_count);
 
     return (
       <>
@@ -86,7 +86,7 @@ class Survey extends Component {
                 <img src={LeftArrow} alt="<" />
               </button>
               <div className="card_list">
-                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군"/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군" deadline="0"/>
                 <SurveyCard type="1" name="전군 성폭력 예방 설문조사" target="전 군" deadline="5"/>
                 <SurveyCard type="2" name="전군 성폭력 예방 설문조사" target="전 군" deadline="7"/>
                 <SurveyCard type="3" name="전군 성폭력 예방 설문조사" target="전 군" deadline="15"/>
@@ -110,9 +110,9 @@ class Survey extends Component {
                 <img src={LeftArrow} alt="<" />
               </button>
               <div className="card_list">
-                <SurveyCard name="전군 성폭력 예방 설문조사" target="전 군"/>
-                <SurveyCard/>
-                <SurveyCard/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군" deadline="0"/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군" deadline="0"/>
+                <SurveyCard type="0" name="전군 성폭력 예방 설문조사" target="전 군" deadline="0"/>
               </div>
               <button className="flat">
                 <img src={RightArrow} alt=">" />
@@ -143,7 +143,6 @@ class Survey extends Component {
             <Slider current={this.state.page3_pointer} length={this.state.page3_count} />
           </div>
         </div>
-        
 
         <footer>
           <div>footer</div>

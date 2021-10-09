@@ -4,7 +4,7 @@ import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
-import SurveySlider from "component/SurveySlider";
+import SurveySlider from "container/component/SurveySlider";
 
 import "style/Survey/Page.scss";
 
