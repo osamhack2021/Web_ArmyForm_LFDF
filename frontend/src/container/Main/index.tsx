@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import move from "shared/components/move";
@@ -10,11 +10,27 @@ import "style/Main.scss";
 const Main = () => {
   const history = useHistory();
 
+  const [NavColored, setNavColored] = useState(false);
+
+  function handleScroll() {
+    setNavColored(window.pageYOffset > 279);
+  }
+
+  useEffect(() => {
+    function scrollListener() {
+      window.addEventListener("scroll", handleScroll);
+    }
+    scrollListener();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   return (
     <>
-      <div className="background_lightgreen">
+      <div className= "background_lightgreen">
         <div id="nav_container">
-          <nav className="transparent">
+          <nav className={ NavColored ? "" : "transparent" } >
             <div>
               <img id="icon" src={Logo} alt="ArmyForm" />
               <div>
