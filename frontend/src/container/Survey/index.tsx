@@ -196,4 +196,11 @@ class Survey extends Component {
   }
 };
 
-export default Survey;
+//Router Error Fix
+const SurveyView = () => {
+  return (
+    <Survey />
+  )
+}
+
+export default SurveyView;
