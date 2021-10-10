@@ -9,7 +9,19 @@ import Setting from "static/settings.png";
 
 import "style/SurveyCard.scss";
 
-const SurveyCard = ({type, name, target, deadline}) => {
+interface Icard {
+  type: Number;
+  name: string;
+  target: string;
+  deadline: number;
+}
+
+const SurveyCard = ({
+  type,
+  name = "설문조사 이름을 설정해 주세요",
+  target = "없습니다",
+  deadline,
+}: Icard) => {
   const CARD_RESURT = 0;
   const CARD_INCOMPLETED = 1;
   const CARD_PROCEEDING = 2;
@@ -17,17 +29,14 @@ const SurveyCard = ({type, name, target, deadline}) => {
   const CARD_CREATE_INCOMPLETED = 4;
   const CARD_CREATE_PROCEEDING = 5;
   const CARD_CREATE_COMPLETED = 6;
-  
-  type = Number(type);
-  name = name || "설문조사 이름을 설정해 주세요";
-  target = target || "없습니다";
+
   let buttonName;
   let statusClass = "card_circle ";
   let statusImage;
   let d_day = "";
-  if(deadline) d_day = "D-"+deadline;
+  if (deadline) d_day = "D-" + deadline;
 
-  switch(type){
+  switch (type) {
     case CARD_INCOMPLETED:
       buttonName = "시작하기";
       statusClass += "red";
@@ -76,15 +85,12 @@ const SurveyCard = ({type, name, target, deadline}) => {
             <button className={statusClass}>
               <img className="card_icon" src={statusImage} alt=">" />
             </button>
-            { 
-              type >= 4 ?
+            {type >= 4 ? (
               <button className="card_circle normal">
                 <img className="card_icon" src={Menu} alt=">" />
               </button>
-              : null
-            }
+            ) : null}
           </div>
-          
         </div>
         <h3>{name}</h3>
         <p>대상: {target}</p>
@@ -94,6 +100,6 @@ const SurveyCard = ({type, name, target, deadline}) => {
       </div>
     </div>
   );
-}
+};
 
 export default SurveyCard;
