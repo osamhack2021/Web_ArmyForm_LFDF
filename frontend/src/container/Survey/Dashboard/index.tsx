@@ -4,6 +4,8 @@ import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
+import SurveySlider from "container/component/SurveySlider";
+
 import "style/Survey/Dashboard.scss";
 
 const Dashboard = () => {
@@ -80,13 +82,7 @@ const Dashboard = () => {
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <div className="slider_layout">
-              <button className="rect highlight" />
-              <button className="circle normal" />
-              <button className="circle normal" />
-              <button className="circle normal" />
-              <button className="circle normal" />
-            </div>
+            <SurveySlider current={0} length={5} />
           </div>
         </div>
         <button className="flat">
