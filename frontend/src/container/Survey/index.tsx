@@ -79,7 +79,7 @@ const Survey = () => {
   }
 
   function getComputedListData(){
-    const result = [ [], [], [] ];
+    let result: any[][] = [ [], [], [] ];
     form_data.map( (data, index) => {
       result[index] = data.slice(
         page_list[index].cursor * list_item_count,
@@ -91,7 +91,7 @@ const Survey = () => {
   }
 
   function getComputedPageList(){
-    const page_list = [];
+    let page_list: any[] = [];
     for(let i = 0; i < 3; i++){
       page_list[i] = {
         pages: Math.round(form_data[i].length / list_item_count),
