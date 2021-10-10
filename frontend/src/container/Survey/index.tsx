@@ -80,13 +80,13 @@ const Survey = () => {
 
   function getComputedListData(){
     let result: any[][] = [ [], [], [] ];
-    form_data.map( (data, index) => {
-      result[index] = data.slice(
-        page_list[index].cursor * list_item_count,
-        (page_list[index].cursor + 1) * list_item_count
+    for(let i = 0; i < 3; i++){
+      result[i] = data.slice(
+        page_list[i].cursor * list_item_count,
+        (page_list[i].cursor + 1) * list_item_count
       );
-    });
-
+    }
+    
     return result;
   }
 
