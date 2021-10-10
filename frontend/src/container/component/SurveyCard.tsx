@@ -22,7 +22,7 @@ const SurveyCard = ({
   target = "없습니다",
   deadline,
 }: Icard) => {
-  const CARD_RESURT = 0;
+  // const CARD_RESURT = 0;
   const CARD_INCOMPLETED = 1;
   const CARD_PROCEEDING = 2;
   const CARD_COMPLETED = 3;
