@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
+import move from "shared/components/move";
+
+import Nav from "container/component/Nav"
 import SurveyCard from "container/component/SurveyCard";
 import Slider from "container/component/Slider";
 
 import "style/Survey.scss";
 
 const Survey = () => {
+  const history = useHistory();
+  
   //Survey Data
   const data = [
     {
@@ -133,20 +138,15 @@ const Survey = () => {
 
   return (
     <>
-      <div id="nav_container">
-        <nav>
-          <div>
-            <div>
-              <img id="icon" src={Logo} alt="ArmyForm" />
-              <h1>ArmyForm</h1>
-            </div>
-            <div>
-              <button className="flat">+</button>
-              <button className="flat">마이페이지</button>
-            </div>
-          </div>
-        </nav>
-      </div>
+      <Nav title="ArmyForm">
+        <button className="flat">+</button>
+        <button
+            className="flat"
+            onClick={() => move(history, "/Mypage")}
+          >
+          마이페이지
+        </button>
+      </Nav>
 
       <div className="background_green">
         <div className="wide_column_container">

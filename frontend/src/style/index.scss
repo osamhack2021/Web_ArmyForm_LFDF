@@ -171,7 +171,7 @@ a {
   color: $Color_Highlight;
 }
 
-input {
+input, select, option {
   display: block;
   width: 300px;
   height: 40px;
@@ -181,8 +181,14 @@ input {
   margin: 10px auto;
   border-radius: 3px;
   border: 1px solid #aaaaaa;
-  outline-color: $Color_Highlight;
+  outline-color: #1abc9c;
   text-align: left;
+  background-color: transparent;
+
+  &.error {
+    border: 1px solid #bd2d3a;
+    outline-color: #1abc9c;
+  }
 }
 
 button {
