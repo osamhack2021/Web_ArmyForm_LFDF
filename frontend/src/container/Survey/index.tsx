@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
@@ -12,6 +13,8 @@ import Slider from "container/component/Slider";
 import "style/Survey.scss";
 
 const Survey = () => {
+  const history = useHistory();
+  
   //Survey Data
   const data = [
     {
