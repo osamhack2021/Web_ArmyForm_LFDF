@@ -5,6 +5,7 @@ import Main from "container/Main";
 // import Test from "container/Main/Test";
 
 import Signup from "container/Signup";
+import Mypage from "container/Mypage";
 
 import Survey from "container/Survey";
 import SurveyCreate from "container/Survey/Create";
@@ -46,6 +47,13 @@ const routes = [
     path: "/Findaccount",
     exact: false,
     component: Findaccount,
+    subRoutes: [],
+  },
+  {
+    name: "마이페이지",
+    path: "/Mypage",
+    exact: false,
+    component: Mypage,
     subRoutes: [],
   },
   {

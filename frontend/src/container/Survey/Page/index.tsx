@@ -1,9 +1,9 @@
 import React from "react";
 
-import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
+import Nav from "container/component/Nav"
 import SurveySlider from "container/component/SurveySlider";
 
 import "style/Survey/Page.scss";
@@ -11,14 +11,7 @@ import "style/Survey/Page.scss";
 const Page = () => {
   return (
     <>
-      <div id="nav_container">
-        <nav className="nav_only_left transparent">
-          <div>
-            <img id="icon" src={Logo} alt="ArmyForm" />
-            <h1>FormName</h1>
-          </div>
-        </nav>
-      </div>
+      <Nav title="FormName" />
 
       <div className="column_container spread_row">
         <button className="flat">

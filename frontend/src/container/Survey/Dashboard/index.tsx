@@ -1,9 +1,9 @@
 import React from "react";
 
-import Logo from "static/logo.png";
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
+import Nav from "container/component/Nav"
 import SurveySlider from "container/component/SurveySlider";
 
 import "style/Survey/Dashboard.scss";
@@ -11,21 +11,11 @@ import "style/Survey/Dashboard.scss";
 const Dashboard = () => {
   return (
     <>
-      <div id="nav_container">
-        <nav>
-          <div>
-            <div>
-              <img id="icon" src={Logo} alt="ArmyForm" />
-              <h1>FormName</h1>
-            </div>
-            <div>
-              <button className="flat">미리보기</button>
-              <button className="flat">저장</button>
-              <button className="flat">나가기</button>
-            </div>
-          </div>
-        </nav>
-      </div>
+      <Nav title="FormName">
+        <button className="flat">미리보기</button>
+        <button className="flat">저장</button>
+        <button className="flat">나가기</button>
+      </Nav>
 
       <div className="spread_row background_green">
         <button className="flat">
