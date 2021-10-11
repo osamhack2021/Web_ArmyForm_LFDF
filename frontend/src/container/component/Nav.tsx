@@ -8,7 +8,13 @@ interface Inav {
   title: string;
 }
 
-function Nav({ children = null, type = "", title = "" }: Inav) {
+function Nav(props: any) {
+  const {
+    children = null,
+    type = "",
+    title = "",
+  }: Inav = props; 
+  
   return (
     <div id="nav_container">
       <nav className={ type } >
