@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import move from "shared/components/move";
 
-import Nav from "container/component/Nav"
+import Nav from "container/component/Nav";
 
 import "style/Main.scss";
 
@@ -28,20 +28,12 @@ const Main = () => {
 
   return (
     <>
-      <div className= "background_lightgreen">
-        <Nav
-          type={ NavColored ? "" : "transparent" }
-        >
-          <button
-            className="flat"
-            onClick={() => move(history, "/Signup")}
-          >
+      <div className="background_lightgreen">
+        <Nav title="" type={NavColored ? "" : "transparent"}>
+          <button className="flat" onClick={() => move(history, "/Signup")}>
             Sign up
           </button>
-          <button
-            className="flat"
-            onClick={() => move(history, "/Login")}
-          >
+          <button className="flat" onClick={() => move(history, "/Login")}>
             Sign in
           </button>
         </Nav>

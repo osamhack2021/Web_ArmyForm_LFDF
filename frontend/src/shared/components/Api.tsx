@@ -9,7 +9,7 @@ class Api {
   login(Ilogin: any) {
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .post(CONFIG.API_SERVER + "/login", Ilogin)
+        .post(CONFIG.API_SERVER + "/auth/login", Ilogin)
         .then((res: any) => resolve(res.data))
         .catch((e) => reject(e));
     });
@@ -22,7 +22,16 @@ class Api {
   signup(IsignUp: any) {
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .post(CONFIG.API_SERVER + "/signup", IsignUp)
+        .post(CONFIG.API_SERVER + "/auth/signup", IsignUp)
+        .then((res: any) => resolve(res.data))
+        .catch(reject);
+    });
+  }
+
+  getSurvey(Iconfig: any) {
+    return new Promise((resolve, reject) => {
+      Interceptor.getInstance()
+        .post(CONFIG.API_SERVER + "/results", Iconfig)
         .then((res: any) => resolve(res.data))
         .catch(reject);
     });
