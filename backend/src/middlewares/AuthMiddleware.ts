@@ -38,7 +38,7 @@ class AuthMiddleware {
     })
   }
 
-  public static async checkToken(req: any, res: Response, next: NextFunction): Promise<any> {
+  public static async checkToken(req: Request, res: Response, next: NextFunction): Promise<any> {
     let token: any = req.headers["x-access-token"];
 
     if (!token) {
@@ -47,15 +47,13 @@ class AuthMiddleware {
       })
     }
 
-    jwt.verify(token, AuthConfig.SECRET, function (err: any, decoded: any) {
-      if (err) {
-        return res.status(401).send({
-          message: "Unauthorized!"
-        });
-      }
-      req.userId = decoded.id;
-      next();
-    })
+    try {
+      const decoded = jwt.verify(token, AuthConfig.SECRET);
+      req.body.userid = decoded;
+      next()
+    } catch (e) {
+      res.status(401).json('Unauthorized!')
+    }
   }
 
   // 유저 구분하기
