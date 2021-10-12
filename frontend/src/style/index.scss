@@ -109,7 +109,7 @@ nav {
 
 /* layout styles */
 
-.column_container{
+.column_container {
   p {
     padding-top: 20px;
     padding-bottom: 100px;
@@ -171,7 +171,9 @@ a {
   color: $Color_Highlight;
 }
 
-input, select, option {
+input,
+select,
+option {
   display: block;
   width: 300px;
   height: 40px;

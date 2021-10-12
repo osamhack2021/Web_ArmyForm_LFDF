@@ -3,7 +3,7 @@
 // const BASENAME = "";
 
 const config = {
-  API_SERVER: "http://localhost:3000/api/auth",
+  API_SERVER: "http://localhost:3000/api",
 };
 
 export default config;

@@ -9,21 +9,17 @@ interface Inav {
 }
 
 function Nav(props: any) {
-  const {
-    children = null,
-    type = "",
-    title = "",
-  }: Inav = props; 
-  
+  const { children = null, type = "", title = "" }: Inav = props;
+
   return (
     <div id="nav_container">
-      <nav className={ type } >
+      <nav className={type}>
         <div>
           <div>
-            <img id="icon" src={ Logo } alt="icon" />
-            <h1> { title } </h1>
+            <img id="icon" src={Logo} alt="icon" />
+            <h1> {title} </h1>
           </div>
-          <div> { children } </div>
+          <div> {children} </div>
         </div>
       </nav>
     </div>

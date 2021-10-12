@@ -11,19 +11,13 @@ const SurveySlider = ({ current, length, moveFunc }: Islider) => {
 
   let className = current === 0 ? "rect highlighted" : "rect normal";
   result.push(
-    <button
-      className={ className }
-      onClick={ () => moveFunc(0) } 
-    />
+    <button className={className} key={0} onClick={() => moveFunc(0)} />
   );
 
   for (let i = 1; i < length; i++) {
     className = current === i ? "circle highlighted" : "circle normal";
     result.push(
-      <button
-        className={ className }
-        onClick={ () => moveFunc(i) } 
-      />
+      <button className={className} key={i} onClick={() => moveFunc(i)} />
     );
   }
 

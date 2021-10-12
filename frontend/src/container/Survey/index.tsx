@@ -6,7 +6,7 @@ import RightArrow from "static/right-arrow.png";
 
 import move from "shared/components/move";
 
-import Nav from "container/component/Nav"
+import Nav from "container/component/Nav";
 import SurveyCard from "container/component/SurveyCard";
 import Slider from "container/component/Slider";
 
@@ -14,7 +14,7 @@ import "style/Survey.scss";
 
 const Survey = () => {
   const history = useHistory();
-  
+
   //Survey Data
   const data = [
     {
@@ -67,37 +67,36 @@ const Survey = () => {
     },
   ];
 
-  let form_data = [ data, data, data ];
+  let form_data = [data, data, data];
   let list_item_count = getComputedItemCount();
   const [page_list, setPageList] = useState(getComputedPageList());
   const [list_data, setListData] = useState(getComputedListData());
 
-  function getComputedItemCount(){
+  function getComputedItemCount() {
     const CARD_WIDTH = 227;
     const Width = window.innerWidth;
-    const availableWidth = 
-      (Width > 1820 ? 1820 : Width) - 180;
+    const availableWidth = (Width > 1820 ? 1820 : Width) - 180;
     let item_count = Math.floor(availableWidth / CARD_WIDTH);
     if (item_count <= 0) item_count = 1;
 
     return item_count;
   }
 
-  function getComputedListData(){
-    let result: any[][] = [ [], [], [] ];
-    for(let i = 0; i < 3; i++){
+  function getComputedListData() {
+    let result: any[][] = [[], [], []];
+    for (let i = 0; i < 3; i++) {
       result[i] = data.slice(
         page_list[i].cursor * list_item_count,
         (page_list[i].cursor + 1) * list_item_count
       );
     }
-    
+
     return result;
   }
 
-  function getComputedPageList(){
+  function getComputedPageList() {
     let page_list: any[] = [];
-    for(let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
       page_list[i] = {
         pages: Math.round(form_data[i].length / list_item_count),
         cursor: 0,
@@ -110,9 +109,9 @@ const Survey = () => {
   function handleItemCount() {
     const currentItemCount = getComputedItemCount();
 
-    if(list_item_count !== currentItemCount){
+    if (list_item_count !== currentItemCount) {
       list_item_count = currentItemCount;
-      setPageList(getComputedPageList())
+      setPageList(getComputedPageList());
       setListData(getComputedListData());
     }
   }
@@ -127,8 +126,8 @@ const Survey = () => {
     };
   });
 
-  function changePage(index: number, cursor: number){
-    if(cursor < 0 || cursor >= page_list[index].pages) return;
+  function changePage(index: number, cursor: number) {
+    if (cursor < 0 || cursor >= page_list[index].pages) return;
 
     page_list[index].cursor = cursor;
 
@@ -138,12 +137,9 @@ const Survey = () => {
 
   return (
     <>
-      <Nav title="ArmyForm">
+      <Nav type="" title="ArmyForm">
         <button className="flat">+</button>
-        <button
-            className="flat"
-            onClick={() => move(history, "/Mypage")}
-          >
+        <button className="flat" onClick={() => move(history, "/Mypage")}>
           마이페이지
         </button>
       </Nav>
@@ -154,7 +150,7 @@ const Survey = () => {
           <div className="card_layout">
             <button
               className="flat"
-              onClick={ () => changePage(0, page_list[0].cursor-1) }
+              onClick={() => changePage(0, page_list[0].cursor - 1)}
             >
               <img src={LeftArrow} alt="<" />
             </button>
@@ -172,7 +168,7 @@ const Survey = () => {
             </div>
             <button
               className="flat"
-              onClick={ () => changePage(0, page_list[0].cursor+1) }
+              onClick={() => changePage(0, page_list[0].cursor + 1)}
             >
               <img src={RightArrow} alt=">" />
             </button>
@@ -180,7 +176,7 @@ const Survey = () => {
           <Slider
             current={page_list[0].cursor}
             length={page_list[0].pages}
-            moveFunc={ (cursor) => changePage(0, cursor) }
+            moveFunc={(cursor) => changePage(0, cursor)}
           />
         </div>
       </div>
@@ -191,7 +187,7 @@ const Survey = () => {
           <div className="card_layout">
             <button
               className="flat"
-              onClick={ () => changePage(1, page_list[1].cursor-1) }
+              onClick={() => changePage(1, page_list[1].cursor - 1)}
             >
               <img src={LeftArrow} alt="<" />
             </button>
@@ -209,7 +205,7 @@ const Survey = () => {
             </div>
             <button
               className="flat"
-              onClick={ () => changePage(1, page_list[1].cursor+1) }
+              onClick={() => changePage(1, page_list[1].cursor + 1)}
             >
               <img src={RightArrow} alt=">" />
             </button>
@@ -217,7 +213,7 @@ const Survey = () => {
           <Slider
             current={page_list[1].cursor}
             length={page_list[1].pages}
-            moveFunc={ (cursor) => changePage(1, cursor) }
+            moveFunc={(cursor) => changePage(1, cursor)}
           />
         </div>
       </div>
@@ -228,7 +224,7 @@ const Survey = () => {
           <div className="card_layout">
             <button
               className="flat"
-              onClick={ () => changePage(2, page_list[2].cursor-1) }
+              onClick={() => changePage(2, page_list[2].cursor - 1)}
             >
               <img src={LeftArrow} alt="<" />
             </button>
@@ -246,7 +242,7 @@ const Survey = () => {
             </div>
             <button
               className="flat"
-              onClick={ () => changePage(2, page_list[2].cursor+1) }
+              onClick={() => changePage(2, page_list[2].cursor + 1)}
             >
               <img src={RightArrow} alt=">" />
             </button>
@@ -254,7 +250,7 @@ const Survey = () => {
           <Slider
             current={page_list[2].cursor}
             length={page_list[2].pages}
-            moveFunc={ (cursor) => changePage(2, cursor) }
+            moveFunc={(cursor) => changePage(2, cursor)}
           />
         </div>
       </div>
@@ -264,6 +260,6 @@ const Survey = () => {
       </footer>
     </>
   );
-}
+};
 
 export default Survey;
