@@ -3,20 +3,14 @@ import CONFIG from "config";
 
 // TODO: avoid localStorage
 
-// localStorage.setItem("user", JSON.stringify(response.data));
-
 class Api {
   login(Ilogin: any) {
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .post(CONFIG.API_SERVER + "/auth/login", Ilogin)
+        .post(CONFIG.API_SERVER + "/auth/signin", Ilogin)
         .then((res: any) => resolve(res.data))
         .catch((e) => reject(e));
     });
-  }
-
-  logout() {
-    localStorage.removeItem("user");
   }
 
   signup(IsignUp: any) {
@@ -31,17 +25,19 @@ class Api {
   getSurvey(Iconfig: any) {
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .post(CONFIG.API_SERVER + "/results", Iconfig)
+        .get(CONFIG.API_SERVER + "/survey/results", authHeader(Iconfig))
         .then((res: any) => resolve(res.data))
         .catch(reject);
     });
   }
 
-  getCurrentUser() {
-    const userStr = localStorage.getItem("user");
-    if (userStr) return JSON.parse(userStr);
-
-    return null;
+  getSurveyList(Iconfig: any) {
+    return new Promise((resolve, reject) => {
+      Interceptor.getInstance()
+        .get(CONFIG.API_SERVER + "/survey", authHeader(Iconfig))
+        .then((res: any) => resolve(res.data))
+        .catch(reject);
+    });
   }
 }
 
@@ -49,17 +45,12 @@ export default new Api();
 
 /*
   {headers: authHeader()}
-
-function authHeader(): Record<string, string> {
-  const userStr = localStorage.getItem("user");
-  let user = null;
-  if (userStr) user = JSON.parse(userStr);
-
-  if (user && user.accessToken) {
-    // return { Authorization: 'Bearer ' + user.accessToken }; // for Spring Boot back-end
-    return { "x-access-token": user.accessToken }; // for Node Express back-end
-  } else {
-    return {};
-  }
-}
+  Record<string, string>
 */
+function authHeader(Iany: any) {
+  const jwtStr = localStorage.getItem("jwt");
+
+  return jwtStr
+    ? { headers: { "x-access-token": jwtStr }, ...Iany }
+    : { ...Iany };
+}

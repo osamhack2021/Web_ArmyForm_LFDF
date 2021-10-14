@@ -1,74 +1,56 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
-
-import move from "shared/components/move";
 
 import Nav from "container/component/Nav";
 import SurveyCard from "container/component/SurveyCard";
 import Slider from "container/component/Slider";
 
+import Api from "shared/components/Api/Api";
+
+import test_json from "../../shared/constants/testdata/surveylist_json.js";
+
 import "style/Survey.scss";
 
+interface Iquestion {
+  type: string;
+  name: string;
+  visible: true;
+  title: string;
+}
+
+interface Ipage {
+  name: string;
+  elements: Iquestion[];
+}
+
+interface Iconfig {
+  title: string;
+  progressBarType: string;
+  showProgressBar: string;
+  pages: Ipage[];
+}
+
 const Survey = () => {
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
+  const [info, setInfo] = useState({});
 
-  //Survey Data
-  const data = [
-    {
-      type: 1,
-      name: "전 군 성폭력 예방 설문조사",
-      target: "전 군",
-      deadline: 1,
-    },
-    {
-      type: 2,
-      name: "사이버네트워크작전센터 부대정밀진단 설문조사",
-      target: "사이버네트워크작전센터 전 장병",
-      deadline: 3,
-    },
-    {
-      type: 3,
-      name: "부대종합전투력측정 참가자 모집",
-      target: "사이버네트워크작전센터 전 장병",
-      deadline: 5,
-    },
-    {
-      type: 4,
-      name: "9월 급양 선호도 설문조사",
-      target: "10급양대 급양대상 전 장병",
-      deadline: 7,
-    },
-    {
-      type: 5,
-      name: "9월 급양 선호도 설문조사",
-      target: "10급양대 급양대상 전 장병",
-      deadline: 9,
-    },
-    {
-      type: 6,
-      name: "9월 급양 선호도 설문조사",
-      target: "10급양대 급양대상 전 장병",
-      deadline: 11,
-    },
-    {
-      type: 0,
-      name: "9월 급양 선호도 설문조사",
-      target: "10급양대 급양대상 전 장병",
-      deadline: 13,
-    },
-    {
-      type: 4,
-      name: "9월 급양 선호도 설문조사",
-      target: "10급양대 급양대상 전 장병",
-      deadline: 15,
-    },
-  ];
+  useEffect(() => {
+    Api.getSurvey("test")
+      .then((info) => {
+        setInfo(test_json);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        /* on fail */
+        setIsLoading(false);
+      });
+  });
 
-  let form_data = [data, data, data];
+  let form_data = [test_json, test_json, test_json];
   let list_item_count = getComputedItemCount();
+
   const [page_list, setPageList] = useState(getComputedPageList());
   const [list_data, setListData] = useState(getComputedListData());
 
@@ -85,7 +67,7 @@ const Survey = () => {
   function getComputedListData() {
     let result: any[][] = [[], [], []];
     for (let i = 0; i < 3; i++) {
-      result[i] = data.slice(
+      result[i] = test_json.slice(
         page_list[i].cursor * list_item_count,
         (page_list[i].cursor + 1) * list_item_count
       );
@@ -138,10 +120,7 @@ const Survey = () => {
   return (
     <>
       <Nav type="" title="ArmyForm">
-        <button className="flat">+</button>
-        <button className="flat" onClick={() => move(history, "/Mypage")}>
-          마이페이지
-        </button>
+        <button className="flat">설문조사 추가</button>
       </Nav>
 
       <div className="background_green">
@@ -254,10 +233,6 @@ const Survey = () => {
           />
         </div>
       </div>
-
-      <footer>
-        <div>footer</div>
-      </footer>
     </>
   );
 };

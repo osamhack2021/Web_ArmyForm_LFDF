@@ -2,9 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import Api from "shared/components/Api";
-import move from "shared/components/move";
-
+import Api from "shared/components/Api/Api";
+import User from "shared/components/User/User";
 import NavBack from "container/component/NavBack";
 
 import "style/Login.scss";
@@ -28,8 +27,8 @@ function Login() {
   const doLogin = async (data: Ilogin) => {
     Api.login(data)
       .then((info) => {
-        localStorage.setItem("user", JSON.stringify(info));
-        move(history, "/Main2"); //will be replaced
+        User.parseLogin(JSON.stringify(info));
+        history.push("/Survey");
       })
       .catch((e) =>
         setError("login", { message: "아이디 또는 비밀번호가 잘못되었습니다." })
@@ -81,16 +80,32 @@ function Login() {
           로그인
         </button>
         <div className="login_bottom_layout">
-          <button className="link" onClick={() => move(history, "/Signup")}>
+          <button className="link" onClick={() => history.push("/Signup")}>
             회원가입
           </button>
           <p>또는</p>
-          <button
-            className="link"
-            onClick={() => move(history, "/Findaccount")}
-          >
+          <button className="link" onClick={() => history.push("/Findaccount")}>
             비밀번호 찾기
           </button>
+        </div>
+        <div
+          style={{ background: "green" }}
+          onClick={() => {
+            User.parseLogin(
+              JSON.stringify({
+                result: {
+                  result: {
+                    userid: "test",
+                    jsonwebtoken:
+                      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ0ZXN0IiwiaWF0IjoxNjM0MjM5OTQxLCJleHAiOjE2MzQyNDM1NDF9.174W7dJiaTpDWuf-p5UgSrIUNCBg5G6255SS85nJ_FQ",
+                  },
+                },
+              })
+            );
+            history.push("/Survey");
+          }}
+        >
+          테스트용 로그인 버튼입니다.
         </div>
       </div>
     </>

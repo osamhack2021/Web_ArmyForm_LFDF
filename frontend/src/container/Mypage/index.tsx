@@ -11,7 +11,7 @@ function Mypage() {
         <input type="text" placeholder="아이디" />
         <input type="password" placeholder="비밀번호 변경" />
         <input type="password" placeholder="비밀번호 확인" />
-        
+
         <select>
           <option>군</option>
           <option>육군</option>
@@ -21,7 +21,7 @@ function Mypage() {
 
         <input list="data" type="text" placeholder="소속부대" />
 
-        <datalist id="data" >
+        <datalist id="data">
           <option>데이터 셋</option>
           <option>군대리아</option>
         </datalist>

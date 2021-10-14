@@ -1,9 +1,11 @@
 import { Route } from "react-router-dom";
+import Auth from "../User/Auth";
 
 interface IRoute {
   name: string;
   path: string;
   exact: boolean;
+  needAuth: boolean;
   subRoutes: Array<any>;
   component: (props: any) => JSX.Element;
 }
@@ -11,6 +13,7 @@ interface IRoute {
 const RouteWithSubRoutes = (route: IRoute) => {
   return (
     <>
+      {route.needAuth ? <Auth /> : ""}
       <Route
         path={route.path}
         exact={route.exact}

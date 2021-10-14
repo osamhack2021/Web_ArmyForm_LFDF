@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import move from "shared/components/move";
-
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 
@@ -36,7 +34,7 @@ const SurveyCreate = () => {
       <Nav type="" title="FormName">
         <button className="flat">미리보기</button>
         <button className="flat">저장</button>
-        <button className="flat" onClick={() => move(history, "/Survey")}>
+        <button className="flat" onClick={() => history.push("/Survey")}>
           나가기
         </button>
       </Nav>

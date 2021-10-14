@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-
-import move from "shared/components/move";
 
 import Nav from "container/component/Nav";
 
 import "style/Main.scss";
 
 const Main = () => {
-  const history = useHistory();
-
   const [NavColored, setNavColored] = useState(false);
 
   function handleScroll() {
@@ -29,14 +24,7 @@ const Main = () => {
   return (
     <>
       <div className="background_lightgreen">
-        <Nav title="" type={NavColored ? "" : "transparent"}>
-          <button className="flat" onClick={() => move(history, "/Signup")}>
-            Sign up
-          </button>
-          <button className="flat" onClick={() => move(history, "/Login")}>
-            Sign in
-          </button>
-        </Nav>
+        <Nav title="" type={NavColored ? "" : "transparent"} />
         <div id="title_container">
           <div>
             <h1>ArmyForm</h1>

@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import RouteWithSubRoutes from "shared/components/RouteWithSubRoutes";
-import _404 from "shared/components/_404";
+import RouteWithSubRoutes from "shared/components/Route/RouteWithSubRoutes";
+import _404 from "shared/components/Route/_404";
 import routes from "shared/constants/routes";
 
-import NavBar from "container/component/NavBar";
+import NavBar from "shared/components/Route/RouteBar";
 
 import "style/App.scss";
-import Footer from "./component/Footer";
+import Footer from "shared/components/Footer";
 
 const App = () => {
   return (

@@ -1,16 +1,14 @@
 import Findaccount from "container/Findaccount";
 import Login from "container/Login";
-
 import Main from "container/Main";
-// import Test from "container/Main/Test";
-
 import Signup from "container/Signup";
 import Mypage from "container/Mypage";
 
 import Survey from "container/Survey";
 import SurveyCreate from "container/Survey/Create";
-import SurveyDashboard from "container/Survey/Dashboard";
 import SurveyPage from "container/Survey/Page";
+
+import Logout from "shared/components/User/Logout";
 
 const routes = [
   {
@@ -18,6 +16,7 @@ const routes = [
     path: "/",
     exact: true,
     component: Main,
+    needAuth: false,
     subRoutes: [
       // {
       //   name: "테스트화면",
@@ -33,6 +32,15 @@ const routes = [
     path: "/Login",
     exact: false,
     component: Login,
+    needAuth: false,
+    subRoutes: [],
+  },
+  {
+    name: "로그아웃",
+    path: "/Logout",
+    exact: false,
+    component: Logout,
+    needAuth: false,
     subRoutes: [],
   },
   {
@@ -40,6 +48,7 @@ const routes = [
     path: "/Signup",
     exact: false,
     component: Signup,
+    needAuth: false,
     subRoutes: [],
   },
   {
@@ -47,6 +56,7 @@ const routes = [
     path: "/Findaccount",
     exact: false,
     component: Findaccount,
+    needAuth: false,
     subRoutes: [],
   },
   {
@@ -54,6 +64,7 @@ const routes = [
     path: "/Mypage",
     exact: false,
     component: Mypage,
+    needAuth: true,
     subRoutes: [],
   },
   {
@@ -61,6 +72,7 @@ const routes = [
     path: "/Survey",
     exact: true,
     component: Survey,
+    needAuth: true,
     subRoutes: [],
   },
   {
@@ -68,13 +80,7 @@ const routes = [
     path: "/Survey/Create",
     exact: false,
     component: SurveyCreate,
-    subRoutes: [],
-  },
-  {
-    name: "설문 대시보드",
-    path: "/Survey/Dashboard",
-    exact: false,
-    component: SurveyDashboard,
+    needAuth: true,
     subRoutes: [],
   },
   {
@@ -82,6 +88,7 @@ const routes = [
     path: "/Survey/Page",
     exact: false,
     component: SurveyPage,
+    needAuth: true,
     subRoutes: [],
   },
 ];

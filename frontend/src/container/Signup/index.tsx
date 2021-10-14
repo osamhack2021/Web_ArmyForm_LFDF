@@ -2,12 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
-import Api from "shared/components/Api";
+import Api from "shared/components/Api/Api";
 
 import NavBack from "container/component/NavBack";
 
 import "style/Signup.scss";
-import move from "shared/components/move";
 
 interface IsignUp {
   userid: string;
@@ -33,7 +32,7 @@ const Signup = () => {
     Api.signup(data)
       .then((info) => {
         localStorage.setItem("user", JSON.stringify(info));
-        move(history, "/Main2"); //will be replaced
+        history.push("/Survey"); //will be replaced
       })
       .catch((e) => console.log(e));
   };
