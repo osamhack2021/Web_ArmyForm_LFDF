@@ -1,5 +1,6 @@
-import { Table, Model, DataType, Column, PrimaryKey, ForeignKey, BelongsTo, IsUUID, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import { Table, Model, DataType, Column, PrimaryKey, ForeignKey, BelongsTo, HasMany, IsUUID, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
 import User from './UserModel';
+import Result from './ResultModel';
 
 @Table
 class Survey extends Model {
@@ -20,6 +21,9 @@ class Survey extends Model {
 
   @BelongsTo(() => User, 'ownerId')
   owner!: User;
+
+  @HasMany(() => Result, 'surveyId')
+  results!: Result[];
 
   @CreatedAt
   readonly createdAt!: Date;
