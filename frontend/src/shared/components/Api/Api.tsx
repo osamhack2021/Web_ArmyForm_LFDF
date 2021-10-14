@@ -31,10 +31,10 @@ class Api {
     });
   }
 
-  getSurveyList(Iconfig: any) {
+  getSurveyList() {
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .get(CONFIG.API_SERVER + "/survey", authHeader(Iconfig))
+        .get(CONFIG.API_SERVER + "/survey/results", authHeader({}))
         .then((res: any) => resolve(res.data))
         .catch(reject);
     });
@@ -42,7 +42,7 @@ class Api {
 
   get(info: any) {
     localStorage.setItem("temp", info);
-    return JSON.parse(localStorage.getItem("temp") || "");
+    return JSON.parse(localStorage.getItem("temp") || "{}");
   }
 }
 
