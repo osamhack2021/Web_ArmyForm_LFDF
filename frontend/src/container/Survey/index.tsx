@@ -8,29 +8,11 @@ import SurveyCard from "container/component/SurveyCard";
 import Slider from "container/component/Slider";
 
 import Api from "shared/components/Api/Api";
+import Loader from "shared/components/Api/Loader";
 
 import test_json from "../../shared/constants/testdata/surveylist_json.js";
 
 import "style/Survey.scss";
-
-interface Iquestion {
-  type: string;
-  name: string;
-  visible: true;
-  title: string;
-}
-
-interface Ipage {
-  name: string;
-  elements: Iquestion[];
-}
-
-interface Iconfig {
-  title: string;
-  progressBarType: string;
-  showProgressBar: string;
-  pages: Ipage[];
-}
 
 const Survey = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +21,8 @@ const Survey = () => {
   useEffect(() => {
     Api.getSurvey("test")
       .then((info) => {
-        setInfo(test_json);
+        console.log(info);
+        setInfo({});
         setIsLoading(false);
       })
       .catch((e) => {
@@ -117,6 +100,8 @@ const Survey = () => {
     setListData(getComputedListData());
   }
 
+  if (isLoading) return <Loader />;
+
   return (
     <>
       <Nav type="" title="ArmyForm">
@@ -124,6 +109,7 @@ const Survey = () => {
       </Nav>
 
       <div className="background_green">
+        {info}
         <div className="wide_column_container">
           <h2>진행중인 설문</h2>
           <div className="card_layout">

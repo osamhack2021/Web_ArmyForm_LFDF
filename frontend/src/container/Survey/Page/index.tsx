@@ -11,24 +11,24 @@ import test_json from "shared/constants/testdata/survey_json.js";
 
 import "style/Survey/Page.scss";
 
-interface Iquestion {
-  type: string;
-  name: string;
-  visible: true;
-  title: string;
-}
+// interface Iquestion {
+//   type: string;
+//   name: string;
+//   visible: true;
+//   title: string;
+// }
 
-interface Ipage {
-  name: string;
-  elements: Iquestion[];
-}
+// interface Ipage {
+//   name: string;
+//   elements: Iquestion[];
+// }
 
-interface Iconfig {
-  title: string;
-  progressBarType: string;
-  showProgressBar: string;
-  pages: Ipage[];
-}
+// interface Iconfig {
+//   title: string;
+//   progressBarType: string;
+//   showProgressBar: string;
+//   pages: Ipage[];
+// }
 
 const Page = () => {
   const [isStart, setIsStart] = useState(false); //SurveyModel.currentPageNo
@@ -39,7 +39,7 @@ const Page = () => {
   useEffect(() => {
     Api.getSurvey("test")
       .then((info) => {
-        setInfo(test_json);
+        setInfo(Api.get(info));
         setIsLoading(false);
       })
       .catch((e) => {
@@ -56,8 +56,6 @@ const Page = () => {
     title: "Test Form",
     contents: "테스트 데이터입니다.",
   };
-
-  const surveyPages = 10; //SurveyModel.pageCount
 
   const onCurrentPageChanged = (result: SurveyModel, options: any) => {
     console.log("value changed!");

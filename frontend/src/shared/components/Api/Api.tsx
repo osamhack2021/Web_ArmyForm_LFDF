@@ -39,6 +39,11 @@ class Api {
         .catch(reject);
     });
   }
+
+  get(info: any) {
+    localStorage.setItem("temp", info);
+    return JSON.parse(localStorage.getItem("temp") || "");
+  }
 }
 
 export default new Api();
