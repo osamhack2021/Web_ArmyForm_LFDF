@@ -1,13 +1,268 @@
+$Color_Highlight: #1abc9c;
+$Color_Back_Green: #8bd0c2;
+$Color_Back_Gray: #efefef;
+$Color_Back_Dkgray: #5e5e5e;
+$Color_Slider_Highlight: #16a085;
+$Color_Slider_Normal: #e0e0e0;
+$Color_Red: #e74c3c;
+$Color_Yellow: #f1c40f;
+$Color_Green: #2ecc71;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: black;
+  text-align: center;
+}
+
+#icon {
+  width: 60px;
+  height: 60px;
+}
+
+#back_icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* navigation style */
+
+#nav_container {
+  height: 80px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  z-index: 1;
+
+  h1 {
+    padding: 0 20px;
+  }
+
+  button {
+    color: black;
+    background: transparent;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    width: 1200px;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &.nav_only_left > div {
+    justify-content: left;
+  }
+
+  &.transparent {
+    background-color: transparent;
+    box-shadow: none;
+
+    button {
+      color: white;
+    }
+  }
+
+  &.simple_nav {
+    display: flex;
+    justify-content: left;
+    position: static;
+    width: 100%;
+    box-shadow: none;
+
+    button {
+      margin: 10px;
+      padding: 10px;
+      width: auto;
+    }
+  }
+}
+
+/* layout styles */
+
+.column_container {
+  p {
+    padding-top: 20px;
+    padding-bottom: 100px;
+  }
+}
+
+.column_container,
+footer > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 40px;
+}
+
+.column_container h2,
+.column_container h3,
+.big_card h2 {
+  font-size: 36px;
+  padding: 30px 10px;
+}
+
+.spread_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider_layout {
+  padding: 16px;
+  > button {
+    padding: 0;
+    margin: 0 5px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.big_card {
+  max-width: 860px;
+  padding: 5px 50px;
+  margin: 60px 10px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 20px 0px;
+
+  p {
+    padding-top: 20px;
+    padding-bottom: 100px;
+  }
+}
+
+/* widget styles */
+
+h1 {
+  font-size: 36px;
+  padding: 30px 0;
+}
+
+a {
+  color: $Color_Highlight;
+}
+
+input,
+select,
+option {
+  display: block;
+  width: 300px;
+  height: 40px;
+  padding: auto 0;
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+  margin: 10px auto;
+  border-radius: 3px;
+  border: 1px solid #aaaaaa;
+  outline-color: #1abc9c;
+  text-align: left;
+  background-color: transparent;
+
+  &.error {
+    border: 1px solid #bd2d3a;
+    outline-color: #1abc9c;
+  }
+}
+
+button {
+  all: unset;
+  width: 120px;
+  padding: 9px 0;
+  margin: 10px 0;
+  font-size: 16px;
+  color: white;
+  border-radius: 4px;
+  background-color: $Color_Highlight;
+  cursor: pointer;
+
+  &.flat {
+    background-color: transparent;
+    width: auto;
+    padding: 5px;
+    margin: 5px;
+    color: black;
+  }
+
+  &.flat > img {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+  }
+
+  &.circle {
+    border-radius: 100%;
+  }
+
+  &.rect {
+    border-radius: 10%;
+  }
+
+  &.highlighted {
+    background-color: $Color_Slider_Highlight;
+  }
+
+  &.normal {
+    background-color: $Color_Slider_Normal;
+  }
+}
+
+.background_lightgreen {
+  background-color: $Color_Highlight;
+}
+
+.background_green {
+  background-color: $Color_Back_Green;
+}
+
+.background_gray {
+  background-color: $Color_Back_Gray;
+}
+
+footer {
+  background-color: $Color_Back_Dkgray;
+}
+
+.red {
+  background-color: $Color_Red;
+}
+
+.yellow {
+  background-color: $Color_Yellow;
+}
+
+.green {
+  background-color: $Color_Green;
+}
+
+.invisible {
+  visibility: hidden;
 }

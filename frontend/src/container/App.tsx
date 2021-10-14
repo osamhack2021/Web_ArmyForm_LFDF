@@ -1,32 +1,27 @@
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import "style/App.scss";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import RouteWithSubRoutes from "shared/components/RouteWithSubRoutes";
+import _404 from "shared/components/_404";
+import routes from "shared/constants/routes";
 
 import NavBar from "container/component/NavBar";
 
-import { RouteWithSubRoutes } from "shared/components";
-
-import routes from "./route";
+import "style/App.scss";
+import Footer from "./component/Footer";
 
 const App = () => {
   return (
     <Router>
       <div className="App">
-        <h1>App Component</h1>
-
         <NavBar />
         <Switch>
-          {routes.map((route, i) => (
-            <RouteWithSubRoutes key={i} {...route} />
-          ))}
+          {routes.map((route, i) => {
+            return <RouteWithSubRoutes key={i} {...route} />;
+          })}
+          <Route path="*" component={_404} />
         </Switch>
-        {/* <Switch>
-          <Route exact path={LOGIN.route}>
-            <h1>{LOGIN.name}</h1>
-          </Route>
-          <Route path={MAIN.route}>
-            <h1>{MAIN.name}</h1>
-          </Route>
-        </Switch> */}
+        <Footer />
       </div>
     </Router>
   );
