@@ -1,57 +1,39 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../configs/DatabaseConfig';
+import { Table, Model, DataType, Column, PrimaryKey, ForeignKey, BelongsTo, IsUUID, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import Survey from './SurveyModel';
+import User from './UserModel';
 
-// TODO: Add reference information to Sequelize. [owner: number > User.id: number] (many-to-one)
-//                                               [surveyid: number > Survey.id: number] (many-to-one)
-interface ResultAttributes {
-  id: number;
+@Table
+class Result extends Model {
+  @IsUUID(4)
+  @PrimaryKey
+  @Column(DataType.UUID)
+  id!: string;
 
-  json: string;
+  @Column(DataType.STRING)
+  json!: string;
 
-  surveyid: number;
-  owner: number;
+  @ForeignKey(() => User)
+  @Column(DataType.UUID)
+  surveyId!: string;
 
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
+  @BelongsTo(() => Survey, 'surveyId')
+  survey!: Survey;
+
+  @ForeignKey(() => User)
+  @Column(DataType.UUID)
+  ownerId!: string;
+
+  @BelongsTo(() => User, 'ownerId')
+  owner!: User;
+
+  @CreatedAt
+  readonly createdAt!: Date;
+
+  @UpdatedAt
+  readonly updatedAt!: Date;
+
+  @DeletedAt
+  readonly deletedAt!: Date;
 };
-
-class Result extends Model<ResultAttributes> implements ResultAttributes {
-  public id!: number;
-
-  public json!: string;
-
-  public surveyid!: number;
-  public owner!: number;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-  public readonly deletedAt!: Date;
-};
-
-Result.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      primaryKey: true
-    },
-    json: {
-      type: DataTypes.STRING
-    },
-    surveyid: {
-      type: DataTypes.BIGINT,
-      allowNull: false
-    },
-    owner: {
-      type: DataTypes.BIGINT
-    }
-  },
-  {
-    timestamps: true,
-    sequelize: sequelize,
-    paranoid: true
-  }
-);
 
 export default Result;

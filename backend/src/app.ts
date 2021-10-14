@@ -3,9 +3,14 @@
 /* Import Module */
 import express from 'express';
 import session from 'express-session';
+import { Sequelize } from 'sequelize-typescript';
+import AppConfig from './configs/AppConfig';
+import DatabaseConfig from './configs/DatabaseConfig';
 import WebRoute from './routes/WebRoute';
 import ApiRoute from './routes/ApiRoute';
-import AppConfig from './configs/AppConfig';
+import User from './models/UserModel';
+import Survey from './models/SurveyModel';
+import Result from './models/ResultModel';
 const cors = require('cors');
 
 
@@ -15,8 +20,23 @@ class App {
   constructor () {
     this.express = express();
 
+    this.mountDatabase();
     this.mountMiddleware();
     this.mountRoutes();
+  }
+
+  public mountDatabase (): void {
+    const sequelize = new Sequelize({
+      database: DatabaseConfig.DATABASE,
+      dialect: 'postgres',
+      username: DatabaseConfig.USERNAME,
+      password: DatabaseConfig.PASSWORD,
+      host: 'localhost',
+    });
+    
+    sequelize.addModels([User, Survey, Result])
+    
+    sequelize.sync({force: true});
   }
 
   /**

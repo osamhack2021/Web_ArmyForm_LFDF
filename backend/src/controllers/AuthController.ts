@@ -14,13 +14,13 @@ class AuthController {
 
   public static async signup (req: Request, res: Response, next: NextFunction): Promise<any> {
     const user = await User.create({
-      userid: req.body.userid,
-      passwd: await bcrypt.hash(req.body.passwd, 10),
+      username: req.body.username,
+      password: await bcrypt.hash(req.body.password, 10),
       name: req.body.name,
-      type: req.body.type,
-      serial: req.body.serial,
-      rank: req.body.rank,
-      unit: req.body.unit
+      armyType: req.body.type,
+      armyUnit: req.body.unit,
+      armyRank: req.body.rank,
+      serialNumber: req.body.serial
     });
     if (user === null) {
       return res.status(500).json({ result: 'Database error' });
@@ -31,22 +31,22 @@ class AuthController {
   public static async signin (req: Request, res: Response, next: NextFunction): Promise<any> {
     const user = await User.findOne({
       where: {
-        userid: req.body.userid
+        username: req.body.username
       }
     });
     if (user === null) {
       return res.status(404).json({ result: 'Userid not found' });
     }
-    if (!await bcrypt.compare(req.body.passwd, user.passwd)) {
+    if (!await bcrypt.compare(req.body.password, user.password)) {
       return res.status(401).json({ result: 'Invalid passwd' });
     }
-    const token = jwt.sign({ userid: user.userid }, AuthConfig.SECRET, {
+    const token = jwt.sign({ userid: user.id }, AuthConfig.SECRET, {
       expiresIn: 3600
     });
 
     return res.status(200).json({
       result: {
-        userid: user.userid,
+        userid: user.id,
         jsonwebtoken: token
       }
     });

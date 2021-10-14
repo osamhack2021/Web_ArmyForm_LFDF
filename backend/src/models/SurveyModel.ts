@@ -1,57 +1,34 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../configs/DatabaseConfig';
+import { Table, Model, DataType, Column, PrimaryKey, ForeignKey, BelongsTo, IsUUID, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import User from './UserModel';
 
-// TODO: Add reference information to Sequelize. [owner: number > User.id: number] (many-to-one)
-interface SurveyAttributes {
-  id: number;
+@Table
+class Survey extends Model {
+  @IsUUID(4)
+  @PrimaryKey
+  @Column(DataType.UUID)
+  id!: string;
 
-  name: string;
-  json: string;
+  @Column(DataType.STRING)
+  name!: string;
 
-  owner: number;
+  @Column(DataType.STRING)
+  json!: string;
 
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
+  @ForeignKey(() => User)
+  @Column(DataType.UUID)
+  ownerId!: string;
+
+  @BelongsTo(() => User, 'ownerId')
+  owner!: User;
+
+  @CreatedAt
+  readonly createdAt!: Date;
+
+  @UpdatedAt
+  readonly updatedAt!: Date;
+
+  @DeletedAt
+  readonly deletedAt!: Date;
 };
-
-class Survey extends Model<SurveyAttributes> implements SurveyAttributes {
-  public id!: number;
-
-  public name!: string;
-  public json!: string;
-
-  public owner!: number;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-  public readonly deletedAt!: Date;
-};
-
-Survey.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    json: {
-      type: DataTypes.STRING
-    },
-    owner: {
-      type: DataTypes.BIGINT,
-      allowNull: false
-    }
-  },
-  {
-    timestamps: true,
-    sequelize: sequelize,
-    paranoid: true
-  }
-);
 
 export default Survey;

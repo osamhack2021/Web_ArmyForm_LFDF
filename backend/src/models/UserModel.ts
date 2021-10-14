@@ -1,70 +1,50 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../configs/DatabaseConfig';
+import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany} from 'sequelize-typescript';
+import Result from './ResultModel';
+import Survey from './SurveyModel';
 
-interface UserAttributes {
-  userid: string;
-  passwd: string;
+@Table
+class User extends Model {
+  @IsUUID(4)
+  @PrimaryKey
+  @Column(DataType.UUID)
+  id!: string;
 
-  name: string;
+  @Unique
+  @Column(DataType.STRING)
+  username!: string
 
-  type: string;
-  serial: string;
-  rank: string;
-  unit: string;
+  @Column(DataType.STRING)
+  password!: string
 
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
+  @Column(DataType.STRING)
+  name!: string
+
+  @Column(DataType.STRING)
+  armyType!: string
+
+  @Column(DataType.STRING)
+  armyUnit!: string
+
+  @Column(DataType.STRING)
+  armyRank!: string
+
+  @Column(DataType.STRING)
+  serialNumber!: string
+
+  @HasMany(() => Survey, 'ownerId')
+  surveys!: Survey[];
+
+  @HasMany(() => Result, 'ownerId')
+  results!: Result[];
+
+  @CreatedAt
+  readonly createdAt!: Date;
+
+  @UpdatedAt
+  readonly updatedAt!: Date;
+
+  @DeletedAt
+  readonly deletedAt!: Date;
 };
-
-class User extends Model<UserAttributes> implements UserAttributes {
-  public userid!: string
-  public passwd!: string
-
-  public name!: string
-
-  public type!: string
-  public serial!: string
-  public rank!: string
-  public unit!: string
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-  public readonly deletedAt!: Date;
-};
-
-User.init(
-  {
-    userid: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true
-    },
-    passwd: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    name: {
-      type: DataTypes.STRING
-    },
-    type: {
-      type: DataTypes.STRING
-    },
-    serial: {
-      type: DataTypes.STRING
-    },
-    rank: {
-      type: DataTypes.STRING
-    },
-    unit: {
-      type: DataTypes.STRING
-    }
-  },
-  {
-    timestamps: true,
-    sequelize: sequelize,
-    paranoid: true
-  }
-);
 
 export default User;
