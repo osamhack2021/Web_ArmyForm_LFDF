@@ -8,9 +8,13 @@ import AppConfig from './configs/AppConfig';
 import DatabaseConfig from './configs/DatabaseConfig';
 import WebRoute from './routes/WebRoute';
 import ApiRoute from './routes/ApiRoute';
+
 import User from './models/UserModel';
 import Survey from './models/SurveyModel';
 import Result from './models/ResultModel';
+import Unit from './models/UnitModel';
+
+import UnitUtil from './utils/UnitUtil';
 const cors = require('cors');
 
 
@@ -34,9 +38,11 @@ class App {
       host: 'localhost',
     });
 
-    sequelize.addModels([User, Survey, Result])
+    sequelize.addModels([User, Survey, Result, Unit]);
 
     sequelize.sync({ force: true });
+
+    UnitUtil.createUnits('국군지휘통신사령부 사이버네트워크작전센터 사이버작전대');
   }
 
   /**

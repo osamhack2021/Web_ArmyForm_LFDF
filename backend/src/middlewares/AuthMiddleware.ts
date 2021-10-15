@@ -46,10 +46,10 @@ class AuthMiddleware {
 
     try {
       const decoded = jwt.verify(token, AuthConfig.SECRET);
-      req.body.username = decoded;
+      req.body.userid = decoded;
       next();
     } catch (e) {
-      res.status(401).json('Unauthorized!');
+      return res.status(401).json('Unauthorized!');
     }
   }
 

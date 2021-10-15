@@ -1,10 +1,9 @@
 import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Default, ForeignKey, BelongsTo, HasMany, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import Survey from './SurveyModel';
 import User from './UserModel';
-import Result from './ResultModel';
-import Unit from './UnitModel';
 
 @Table
-class Survey extends Model {
+class Unit extends Model {
   @IsUUID(4)
   @PrimaryKey
   @Default(DataType.UUIDV4)
@@ -12,27 +11,23 @@ class Survey extends Model {
   id!: string;
 
   @Column(DataType.STRING)
-  name!: string;
-
-  @Column(DataType.STRING)
-  json!: string;
-
-  @ForeignKey(() => User)
-  @Column(DataType.UUID)
-  ownerId!: string;
-
-  @BelongsTo(() => User, 'ownerId')
-  owner!: User;
+  name!: string
 
   @ForeignKey(() => Unit)
   @Column(DataType.UUID)
-  unitId!: string;
+  superUnitId!: string;
 
-  @BelongsTo(() => Unit, 'unitId')
-  unit!: User;
+  @BelongsTo(() => Unit, 'superUnitId')
+  superUnit!: Unit;
 
-  @HasMany(() => Result, 'surveyId')
-  results!: Result[];
+  @HasMany(() => Unit, 'superUnitId')
+  subUnits!: Unit[];
+
+  @HasMany(() => User, 'unitId')
+  users!: User[];
+
+  @HasMany(() => Survey, 'unitId')
+  surveys!: Survey[];
 
   @CreatedAt
   readonly createdAt!: Date;
@@ -44,4 +39,4 @@ class Survey extends Model {
   readonly deletedAt!: Date;
 };
 
-export default Survey;
+export default Unit;

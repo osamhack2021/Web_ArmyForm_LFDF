@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 
 import AuthConfig from '../configs/AuthConfig';
 import User from '../models/UserModel';
+import UnitUtil from '../utils/UnitUtil';
 
 class AuthController {
   public static index(req: Request, res: Response, next: NextFunction): any {
@@ -13,12 +14,16 @@ class AuthController {
   }
 
   public static async signup(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const unit = await UnitUtil.checkUnit(req.body.armyUnit);
+    if (unit === null) {
+      return res.status(400).json({ result: 'Unit not found' });
+    }
     const user = await User.create({
       username: req.body.username,
       password: await bcrypt.hash(req.body.password, 10),
       name: req.body.name,
       armyType: req.body.armyType,
-      armyUnit: req.body.armyUnit,
+      armyUnitId: unit.id,
       armyRank: req.body.armyRank,
       serialNumber: req.body.serialNumber
     });

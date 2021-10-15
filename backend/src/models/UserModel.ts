@@ -1,6 +1,7 @@
-import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, Default } from 'sequelize-typescript';
+import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Default, Unique, ForeignKey, BelongsTo, HasMany, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
 import Result from './ResultModel';
 import Survey from './SurveyModel';
+import Unit from './UnitModel';
 
 @Table
 class User extends Model {
@@ -23,8 +24,12 @@ class User extends Model {
   @Column(DataType.STRING)
   armyType!: string
 
-  @Column(DataType.STRING)
-  armyUnit!: string
+  @ForeignKey(() => Unit)
+  @Column(DataType.UUID)
+  armyUnitId!: string;
+
+  @BelongsTo(() => Unit, 'unitId')
+  armyUnit!: Unit;
 
   @Column(DataType.STRING)
   armyRank!: string

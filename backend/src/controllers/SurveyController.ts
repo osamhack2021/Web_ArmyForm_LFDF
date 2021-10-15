@@ -12,7 +12,7 @@ class SurveyController {
     const survey = await Survey.create({
       name: req.body.name,
       json: req.body.json,
-      owner: req.body.owner
+      owner: req.body.userid
     });
     return res.send(200).json({ result: survey.id });
   }
@@ -27,6 +27,15 @@ class SurveyController {
       return res.status(404).json({ result: 'Survey not found' });
     }
     return res.status(200).json({ result: survey.results });
+  }
+
+  public static async surveys (req: Request, res: Response, next: NextFunction): Promise<any> {
+    if (req.body.userid) {
+
+    }
+    const user = await Survey.findOne({ where: { id: req.body.userid } });
+    if (user === null)
+    return res.status(200).json({ result: [] });
   }
 }
 
