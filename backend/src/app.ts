@@ -40,9 +40,9 @@ class App {
 
     sequelize.addModels([User, Survey, Result, Unit]);
 
-    sequelize.sync({ force: true });
-
-    UnitUtil.createUnits('국군지휘통신사령부 사이버네트워크작전센터 사이버작전대');
+    sequelize.sync({ force: true }).then(() =>
+      UnitUtil.createUnits('국군지휘통신사령부 사이버네트워크작전센터 사이버작전대')
+    );
   }
 
   /**

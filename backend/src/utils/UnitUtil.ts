@@ -19,6 +19,7 @@ class UnitUtil {
     var [unit, _] = await Unit.findOrCreate({
       where: { name: unitStrings[0] },
       defaults: {
+        name: unitStrings[0],
         superUnitId: null
       }
     });
@@ -26,7 +27,13 @@ class UnitUtil {
       if (unit === null) {
         return null;
       }
-      [unit, _] = await Unit.findOrCreate({ where: { [Op.and]: [ { name: unitStrings[i] }, { superUnitId: unit.id } ] } });
+      [unit, _] = await Unit.findOrCreate({
+        where: { [Op.and]: [ { name: unitStrings[i] }, { superUnitId: unit.id } ] },
+        defaults: {
+          name: unitStrings[i],
+          superUnitId: unit.id
+        }
+      });
     }
     return unit;
   }
