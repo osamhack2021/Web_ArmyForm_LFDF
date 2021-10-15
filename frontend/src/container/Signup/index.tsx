@@ -10,11 +10,13 @@ import "style/Signup.scss";
 import move from "shared/components/move";
 
 interface IsignUp {
-  userid: string;
-  passwd: string;
-  rank: string;
+  username: string;
+  password: string;
   name: string;
-  unit: string;
+  armyType: string;
+  armyUnit: string;
+  armyRank: string;
+  serialNumber: string;
 }
 
 const Signup = () => {
@@ -25,7 +27,7 @@ const Signup = () => {
     watch,
   } = useForm();
 
-  const passwd = watch("passwd");
+  const password = watch("password");
 
   const history = useHistory();
 
@@ -46,7 +48,7 @@ const Signup = () => {
         <h1>회원가입</h1>
         <input
           type="text"
-          {...register("userid", {
+          {...register("username", {
             required: { value: true, message: "입력값이 필요합니다." },
             minLength: {
               value: 4,
@@ -59,10 +61,10 @@ const Signup = () => {
           })}
           placeholder="아이디"
         />
-        {errors.userid && errors.userid.message}
+        {errors.username && errors.username.message}
         <input
           type="password"
-          {...register("passwd", {
+          {...register("password", {
             required: { value: true, message: "입력값이 필요합니다." },
             minLength: 8,
             maxLength: 20,
@@ -74,28 +76,16 @@ const Signup = () => {
           })}
           placeholder="비밀번호"
         />
-        {errors.passwd && errors.passwd.message}
+        {errors.password && errors.password.message}
         <input
           type="password"
-          {...register("passwdcheck", {
+          {...register("passwordcheck", {
             validate: (value) =>
-              value === passwd || "입력하신 비밀번호가 다릅니다.",
+              value === password || "입력하신 비밀번호가 다릅니다.",
           })}
           placeholder="비밀번호 확인"
         />
-        {errors.passwdcheck && errors.passwdcheck.message}
-        <input
-          type="text"
-          {...register("rank", {
-            required: { value: true, message: "입력값이 필요합니다." },
-            maxLength: {
-              value: 5,
-              message: "최대 5글자 이루어져야합니다.",
-            },
-          })}
-          placeholder="계급"
-        />
-        {errors.rank && errors.rank.message}
+        {errors.passwordcheck && errors.passwordcheck.message}
         <input
           type="text"
           {...register("name", {
@@ -110,7 +100,19 @@ const Signup = () => {
         {errors.name && errors.name.message}
         <input
           type="text"
-          {...register("unit", {
+          {...register("armyType", {
+            required: { value: true, message: "입력값이 필요합니다." },
+            maxLength: {
+              value: 100,
+              message: "최대 100글자로 이루어져야합니다.",
+            },
+          })}
+          placeholder="용사/간부"
+        />
+        {errors.armyType && errors.armyType.message}
+        <input
+          type="text"
+          {...register("armyUnit", {
             required: { value: true, message: "입력값이 필요합니다." },
             maxLength: {
               value: 100,
@@ -119,7 +121,31 @@ const Signup = () => {
           })}
           placeholder="군"
         />
-        {errors.unit && errors.unit.message}
+        {errors.armyUnit && errors.armyUnit.message}
+        <input
+          type="text"
+          {...register("armyRank", {
+            required: { value: true, message: "입력값이 필요합니다." },
+            maxLength: {
+              value: 5,
+              message: "최대 5글자 이루어져야합니다.",
+            },
+          })}
+          placeholder="계급"
+        />
+        {errors.armyRank && errors.armyRank.message}
+        <input
+          type="text"
+          {...register("serialNumber", {
+            required: { value: true, message: "입력값이 필요합니다." },
+            maxLength: {
+              value: 100,
+              message: "최대 100글자로 이루어져야합니다.",
+            },
+          })}
+          placeholder="군번"
+        />
+        {errors.serialNumber && errors.serialNumber.message}
         {/* <input type="text" placeholder="군번" />
         <input type="text" placeholder="소속" />
         <input type="email" placeholder="이메일" /> */}
