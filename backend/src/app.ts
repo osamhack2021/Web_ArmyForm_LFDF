@@ -17,7 +17,7 @@ const cors = require('cors');
 class App {
   public express: express.Application;
 
-  constructor () {
+  constructor() {
     this.express = express();
 
     this.mountDatabase();
@@ -25,7 +25,7 @@ class App {
     this.mountRoutes();
   }
 
-  public mountDatabase (): void {
+  public mountDatabase(): void {
     const sequelize = new Sequelize({
       database: DatabaseConfig.DATABASE,
       dialect: 'postgres',
@@ -33,17 +33,17 @@ class App {
       password: DatabaseConfig.PASSWORD,
       host: 'localhost',
     });
-    
+
     sequelize.addModels([User, Survey, Result])
-    
-    sequelize.sync({force: true});
+
+    sequelize.sync({ force: true });
   }
 
   /**
    * mount all Module
    */
 
-  public mountMiddleware (): void {
+  public mountMiddleware(): void {
     this.express.use(
       session({
         secret: AppConfig.SESSION_SECRET,
@@ -60,7 +60,7 @@ class App {
   /**
    * mount all routes
    */
-  public mountRoutes (): void {
+  public mountRoutes(): void {
     this.express.use('/', WebRoute);
     this.express.use('/api', ApiRoute);
   }
@@ -68,12 +68,12 @@ class App {
   /**
    * initialize
    */
-  public run (): any {
-    const port: number = AppConfig.PORT || 3000;
+  public run(): any {
+    const port: number = AppConfig.PORT || 4000;
 
     this.express.listen(port, () => {
       return console.log(`Express server listening at ${port}`);
-    }).on('error', (_error:any) => {
+    }).on('error', (_error: any) => {
       return console.log(_error);
     });
   }

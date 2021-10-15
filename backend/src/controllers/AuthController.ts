@@ -6,21 +6,21 @@ import AuthConfig from '../configs/AuthConfig';
 import User from '../models/UserModel';
 
 class AuthController {
-  public static index (req: Request, res: Response, next: NextFunction): any {
+  public static index(req: Request, res: Response, next: NextFunction): any {
     return res.json({
       msg: 'this is auth test'
     });
   }
 
-  public static async signup (req: Request, res: Response, next: NextFunction): Promise<any> {
+  public static async signup(req: Request, res: Response, next: NextFunction): Promise<any> {
     const user = await User.create({
       username: req.body.username,
       password: await bcrypt.hash(req.body.password, 10),
       name: req.body.name,
-      armyType: req.body.type,
-      armyUnit: req.body.unit,
-      armyRank: req.body.rank,
-      serialNumber: req.body.serial
+      armyType: req.body.armyType,
+      armyUnit: req.body.armyUnit,
+      armyRank: req.body.armyRank,
+      serialNumber: req.body.serialNumber
     });
     if (user === null) {
       return res.status(500).json({ result: 'Database error' });
@@ -28,7 +28,7 @@ class AuthController {
     return res.status(200).json({ result: 'Signup success' });
   }
 
-  public static async signin (req: Request, res: Response, next: NextFunction): Promise<any> {
+  public static async signin(req: Request, res: Response, next: NextFunction): Promise<any> {
     const user = await User.findOne({
       where: {
         username: req.body.username

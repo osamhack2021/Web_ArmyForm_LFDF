@@ -1,11 +1,12 @@
-import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany} from 'sequelize-typescript';
+import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Unique, CreatedAt, UpdatedAt, DeletedAt, HasMany, Default } from 'sequelize-typescript';
 import Result from './ResultModel';
 import Survey from './SurveyModel';
 
 @Table
 class User extends Model {
-  @IsUUID(4)
   @PrimaryKey
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
   @Column(DataType.UUID)
   id!: string;
 

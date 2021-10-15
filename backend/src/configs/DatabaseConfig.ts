@@ -1,7 +1,7 @@
 const config = {
-  DATABASE: 'test',
-  USERNAME: 'test',
-  PASSWORD: 'test'
+  DATABASE: 'armyformdb',
+  USERNAME: 'armyform',
+  PASSWORD: 'armyformPass'
 };
 
 export default config;
