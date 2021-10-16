@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Survey, StylesManager, SurveyModel, Model } from "survey-react";
+import Loader from "react-loader-spinner";
 
 import Nav from "container/component/Nav";
 
 import Api from "shared/components/Api/Api";
-import Loader from "shared/components/Api/Loader";
+// import Loader from "shared/components/Api/Loader";
 
 import test_json from "shared/constants/testdata/survey_json.js";
 
@@ -40,11 +41,11 @@ const Page = () => {
     Api.getSurvey("test")
       .then((info) => {
         setInfo(Api.get(info));
-        setIsLoading(false);
+        setIsLoading(() => false);
       })
       .catch((e) => {
         setIsError("존재하지않는 설문조사입니다.");
-        setIsLoading(false);
+        setIsLoading(() => false);
       });
   }, []);
 
@@ -70,7 +71,7 @@ const Page = () => {
     console.log(result);
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loader type="Oval" />;
 
   return (
     <>

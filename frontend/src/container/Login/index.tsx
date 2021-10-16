@@ -94,11 +94,9 @@ function Login() {
             User.parseLogin(
               JSON.stringify({
                 result: {
-                  result: {
-                    userid: "test",
-                    jsonwebtoken:
-                      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ0ZXN0IiwiaWF0IjoxNjM0MjM5OTQxLCJleHAiOjE2MzQyNDM1NDF9.174W7dJiaTpDWuf-p5UgSrIUNCBg5G6255SS85nJ_FQ",
-                  },
+                  userid: "test",
+                  jsonwebtoken:
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ0ZXN0IiwiaWF0IjoxNjM0MjM5OTQxLCJleHAiOjE2MzQyNDM1NDF9.174W7dJiaTpDWuf-p5UgSrIUNCBg5G6255SS85nJ_FQ",
                 },
               })
             );

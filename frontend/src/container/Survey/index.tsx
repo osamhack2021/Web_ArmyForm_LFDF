@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loader from "react-loader-spinner";
 
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
@@ -8,28 +9,32 @@ import SurveyCard from "container/component/SurveyCard";
 import Slider from "container/component/Slider";
 
 import Api from "shared/components/Api/Api";
-import Loader from "shared/components/Api/Loader";
+// import Loader from "shared/components/Api/Loader";
 
-import test_json from "../../shared/constants/testdata/surveylist_json.js";
+import test_json from "shared/constants/testdata/surveylist_json.js";
 
 import "style/Survey.scss";
 
+interface Ires {
+  result: string;
+}
+
 const Survey = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [info, setInfo] = useState({});
+  //const [isError, setIsError] = useState("");
+  const [info, setInfo] = useState<Ires>({ result: "test" });
 
   useEffect(() => {
-    Api.getSurvey("test")
+    Api.getSurveyList()
       .then((info) => {
-        console.log(info);
-        setInfo({});
+        setInfo(Api.get(JSON.stringify(info)));
         setIsLoading(false);
       })
       .catch((e) => {
-        /* on fail */
+        //setIsError("존재하지않는 설문조사입니다.");
         setIsLoading(false);
       });
-  });
+  }, []);
 
   let form_data = [test_json, test_json, test_json];
   let list_item_count = getComputedItemCount();
@@ -100,7 +105,7 @@ const Survey = () => {
     setListData(getComputedListData());
   }
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loader type="Oval" />;
 
   return (
     <>

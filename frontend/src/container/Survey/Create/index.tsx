@@ -7,8 +7,6 @@ import RightArrow from "static/right-arrow.png";
 import Nav from "container/component/Nav";
 import SurveySlider from "container/component/SurveySlider";
 
-import "style/Survey/Create.scss";
-
 const SurveyCreate = () => {
   const history = useHistory();
   //설문조사 데이터
