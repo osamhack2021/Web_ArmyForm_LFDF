@@ -2,8 +2,6 @@ import React from "react";
 
 import NavBack from "container/component/NavBack";
 
-import "style/Findaccount.scss";
-
 function Findaccount() {
   return (
     <>

@@ -11,7 +11,7 @@ import Slider from "container/component/Slider";
 import Api from "shared/components/Api/Api";
 // import Loader from "shared/components/Api/Loader";
 
-import test_json from "../../shared/constants/testdata/surveylist_json.js";
+import test_json from "shared/constants/testdata/surveylist_json.js";
 
 import "style/Survey.scss";
 

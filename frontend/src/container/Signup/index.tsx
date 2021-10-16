@@ -6,8 +6,6 @@ import Api from "shared/components/Api/Api";
 
 import NavBack from "container/component/NavBack";
 
-import "style/Signup.scss";
-
 interface IsignUp {
   userid: string;
   passwd: string;

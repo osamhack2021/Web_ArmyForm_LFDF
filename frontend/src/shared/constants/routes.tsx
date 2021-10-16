@@ -7,6 +7,7 @@ import Mypage from "container/Mypage";
 import Survey from "container/Survey";
 import SurveyCreate from "container/Survey/Create";
 import SurveyPage from "container/Survey/Page";
+import DashboardPage from "container/Survey/Dashboard";
 
 import Logout from "shared/components/User/Logout";
 
@@ -88,6 +89,14 @@ const routes = [
     path: "/Survey/Page",
     exact: false,
     component: SurveyPage,
+    needAuth: true,
+    subRoutes: [],
+  },
+  {
+    name: "대시보드 페이지",
+    path: "/Survey/Dashboard",
+    exact: false,
+    component: DashboardPage,
     needAuth: true,
     subRoutes: [],
   },
