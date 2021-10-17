@@ -14,9 +14,16 @@ import Survey from './models/SurveyModel';
 import Result from './models/ResultModel';
 import Unit from './models/UnitModel';
 
+/*
 import UnitUtil from './utils/UnitUtil';
-const cors = require('cors');
+import SurveyUtil from './utils/SurveyUtil';
+import bcrypt from 'bcrypt';
+*/
 
+/* Make Test Set */
+import MakeTestSample from './MakeTestSample';
+
+const cors = require('cors');
 
 class App {
   public express: express.Application;
@@ -39,10 +46,13 @@ class App {
     });
 
     sequelize.addModels([User, Survey, Result, Unit]);
-
-    sequelize.sync({ force: true }).then(() =>
-      UnitUtil.createUnits('국군지휘통신사령부 사이버네트워크작전센터 사이버작전대')
-    );
+    //{ force: true }
+    sequelize.sync({ force: true }).then(async () => {
+      await MakeTestSample.TestSet1()
+      await MakeTestSample.TestSet2()
+      await MakeTestSample.TestSet3()
+      return 
+    });
   }
 
   /**
