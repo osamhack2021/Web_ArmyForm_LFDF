@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { Survey, StylesManager, SurveyModel, Model } from "survey-react";
 import Loader from "react-loader-spinner";
 
@@ -51,7 +50,6 @@ const Page = () => {
 
   StylesManager.applyTheme("modern");
 
-  const history = useHistory();
   //설문조사 데이터
   const surveyData = {
     title: "Test Form",
