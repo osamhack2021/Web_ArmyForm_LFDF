@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/UserModel';
 import AuthConfig from '../configs/AuthConfig';
+import Survey from '../models/SurveyModel';
 
 class AuthMiddleware {
   public static index(req: Request, res: Response, next: NextFunction): any {
@@ -46,7 +47,11 @@ class AuthMiddleware {
 
     try {
       const decoded = jwt.verify(token, AuthConfig.SECRET);
-      req.body.userid = decoded;
+      res.locals.user = await User.findOne({
+        where: { id: (decoded as any).id },
+        include: Survey
+      });
+      //console.log(res.locals.user);
       next();
     } catch (e) {
       return res.status(401).json('Unauthorized!');

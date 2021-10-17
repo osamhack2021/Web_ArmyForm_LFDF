@@ -5,8 +5,8 @@ import Unit from './UnitModel';
 
 @Table
 class Survey extends Model {
-  @IsUUID(4)
   @PrimaryKey
+  @IsUUID(4)
   @Default(DataType.UUIDV4)
   @Column(DataType.UUID)
   id!: string;

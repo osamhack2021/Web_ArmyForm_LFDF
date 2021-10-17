@@ -17,6 +17,9 @@ router.get('/', SurveyController.index);
 router.post('/', [checkToken], asyncHandler(SurveyController.create));
 router.delete('/', [checkToken], asyncHandler(SurveyController.remove));
 
+router.get('/OwnerSurveyList', [checkToken], asyncHandler(SurveyController.OwnerSuveryList));
+router.get('/UnitSurveyList', [checkToken], asyncHandler(SurveyController.UnitSuveryList));
+
 router.get('/results', [checkToken], asyncHandler(SurveyController.results));
 
 router.get('*', (req: Request, res: Response, next: NextFunction) => {

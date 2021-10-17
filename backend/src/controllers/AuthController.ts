@@ -43,17 +43,16 @@ class AuthController {
       return res.status(404).json({ result: 'Userid not found' });
     }
     if (!await bcrypt.compare(req.body.password, user.password)) {
-      return res.status(401).json({ result: 'Invalid passwd' });
+      return res.status(401).send({ accessToken: null, message: 'Invalid Password!' });
     }
-    const token = jwt.sign({ userid: user.id }, AuthConfig.SECRET, {
+    const token = jwt.sign({ id: user.id }, AuthConfig.SECRET, {
       expiresIn: 3600
     });
 
-    return res.status(200).json({
-      result: {
-        userid: user.id,
-        jsonwebtoken: token
-      }
+    return res.status(200).send({
+      username: user.username,
+      id: user.id,
+      accessToken: token
     });
   }
 }
