@@ -20,7 +20,7 @@ const HorizentalBarGraph = ({data}: Idata) => {
       <div className="table_row">
         <div className="field">{data[i].name}</div>
         <div className="bar_layout">
-          <div style={barStyle}>{data[i].value}</div>
+          <div style={barStyle}>{Math.round(data[i].value)+"%"}</div>
         </div>
       </div>
     );

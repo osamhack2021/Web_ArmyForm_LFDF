@@ -1,68 +1,40 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
+import Save from "static/save.png";
+import Eye from "static/eye.png";
+import Pen from "static/pen.png";
 
 import Nav from "container/component/Nav";
 import SurveySlider from "container/component/SurveySlider";
 
-import CircleGraph from "container/component/Dashboard/CircleGraph"
-import SingleBarGraph from "container/component/Dashboard/SingleBarGraph"
-import VerticalBarGraph from "container/component/Dashboard/VerticalBarGraph"
-import HorizentalBarGraph from "container/component/Dashboard/HorizentalBarGraph"
+import GraphSelector from "container/component/Dashboard/GraphSelector";
+
+import SurveyData from "shared/constants/testdata/survey_result_json.js";
+import SurveyOptimizer from "container/Survey/Dashboard/DataOptimizer";
 
 import "style/Survey/DashboardWidget.scss";
 
-//설문조사 데이터
-  const SurveyData = [
-    {
-      title: "Test Form",
-      contents: "테스트 데이터입니다.",
-    },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-  ];
+//결과용 데이터 생산
+SurveyOptimizer(SurveyData);
 
-  //위젯 데이터 (설문조사 결과 데이터)
-   const resultData1 = [
-    {
-      name: "yes",
-      value: 40,
-    },
-    {
-      name: "no",
-      value: 60,
-    }
-  ];
+const getPageElements = (page: number) => {
+  let result = [];
 
-  const resultData2 = [
-    {
-      name: "육군",
-      value: 10,
-    },
-    {
-      name: "해군",
-      value: 20,
-    },
-    {
-      name: "공군",
-      value: 30,
-    },
-    {
-      name: "국방부",
-      value: 40,
-    }
-  ];
+  for (let i = 0; i < SurveyData.pages[page].elements.length; i++) {
+    const ElData = SurveyData.pages[page].elements[i];
+    result.push(<h3>{(i+1) + ". " + ElData.title}</h3>);
+    result.push(<GraphSelector data={ElData.value} />);
+  }
+
+  return result;
+};
 
 const Dashboard = () => {
-  const history = useHistory();
-  const SurveyPages = SurveyData.length;
+  const SurveyPages = SurveyData.pages.length + 1;
   const [SurveyCursor, setCursor] = useState(0);
+  const [editMode, setEditMode] = useState(true);
 
   function updateCursor(cursor: number) {
     if (0 <= cursor && cursor < SurveyPages) {
@@ -73,43 +45,39 @@ const Dashboard = () => {
 
   return (
     <>
-      <Nav type="" title="FormName">
-        <button className="flat">미리보기</button>
-        <button className="flat">저장</button>
-        <button className="flat" onClick={() => history.push("/Survey")}>
-          나가기
+      <Nav type="" title={SurveyData.title}>
+        <button className="flat" onClick={() => setEditMode(!editMode)}>
+          { editMode ?
+            <img src={Eye} alt="keep" />
+            :
+            <img src={Pen} alt="edit" />
+          }
+        </button>
+        <button className="flat">
+          <img src={Save} alt="save" />
         </button>
       </Nav>
 
       <div className="spread_row background_green">
-        <button className="flat" onClick={() => updateCursor(SurveyCursor - 1)}>
+        <button className="flat" onClick={() => updateCursor(SurveyCursor -1)}>
           <img src={LeftArrow} alt="<" />
         </button>
           <div className="big_card">
-            <h2>제목 입니다</h2>
-            
-            <h3>1.번 문항 입니다</h3>
-            <CircleGraph data={resultData2} />
-
-            <h3>2.번 문항 입니다</h3>
-            <SingleBarGraph data={resultData1} />
-
-            <h3>3.번 문항 입니다</h3>
-            <VerticalBarGraph data={resultData1} />
-
-            <h3>4.번 문항 입니다</h3>
-            <HorizentalBarGraph data={resultData1} />
-
-            <h3>5.번 문항 입니다</h3>
-            <SingleBarGraph data={resultData1} />
-            
+            { SurveyCursor === 0 ?
+              <>
+                <h2>{SurveyData.title}</h2>
+                <p>{SurveyData.progressBarType}</p>
+              </>
+              :
+              <div>{getPageElements(SurveyCursor -1)}</div>
+            }
             <SurveySlider
               current={SurveyCursor}
               length={SurveyPages}
               moveFunc={(index) => updateCursor(index)}
             />
           </div>
-        <button className="flat" onClick={() => updateCursor(SurveyCursor + 1)}>
+        <button className="flat" onClick={() => updateCursor(SurveyCursor +1)}>
           <img src={RightArrow} alt=">" />
         </button>
       </div>

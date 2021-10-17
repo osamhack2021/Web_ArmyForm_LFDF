@@ -21,7 +21,7 @@ interface Ires {
 
 const Survey = () => {
   const [isLoading, setIsLoading] = useState(true);
-  //const [isError, setIsError] = useState("");
+  const [isError, setIsError] = useState("");
   const [info, setInfo] = useState<Ires>({ result: "test" });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Survey = () => {
         setIsLoading(false);
       })
       .catch((e) => {
-        //setIsError("존재하지않는 설문조사입니다.");
+        setIsError("존재하지않는 설문조사입니다.");
         setIsLoading(false);
       });
   }, []);
