@@ -35,11 +35,6 @@ code {
   height: 60px;
 }
 
-#back_icon {
-  width: 26px;
-  height: 26px;
-}
-
 /* navigation style */
 
 #nav_container {
@@ -64,6 +59,11 @@ nav {
   button {
     color: black;
     background: transparent;
+
+    &.flat > img {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   > div {
@@ -77,10 +77,6 @@ nav {
       display: flex;
       align-items: center;
     }
-  }
-
-  &.nav_only_left > div {
-    justify-content: left;
   }
 
   &.transparent {
@@ -202,7 +198,14 @@ option {
   }
 }
 
-button {
+input[type="checkbox"],
+input[type="radio"]  {
+  all: unset;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
   all: unset;
   width: 120px;
   padding: 9px 0;

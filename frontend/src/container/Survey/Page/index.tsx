@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { Survey, StylesManager, SurveyModel, Model } from "survey-react";
 import Loader from "react-loader-spinner";
 
@@ -51,7 +50,6 @@ const Page = () => {
 
   StylesManager.applyTheme("modern");
 
-  const history = useHistory();
   //설문조사 데이터
   const surveyData = {
     title: "Test Form",
@@ -76,13 +74,9 @@ const Page = () => {
   return (
     <>
       <Nav
-        type={isStart ? "transparent" : ""}
+        type=""
         title={isStart ? "" : surveyData.title}
-      >
-        <button className="flat" onClick={() => history.push("/Survey")}>
-          나가기
-        </button>
-      </Nav>
+      />
 
       <div className="column_container spread_row">
         <button className="flat" />

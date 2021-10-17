@@ -1,4 +1,5 @@
 import React from "react";
+import Graph from "./GraphFunction";
 
 import CircleGraph from "container/component/Dashboard/CircleGraph"
 import SingleBarGraph from "container/component/Dashboard/SingleBarGraph"
@@ -10,9 +11,20 @@ interface Idata {
 }
 
 const GraphSelector = ({data}: Idata) => {
-  switch(data.length){
-      case 2:
-        return <SingleBarGraph data={data} />
+  const numArr = Graph.getNumberArray(data);
+  const sd = Graph.getStandardDeviation(numArr);
+
+  if(sd > 35){
+    return <HorizentalBarGraph data={data} />
+  }
+  else if(sd > 25){
+    return <VerticalBarGraph data={data} />
+  }
+  else if(sd > 20){
+    return <SingleBarGraph data={data} />
+  }
+  else {
+    return <CircleGraph data={data} />
   }
 };
 

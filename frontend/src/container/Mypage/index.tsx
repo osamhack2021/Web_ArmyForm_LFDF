@@ -22,8 +22,8 @@ function Mypage() {
         <input list="data" type="text" placeholder="소속부대" />
 
         <datalist id="data">
-          <option>데이터 셋</option>
-          <option>군대리아</option>
+          <option>소속부대</option>
+          <option>지상작전사령부</option>
         </datalist>
 
         <button>저장하기</button>
