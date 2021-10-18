@@ -41,7 +41,7 @@ class SurveyController {
   }
 
 
-  public static async OwnerSuveryList(req: Request, res: Response, next: NextFunction): Promise<any> {
+  public static async OwnerSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
     const owner = await User.findOne({
       where: {
         id: res.locals.user.id
@@ -65,7 +65,7 @@ class SurveyController {
     return res.status(200).send(surveyList);
   }
 
-  public static async UnitSuveryList(req: Request, res: Response, next: NextFunction): Promise<any> {
+  public static async UnitSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
     const list = await Survey.findAll({
       attributes: ['name'],
       where: {
