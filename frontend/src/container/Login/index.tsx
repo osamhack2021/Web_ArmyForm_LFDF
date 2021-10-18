@@ -9,8 +9,8 @@ import NavBack from "container/component/NavBack";
 import "style/Login.scss";
 
 interface Ilogin {
-  userid: string;
-  passwd: string;
+  username: string;
+  password: string;
 }
 
 function Login() {
@@ -42,7 +42,7 @@ function Login() {
         <h1>로그인</h1>
         <input
           type="text"
-          {...register("userid", {
+          {...register("username", {
             required: { value: true, message: "입력값이 필요합니다." },
             minLength: {
               value: 4,
@@ -58,10 +58,10 @@ function Login() {
           })}
           placeholder="아이디"
         />
-        {errors.userid && errors.userid.message}
+        {errors.username && errors.username.message}
         <input
           type="password"
-          {...register("passwd", {
+          {...register("password", {
             required: {
               value: true,
               message: "입력값이 필요합니다.",
@@ -72,7 +72,7 @@ function Login() {
           })}
           placeholder="비밀번호"
         />
-        {errors.passwd && errors.passwd.message}
+        {errors.password && errors.password.message}
         <br />
         {errors.login && errors.login.message}
         <br />
@@ -94,8 +94,9 @@ function Login() {
             User.parseLogin(
               JSON.stringify({
                 result: {
-                  userid: "test",
-                  jsonwebtoken:
+                  username: "test",
+                  id: "test",
+                  accessToken:
                     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJ0ZXN0IiwiaWF0IjoxNjM0MjM5OTQxLCJleHAiOjE2MzQyNDM1NDF9.174W7dJiaTpDWuf-p5UgSrIUNCBg5G6255SS85nJ_FQ",
                 },
               })

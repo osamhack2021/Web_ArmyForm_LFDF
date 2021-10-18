@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { RouteComponentProps } from "react-router";
 import { Survey, StylesManager, SurveyModel, Model } from "survey-react";
 import Loader from "react-loader-spinner";
 
@@ -30,23 +31,24 @@ import "style/Survey/Page.scss";
 //   pages: Ipage[];
 // }
 
-const Page = () => {
+const Page = ({ match, location }: RouteComponentProps) => {
   const [isStart, setIsStart] = useState(false); //SurveyModel.currentPageNo
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState("");
   const [info, setInfo] = useState({});
 
   useEffect(() => {
-    Api.getSurvey("test")
+    Api.getSurvey({ id: (match.params as any).survey_id })
       .then((info) => {
-        setInfo(Api.get(info));
-        setIsLoading(() => false);
+        setInfo(Api.get(JSON.stringify(info)));
       })
       .catch((e) => {
-        setIsError("존재하지않는 설문조사입니다.");
-        setIsLoading(() => false);
+        setIsError("서버와 접속이 되지않습니다.");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, []);
+  }, [match.params]);
 
   StylesManager.applyTheme("modern");
 
@@ -63,20 +65,32 @@ const Page = () => {
   };
 
   const onComplete = (result: SurveyModel) => {
-    console.log("Complete! " + result);
-  };
-  const onAfterRenderSurvey = (result: SurveyModel, options: any) => {
+    console.log("Complete! ");
     console.log(result);
+  };
+
+  const onAfterRenderSurvey = (result: SurveyModel, options: any) => {
+    console.log("render");
+    console.log(result);
+  };
+
+  const onPartialSend = (result: SurveyModel) => {
+    console.log("onsend");
+    console.log({ id: (match.params as any).survey_id, json: result.data });
+    Api.saveSurvey({ id: (match.params as any).survey_id, json: result.data })
+      .then((info) => {
+        console.log(info);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   if (isLoading) return <Loader type="Oval" />;
 
   return (
     <>
-      <Nav
-        type=""
-        title={isStart ? "" : surveyData.title}
-      />
+      <Nav type="" title={isStart ? "" : surveyData.title} />
 
       <div className="column_container spread_row">
         <button className="flat" />
@@ -110,11 +124,12 @@ const Page = () => {
               <Survey
                 model={new Model(info)}
                 onComplete={onComplete}
-                pagePrevText="이전"
-                pageNextText="다음"
+                pagePrevText="<< 이전"
+                pageNextText="다음 >>"
                 completeText="제출하기"
                 onCurrentPageChanged={onCurrentPageChanged}
                 onAfterRenderSurvey={onAfterRenderSurvey}
+                onPartialSend={onPartialSend}
               />
             </>
           )}

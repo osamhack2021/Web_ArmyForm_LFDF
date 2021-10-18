@@ -86,7 +86,7 @@ const routes = [
   },
   {
     name: "설문 페이지",
-    path: "/Survey/Page",
+    path: "/Survey/Page/:survey_id",
     exact: false,
     component: SurveyPage,
     needAuth: true,

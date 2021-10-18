@@ -52,8 +52,6 @@ class Interceptor {
     );
     return axiosInstance;
   }
-
-  hello() {}
 }
 
 export default new Interceptor();
