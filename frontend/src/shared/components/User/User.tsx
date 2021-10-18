@@ -2,32 +2,33 @@
 
 // TODO: avoid localStorage
 
-interface IloginSuccessInfo {
-  jsonwebtoken: string;
-  userid: string;
-}
-
 interface IloginSuccess {
-  result: IloginSuccessInfo;
+  username: string;
+  id: string;
+  accessToken: string;
 }
 class User {
   parseLogin(json: string) {
     const resultObj: IloginSuccess = JSON.parse(json);
-    localStorage.setItem("user", resultObj["result"].userid);
-    localStorage.setItem("jwt", resultObj["result"].jsonwebtoken);
+    localStorage.setItem("username", resultObj.username);
+    localStorage.setItem("id", resultObj.id);
+    localStorage.setItem("accessToken", resultObj.accessToken);
   }
 
   logout() {
-    localStorage.removeItem("user");
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("username");
+    localStorage.removeItem("id");
+    localStorage.removeItem("accessToken");
   }
 
   getCurrentUser() {
-    const userStr = localStorage.getItem("user");
-    const jwtStr = localStorage.getItem("jwt");
-    console.log("-- USER:" + userStr);
-    console.log("-- jwt:" + jwtStr);
-    if (userStr) return userStr;
+    // const usernameStr = localStorage.getItem("username");
+    const useridStr = localStorage.getItem("id");
+    // const tokenStr = localStorage.getItem("accessToken");
+    // console.log("-- USERNAME:" + usernameStr);
+    // console.log("-- USERID:" + useridStr);
+    // console.log("-- TOKEN:" + tokenStr);
+    if (useridStr) return useridStr;
 
     return null;
   }

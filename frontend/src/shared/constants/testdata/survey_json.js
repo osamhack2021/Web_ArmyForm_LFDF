@@ -2,6 +2,7 @@ const data = {
   title: "무슨무슨검사",
   progressBarType: "defaults",
   showProgressBar: "top",
+  sendResultOnPageNext: true,
   pages: [
     {
       name: "1페이지",

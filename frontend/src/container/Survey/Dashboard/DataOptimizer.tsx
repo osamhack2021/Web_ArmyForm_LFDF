@@ -11,10 +11,9 @@ const getOptimizeData = (surveyData: any[]) => {
       });
 
       dataArr.push(surveyData[i]);
-    }
-    else {
+    } else {
       dataSheet[index].value++;
-      console.log(dataSheet[index].value);
+      // console.log(dataSheet[index].value);
     }
   }
 
@@ -24,7 +23,7 @@ const getOptimizeData = (surveyData: any[]) => {
   }
 
   return dataSheet;
-}
+};
 
 const mappingData = (data: any[], map: any[]) => {
   for (let i = 0; i < data.length; i++) {
@@ -32,7 +31,7 @@ const mappingData = (data: any[], map: any[]) => {
   }
 
   return data;
-}
+};
 
 const optimize = (data: any) => {
   for (let pg = 0; pg < data.pages.length; pg++) {
@@ -42,11 +41,14 @@ const optimize = (data: any) => {
       data.pages[pg].elements[el].value = getOptimizeData(index_data.value);
 
       if (index_data.choices != null) {
-        data.pages[pg].elements[el].value = mappingData(index_data.value, index_data.choices);
+        data.pages[pg].elements[el].value = mappingData(
+          index_data.value,
+          index_data.choices
+        );
       }
     }
   }
   return data;
-}
+};
 
 export default optimize;
