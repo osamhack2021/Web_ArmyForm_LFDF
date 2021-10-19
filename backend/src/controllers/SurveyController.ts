@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import { Op } from 'sequelize';
 import Survey from '../models/SurveyModel';
-//import Unit from '../models/UnitModel';
 import User from '../models/UserModel';
 
 class SurveyController {
@@ -28,9 +28,9 @@ class SurveyController {
       return res.send(404).json({ result: 'Survey not found' });
     }
     await Survey.update({
-      
+
     },
-    { where: { id: survey.id }});
+      { where: { id: survey.id } });
     return res.send(200).json({ result: survey.id });
   }
 
@@ -81,15 +81,18 @@ class SurveyController {
   }
 
   public static async UnitSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const time = new Date();
     const list = await Survey.findAll({
-      attributes: ['name'],
       where: {
-        unitId: res.locals.user.armyUnitId
+        unitId: res.locals.user.armyUnitId,
+        startTime: { [Op.lt]: time },
+        endTime: { [Op.gt]: time }
       }
-    });
+    })
     if (list === null) {
       return res.status(200).send("none");
     }
+    console.log(list)
     const surveyList = list.map((survey) => survey.name);
     return res.status(200).send(surveyList);
   }
