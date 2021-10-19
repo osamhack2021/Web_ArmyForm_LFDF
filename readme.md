@@ -3,22 +3,27 @@ Army Form
 
 
 <p align="center">
-    <img src="./readme_img/ArmyForm_Logo2.png" width="300" height="300" />
+    <img src="./readme_img/ArmyForm_Logo2.PNG" width="300" height="300" />
     <br/>
     <img src="https://img.shields.io/badge/version-v1.0.0-orange" alt="version"/>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT"></a>
     <a href="https://github.com/osamhack2021/Web_ArmyForm_LFDF/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/osamhack2021/Web_ArmyForm_LFDF/Build%20&%20deploy"></a>
 </p>
 
-## 프로젝트 소개
- > Army Form은 용사들이 부대를 직접 만들어 나간다는 의미를 담고 있는 프로젝트입니다. 
- > 
- > 최근 이슈가 된 병영 식당을 선두로 해서 많은 용사들이 부대에 갖고 있던 건의사항을 듣고, 이를 각 부대 지휘관에게 효율적으로 전달할 수 있는 어플리케이션 개발을 목표로 하고 있습니다. 
- > 
- > 군 부대에서 사용하기 적합하고 광범위한 용도에 설문조사 프로그램입니다.
+## :scroll: 프로젝트 소개
+#### Army Form은 보다 편리한 설문조사를 통해 평소 부대에 건의하고 싶었던 사항을 전달할 수 있는 어플리케이션입니다.
+#### 또한, 설문조사를 통해 용사들의 건의 사항을 통해 개선함으로써 용사들이 직접 부대를 만들어 나간다는 의미를 담고 있습니다.
+#### 최근 이슈가 되었던 군급식을 선두로 하여 용사들의 건의 사항을 종합하여, 이를 각 부대 지휘관에게 효율적으로 전달합니다.
+#### 군 부대에서 사용하기 적합하고 광범위한 용도로 사용될 수 있는 설문조사 프로그램입니다.
 
+## :bulb: 기대 효과
+#### 1️⃣ 설문 조사를 통해 수집된 데이터를 이용하여 빅데이터를 형성해 추후 타 부대 개선에 도움을 줄 수 있습니다.
+#### 2️⃣ 종이를 출력하여 사용하지 않기 때문에 더 나은 환경을 만드는데 이바지 할 수 있습니다.
+#### 3️⃣ 매번 설문 조사를 할 때마다 부대 인원만큼의 설문지를 출력해야하는 행정 소요를 줄일 수 있습니다.
+#### 4️⃣ 장소에 제약을 받지 않고 어디서든 설문을 참여할 수 있기 때문에 더 높은 참여도 증진 효과를 얻을 수 있습니다.
+#### 5️⃣ 설문지 결과함이 외부에 노출되어 있지 않기 때문에 비밀성 유지에 도움이 됩니다.
 
-## 기능 설명
+## :speech_balloon: 기능 설명
    ### 1. 메인페이지  
    
    <img src="./readme_img/mainpage.png" alt="메인페이지" width="600" height="500" />
@@ -66,11 +71,18 @@ Army Form
 ## 기술 스택 (Technique Used) 
 
 ### Server(back-end)
- - node.js : 14.17.6
- - express.js : ^4.17.1
- 
+Node.js | Express.js 
+------ | ------
+<a href="https://nodejs.org/ko/"><img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" width="50" height="50"></a> | <a href="https://expressjs.com/ko/"><img src="https://fungsitama.web.id/wp-content/uploads/2020/08/0_cQTv5n6xV7opBBIB.png" width="50" height="50"></a>
+14.17.6 | ^4.17.1
+
+/* https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md */
+
 ### Front-end
- - react.js : ^17.0.24
+React.js |
+------ |
+<a href="https://ko.reactjs.org/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlR1AfuW3JJkBrY52Tqoo-s-nxuLLB3pvYA&usqp=CAU" width="50" height="50"></a> |
+^17.0.24
 
 ## 설치 안내 (Installation Process)
 - 기본적으로 Node.js 의 설치가 필요합니다.
