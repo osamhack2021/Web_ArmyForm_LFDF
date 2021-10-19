@@ -76,7 +76,7 @@ Node.js | Express.js
 <a href="https://nodejs.org/ko/"><img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" width="50" height="50"></a> | <a href="https://expressjs.com/ko/"><img src="https://fungsitama.web.id/wp-content/uploads/2020/08/0_cQTv5n6xV7opBBIB.png" width="50" height="50"></a>
 14.17.6 | ^4.17.1
 
-/* https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md */
+<!-- https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md -->
 
 ### Front-end
 React.js |
