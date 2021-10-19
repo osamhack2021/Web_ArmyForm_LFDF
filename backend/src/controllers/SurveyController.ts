@@ -67,17 +67,7 @@ class SurveyController {
       return res.status(500).send("Not found survey");
     }
 
-    const list = await Survey.findAll({
-      attributes: ['name'],
-      where: {
-        ownerId: owner.surveys[0].ownerId
-      }
-    });
-    if (list === null) {
-      return res.status(200).send("none");
-    }
-    const surveyList = list.map((survey) => survey.name);
-    return res.status(200).send(surveyList);
+    return res.status(200).send(owner.surveys);
   }
 
   public static async UnitSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
