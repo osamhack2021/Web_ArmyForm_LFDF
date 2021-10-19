@@ -1,34 +1,34 @@
 import { Request, Response, NextFunction } from 'express';
-import { updateLanguageServiceSourceFile } from 'typescript';
 import Result from '../models/ResultModel';
+import assert from 'assert';
 
 class ResultController {
-  public static index (req: Request, res: Response, next: NextFunction): any {
+  public static index(req: Request, res: Response, next: NextFunction): any {
     return res.json({
       msg: 'Result control'
     });
   }
 
-  public static async create (req: Request, res: Response, next: NextFunction): Promise<any> {
-    const result = await Result.create({
-      json: req.body.json,
-      survey: req.body.survey,
-      owner: req.body.owner
+  public static async save(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const [result] = await Result.findOrCreate({
+      where: {
+        surveyId: req.body.survey_id,
+        ownerId: res.locals.user.id,
+      }
     });
-    return res.send(200).json({ result: result.id });
-  }
+    assert(result.surveyId === req.body.survey_id);
+    assert(result.ownerId === res.locals.user.id);
 
-  public static async save (req: Request, res: Response, next: NextFunction): Promise<any> {
-    findOrCreate()
-    
-    await Result.update({
+    const [n] = await Result.update({
       json: req.body.json
-    },
-    { where: { id: req.body.id } } );
-    return res.send(200).json({ result: req.body.id });
+    }, { where: { id: result.id } });
+    if (n === 0) {
+      return res.send(500).json({ result: 'Internal DB error' });
+    }
+    return res.send(200).json({ result: 'Success' });
   }
 
-  public static async find (req: Request, res: Response, next: NextFunction): Promise<any> {
+  public static async find(req: Request, res: Response, next: NextFunction): Promise<any> {
     const result = await Result.findOne({ where: { id: req.body.id } });
     if (result === null) {
       return res.status(404).json({ result: 'Result not found' });

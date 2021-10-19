@@ -21,17 +21,27 @@ class SurveyController {
   }
 
   public static async modify(req: Request, res: Response, next: NextFunction): Promise<any> {
-    const survey = await Survey.findOne({
-      where: { id: req.body.surveyId }
-    });
-    if (survey === null) {
-      return res.send(404).json({ result: 'Survey not found' });
-    }
-    await Survey.update({
-
+    const [n, _] = await Survey.update({
+      name: req.body.name,
+      json: req.body.json,
+      deadline: req.body.deadline
     },
-      { where: { id: survey.id } });
-    return res.send(200).json({ result: survey.id });
+    { where: { id: req.body.survey_id }});
+    if (n === 0) {
+      return res.status(404).send('Survey not found');
+    }
+    return res.send(200).json({ result: 'Success' });
+  }
+
+  public static async commit(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const [n, _] = await Survey.update({
+      startTime: new Date()
+    },
+    { where: { id: req.body.survey_id }});
+    if (n === 0) {
+      return res.status(404).send('Survey not found');
+    }
+    return res.send(200).json({ result: 'Success' });
   }
 
   public static async remove(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -39,22 +49,12 @@ class SurveyController {
   }
 
   public static async results(req: Request, res: Response, next: NextFunction): Promise<any> {
-    const survey = await Survey.findOne({ where: { id: req.body.id } });
+    const survey = await Survey.findOne({ where: { id: req.body.survey_id } });
     if (survey === null) {
       return res.status(404).json({ result: 'Survey not found' });
     }
     return res.status(200).json({ result: survey.results });
   }
-
-  public static async surveys(req: Request, res: Response, next: NextFunction): Promise<any> {
-    if (req.body.userid) {
-
-    }
-    const user = await Survey.findOne({ where: { id: req.body.userid } });
-    if (user === null)
-      return res.status(200).json({ result: [] });
-  }
-
 
   public static async OwnerSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
     const owner = await User.findOne({
@@ -67,17 +67,7 @@ class SurveyController {
       return res.status(500).send("Not found survey");
     }
 
-    const list = await Survey.findAll({
-      attributes: ['name'],
-      where: {
-        ownerId: owner.surveys[0].ownerId
-      }
-    });
-    if (list === null) {
-      return res.status(200).send("none");
-    }
-    const surveyList = list.map((survey) => survey.name);
-    return res.status(200).send(surveyList);
+    return res.status(200).send(owner.surveys);
   }
 
   public static async UnitSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {

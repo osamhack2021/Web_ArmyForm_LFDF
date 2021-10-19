@@ -17,6 +17,7 @@ class Survey extends Model {
   @Column(DataType.STRING)
   json!: string;
 
+  @Default(null)
   @Column(DataType.DATE)
   startTime!: Date;
 
