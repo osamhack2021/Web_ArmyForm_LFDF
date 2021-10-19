@@ -3,7 +3,7 @@ Army Form
 
 
 <p align="center">
-    <img src="ArmyForm_Logo.png" width="300" height="300" />
+    <img src="./readme_img/ArmyForm_Logo2.png" width="300" height="300" />
     <br/>
     <img src="https://img.shields.io/badge/version-v1.0.0-orange" alt="version"/>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT"></a>
