@@ -14,8 +14,23 @@ class SurveyController {
     const survey = await Survey.create({
       name: req.body.name,
       json: req.body.json,
-      ownerId: req.body.userid
+      deadline: req.body.deadline,
+      ownerId: res.locals.user
     });
+    return res.send(200).json({ result: survey.id });
+  }
+
+  public static async modify(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const survey = await Survey.findOne({
+      where: { id: req.body.surveyId }
+    });
+    if (survey === null) {
+      return res.send(404).json({ result: 'Survey not found' });
+    }
+    await Survey.update({
+      
+    },
+    { where: { id: survey.id }});
     return res.send(200).json({ result: survey.id });
   }
 

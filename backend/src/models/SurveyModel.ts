@@ -17,6 +17,12 @@ class Survey extends Model {
   @Column(DataType.STRING)
   json!: string;
 
+  @Column(DataType.DATE)
+  startTime!: Date;
+
+  @Column(DataType.DATE)
+  endTime!: Date;
+
   @ForeignKey(() => User)
   @Column(DataType.UUID)
   ownerId!: string;
