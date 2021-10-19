@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { updateLanguageServiceSourceFile } from 'typescript';
 import Result from '../models/ResultModel';
 
 class ResultController {
@@ -19,8 +18,6 @@ class ResultController {
   }
 
   public static async save (req: Request, res: Response, next: NextFunction): Promise<any> {
-    findOrCreate()
-    
     await Result.update({
       json: req.body.json
     },
