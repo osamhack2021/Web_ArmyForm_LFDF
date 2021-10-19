@@ -154,7 +154,12 @@ footer > div {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 20px 0px;
 
-  h3 {
+  h2 {
+    font-size: 40px;
+  }
+
+  h3, h5 {
+    font-size: 32px;
     text-align: left;
     padding: 30px 0;
   }
@@ -163,6 +168,60 @@ footer > div {
     padding-top: 20px;
     padding-bottom: 100px;
   }
+}
+
+/* Create Widgets */
+
+.editable_layout{
+
+  .toolbox {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    select {
+      width: auto;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  textarea {
+    all: unset;
+    text-align: center;
+    display: block;
+    //word-break: keep-all;
+    resize: none;
+    overflow: hidden;
+    padding: 0;
+
+    &.title {
+      height: 53px;
+      font-size: 40px;
+      font-weight: bold;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+
+    &.p {
+      width: 100%;
+      height: 21px;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+  }
+} 
+
+
+.add_widget:hover button {
+  visibility: visible;
 }
 
 /* widget styles */
@@ -178,7 +237,8 @@ a {
 
 input,
 select,
-option {
+option,
+textarea {
   display: block;
   width: 300px;
   height: 40px;
@@ -196,6 +256,11 @@ option {
     border: 1px solid #bd2d3a;
     outline-color: #1abc9c;
   }
+}
+
+textarea {
+  width: 100%;
+  height: auto;
 }
 
 input[type="checkbox"],
@@ -228,6 +293,19 @@ input[type="submit"] {
     width: 40px;
     height: 40px;
     margin: 10px;
+  }
+
+  &.add {
+    width: 100%;
+    border-radius: 4px;
+    padding: 6px;
+    background-color: $Color_Slider_Normal;
+    visibility: hidden;
+
+    > img {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   &.circle {

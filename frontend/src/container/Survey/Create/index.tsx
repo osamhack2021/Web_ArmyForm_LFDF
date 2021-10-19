@@ -9,33 +9,68 @@ import Pen from "static/pen.png";
 
 import Nav from "container/component/Nav";
 import SurveySlider from "container/component/SurveySlider";
-
-//설문조사 데이터
-const SurveyData = [
-  {
-    title: "Test Form",
-    contents: "테스트 데이터입니다.",
-  },
-];
+import AddWidget from "container/component/Create/AddWidget";
+import EditableWidget from "container/component/Create/EditableWidget";
 
 const SurveyCreate = () => {
+  const [SurveyData, setSurveyData]
+    = useState([
+      [
+        {
+          type: "title",
+          value: "Test Form",
+          elements: [],
+        },
+        {
+          type: "p",
+          value: "테스트 데이터입니다.",
+          elements:[],
+        }
+      ],
+    ]);
   const [SurveyPages, setSurveyPages] = useState(SurveyData.length);
   const [SurveyCursor, setCursor] = useState(0);
   const [editMode, setEditMode] = useState(true);
 
-  function updateCursor(cursor: number) {
+  const updateCursor = (cursor: number) => {
     if (0 <= cursor && cursor < SurveyPages) {
       window.scrollTo(0, 0);
       setCursor(cursor);
     }
   }
 
-  function addPage() {
-    SurveyData.push(
+  const addSurveyWidget = (index: number) => {
+    let data = [...SurveyData];
+
+    data[SurveyCursor].splice(index, 0,
       {
-        title: "Test Form",
-        contents: "테스트 데이터입니다.",
+        type: "checkbox",
+        value: "설문제목",
+        elements:[
+          "1번 요소",
+          "2번 요소",
+          "3번 요소"
+        ],
       }
+    );
+
+    setSurveyData(data);
+  }
+
+  const addPage = () => {
+    SurveyData.push(
+      [
+        {
+          type: "title",
+          value: "페이지 이름",
+          elements:[],
+        },
+        {
+          type: "p",
+          value: "테스트 데이터입니다.",
+          elements:[],
+        }
+      ]
     );
 
     window.scrollTo(0, 0);
@@ -43,9 +78,64 @@ const SurveyCreate = () => {
     setSurveyPages(SurveyPages + 1);
   }
 
+  const onValueChanged = (e: any) => {
+    const target = e.target.id.split("*").map((value: any, index: number) => {
+      return Number(value);
+    })
+    
+    let data = [...SurveyData];
+    if(target.length <= 2 || target[2] === 0)
+      data[target[0]][target[1]].value = e.target.value;
+    else if(target[2] === -1)
+      data[target[0]][target[1]].type = e.target.value;
+    else
+      data[target[0]][target[1]].elements[target[2]-1].value = e.target.value;
+    
+    if(e.target.tagName === "textarea"){
+      e.target.style.height='1px';
+      e.target.style.height = e.target.scrollHeight + 'px';
+    }
+
+    setSurveyData(data);
+  }
+
+  const onDelete = (index: number[]) => {
+    console.log(index);
+    let data = [...SurveyData];
+
+    if(index.length <= 2){
+      data[index[0]].splice(index[1], 1);
+    }
+
+    setSurveyData(data);
+  }
+
+  const drawSurveyWidgets = (data: any[][]) => {
+    let result = [];
+
+    result.push(<AddWidget clickFunc={() => addSurveyWidget(0)}/>);
+
+    data[SurveyCursor].map((element, index) => {
+      let widgetData = {
+        ...SurveyData[SurveyCursor][index],
+        index: [SurveyCursor, index],
+      };
+      
+      result.push(
+        <EditableWidget
+          data={widgetData}
+          onChange={onValueChanged}
+          onDelete={onDelete} />
+      );
+      result.push(<AddWidget clickFunc={() => addSurveyWidget(index+1)}/>);
+    })
+
+    return result;
+  }
+
   return (
     <>
-      <Nav type="" title={SurveyData[0].title}>
+      <Nav type="" title={SurveyData[0][0].value}>
         <button className="flat" onClick={() => setEditMode(!editMode)}>
           { editMode ?
             <img src={Eye} alt="keep" />
@@ -68,16 +158,9 @@ const SurveyCreate = () => {
         </button>
         <div>
           <div className="big_card">
-            { SurveyCursor === 0 ?
-              <>
-                <h2>{SurveyData[0].title}</h2>
-                <p>{SurveyData[0].contents}</p>
-              </>
-              :
-              <>
-                <h2>{SurveyData[0].title}</h2>
-              </>
-            }
+            <div className={editMode ? "editable_layout" : "keep_layout"}>
+              {drawSurveyWidgets(SurveyData)}
+            </div>
             <SurveySlider
               current={SurveyCursor}
               length={SurveyPages}
