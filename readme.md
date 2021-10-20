@@ -37,9 +37,8 @@ Army Form
    
    <img src="./readme_img/surveycreate.png" alt="설문조사 생성 페이지" width="800" height="450" />
    
-   - 다양한 폼(객관식, 주관식, 이미지 등)을 제공하여 쉽게 여러 종류의 설문조사를 생성할 수 있습니다.
-   - 익명성을 제공하기 위해서 익명 또는 비익명 설문를 선택할 수 있습니다.
-   - 설문조사의 제출 기한을 정할 수 있습니다.
+   - 객관식, 주관식 질문 형태을 제공하여 쉽게 설문조사를 생성할 수 있습니다.
+   - 설문조사의 제출 기한을 정할 수 있어 관리에 용이합니다.
 
 
    ### 	:memo: 설문조사 참여하기 
@@ -56,8 +55,8 @@ Army Form
    - 답변이 필요한 설문조사의 경우 답변을 입력하여 설문조사를 참여한 장병들에게 조치 내용을 알릴 수 있습니다.
      (예시 : 화장실에 화장지를 배치하겠습니다. -> 장병들이 어떠한 조치를 하겠다는 내용을 확인할 수 있습니다.)
    - 각 질문 형태에 알맞는 결과를 보여줍니다.
-     (예시 : 선택형 질문 -> 막대 그래프 / 주관식 질문 -> 워드클라우드 또는 각 질문에 대한 퍼센트치)
-   - 전체적인 내용을 한 번에 확인할 수 있습니다.
+     (예시 : 선택형 질문 -> 막대 그래프 / 주관식 질문 -> 각 질문에 대한 퍼센트치)
+   - 전체적인 내용을 한 눈에 확인이 가능합니다.
 
 ## 	:computer: 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
  - Node.js (v14.17.6)을 지원하는 운영 체제 [Node.js 다운로드](https://nodejs.org/download/release/v12.22.6/)
@@ -66,12 +65,10 @@ Army Form
 ## :hammer_and_wrench: 기술 스택 (Technique Used) 
 
 ### Server(back-end)
-Node.js | Express.js | PostgreSQL | Sequelize
-:------: | :------: | :------: | :------: 
-<a href="https://nodejs.org/ko/"><img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" width="60" height="60"></a> | <a href="https://expressjs.com/ko/"><img src="https://fungsitama.web.id/wp-content/uploads/2020/08/0_cQTv5n6xV7opBBIB.png" width="60" height="60"></a> | <a href="https://www.postgresql.org/"><img src="https://ww.namu.la/s/0cf2b87053ba7ebc546e8a1c320a91b2a4c112cd5948f15239d4fdc0dcaff2b24576e95d4677d5a5f519176099be47f208387ff673520f4e83bf04eebacfac2d2e3a5dcade8a7d9aaec43775c1cbe8a2" width="60" height="60"></a> | <a href="https://sequelize.org/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX3X2S3KgOHkTvL1zYVIeBWpzJSfNGBetJw&usqp=CAU" width="60" height="60"></a>
-14.17.6 | ^4.17.1 | 9.5.25 | ^4.28.10
-
-<!-- https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md -->
+Node.js | Express.js | PostgreSQL | Sequelize | Typescript
+:------: | :------: | :------: | :------: | :------:
+<a href="https://nodejs.org/ko/"><img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" width="60" height="60"></a> | <a href="https://expressjs.com/ko/"><img src="https://fungsitama.web.id/wp-content/uploads/2020/08/0_cQTv5n6xV7opBBIB.png" width="60" height="60"></a> | <a href="https://www.postgresql.org/"><img src="https://ww.namu.la/s/0cf2b87053ba7ebc546e8a1c320a91b2a4c112cd5948f15239d4fdc0dcaff2b24576e95d4677d5a5f519176099be47f208387ff673520f4e83bf04eebacfac2d2e3a5dcade8a7d9aaec43775c1cbe8a2" width="60" height="60"></a> | <a href="https://sequelize.org/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX3X2S3KgOHkTvL1zYVIeBWpzJSfNGBetJw&usqp=CAU" width="60" height="60"></a> | <a href="https://www.typescriptlang.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" width="60" height="60"></a>
+14.17.6 | ^4.17.1 | 9.5.25 | ^4.28.10 | ^4.4.3
 
 ### Front-end
 React.js | Survey.js
