@@ -53,9 +53,8 @@ const SurveyCreate = () => {
       },
     ],
   });
-
-  const [startdate, setStartdate] = useState(new Date());
-  const [enddate, setEnddate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const [SurveyPages, setSurveyPages] = useState([
     {
@@ -93,8 +92,8 @@ const SurveyCreate = () => {
     Api.createSurvey({
       name: SurveyData.title,
       json: JSON.stringify(SurveyData),
-      startline: startdate,
-      deadline: enddate,
+      startline: startDate,
+      deadline: endDate,
     }).then((info) => {
       alert("저장되었습니다.");
       history.push("/Survey");
@@ -154,6 +153,7 @@ const SurveyCreate = () => {
     setSurveyData({ ...SurveyData });
   };
 
+
   const handleSDate = (e: ChangeEvent<HTMLInputElement>) => {
     setStartdate(new Date(e.target.value));
   };
@@ -205,6 +205,7 @@ const SurveyCreate = () => {
                 시작기한
                 <input
                   type="date"
+
                   name="start"
                   onChange={(e) => handleSDate(e)}
                 />

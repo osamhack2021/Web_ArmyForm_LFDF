@@ -1,82 +1,56 @@
-import { Sequelize, DataTypes, Model } from 'sequelize';
+import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Default, Unique, ForeignKey, BelongsTo, HasMany, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import Result from './ResultModel';
+import Survey from './SurveyModel';
+import Unit from './UnitModel';
 
-// Temporary, should be reallocate to other files.
-const sequelize = new Sequelize(
-  'test',
-  'test',
-  'test',
-  {
-    host: 'localhost',
-    dialect: 'postgres'
-  }
-);
+@Table
+class User extends Model {
+  @PrimaryKey
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
+  id!: string;
 
-sequelize.sync({ force: true });
+  @Unique
+  @Column(DataType.STRING)
+  username!: string
 
-interface UserAttributes {
-  userid: string;
-  passwd: string;
+  @Column(DataType.STRING)
+  password!: string
 
-  name: string;
+  @Column(DataType.STRING)
+  name!: string
 
-  type: string;
-  serial: string;
-  rank: string;
-  unit: string;
+  @Column(DataType.STRING)
+  armyType!: string
 
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
+  @ForeignKey(() => Unit)
+  @Column(DataType.UUID)
+  armyUnitId!: string;
+
+  @BelongsTo(() => Unit, 'unitId')
+  armyUnit!: Unit;
+
+  @Column(DataType.STRING)
+  armyRank!: string
+
+  @Column(DataType.STRING)
+  serialNumber!: string
+
+  @HasMany(() => Survey, 'ownerId')
+  surveys!: Survey[];
+
+  @HasMany(() => Result, 'ownerId')
+  results!: Result[];
+
+  @CreatedAt
+  readonly createdAt!: Date;
+
+  @UpdatedAt
+  readonly updatedAt!: Date;
+
+  @DeletedAt
+  readonly deletedAt!: Date;
 };
-
-class User extends Model<UserAttributes> implements UserAttributes {
-  public userid!: string
-  public passwd!: string
-
-  public name!: string
-
-  public type!: string
-  public serial!: string
-  public rank!: string
-  public unit!: string
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-  public readonly deletedAt!: Date;
-};
-
-User.init(
-  {
-    userid: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true
-    },
-    passwd: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    name: {
-      type: DataTypes.STRING
-    },
-    type: {
-      type: DataTypes.STRING
-    },
-    serial: {
-      type: DataTypes.STRING
-    },
-    rank: {
-      type: DataTypes.STRING
-    },
-    unit: {
-      type: DataTypes.STRING
-    }
-  },
-  {
-    timestamps: true,
-    sequelize: sequelize,
-    paranoid: true
-  }
-);
 
 export default User;

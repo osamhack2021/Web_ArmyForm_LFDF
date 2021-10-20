@@ -1,57 +1,54 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../configs/DatabaseConfig';
+import { Table, Model, DataType, Column, PrimaryKey, IsUUID, Default, ForeignKey, BelongsTo, HasMany, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import User from './UserModel';
+import Result from './ResultModel';
+import Unit from './UnitModel';
 
-// TODO: Add reference information to Sequelize. [owner: number > User.id: number] (many-to-one)
-interface SurveyAttributes {
-  id: number;
+@Table
+class Survey extends Model {
+  @PrimaryKey
+  @IsUUID(4)
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
+  id!: string;
 
-  name: string;
-  json: string;
+  @Column(DataType.STRING)
+  name!: string;
 
-  owner: number;
+  @Column(DataType.STRING(10000))
+  json!: string;
 
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
+  @Default(null)
+  @Column(DataType.DATE)
+  startTime!: Date;
+
+  @Column(DataType.DATE)
+  endTime!: Date;
+
+  @ForeignKey(() => User)
+  @Column(DataType.UUID)
+  ownerId!: string;
+
+  @BelongsTo(() => User, 'ownerId')
+  owner!: User;
+
+  @ForeignKey(() => Unit)
+  @Column(DataType.UUID)
+  unitId!: string;
+
+  @BelongsTo(() => Unit, 'unitId')
+  unit!: User;
+
+  @HasMany(() => Result, 'surveyId')
+  results!: Result[];
+
+  @CreatedAt
+  readonly createdAt!: Date;
+
+  @UpdatedAt
+  readonly updatedAt!: Date;
+
+  @DeletedAt
+  readonly deletedAt!: Date;
 };
-
-class Survey extends Model<SurveyAttributes> implements SurveyAttributes {
-  public id!: number;
-
-  public name!: string;
-  public json!: string;
-
-  public owner!: number;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
-  public readonly deletedAt!: Date;
-};
-
-Survey.init(
-  {
-    id: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    json: {
-      type: DataTypes.STRING
-    },
-    owner: {
-      type: DataTypes.BIGINT,
-      allowNull: false
-    }
-  },
-  {
-    timestamps: true,
-    sequelize: sequelize,
-    paranoid: true
-  }
-);
 
 export default Survey;
