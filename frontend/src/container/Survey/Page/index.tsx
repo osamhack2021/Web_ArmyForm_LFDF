@@ -38,9 +38,9 @@ const Page = ({ match, location }: RouteComponentProps) => {
   const [info, setInfo] = useState({});
 
   useEffect(() => {
-    Api.getSurvey({ id: (match.params as any).survey_id })
+    Api.getSurvey({ survey_id: (match.params as any).survey_id })
       .then((info) => {
-        setInfo(Api.get(JSON.stringify(info)));
+        setInfo(Api.get(JSON.stringify(info)).result);
       })
       .catch((e) => {
         setIsError("서버와 접속이 되지않습니다.");

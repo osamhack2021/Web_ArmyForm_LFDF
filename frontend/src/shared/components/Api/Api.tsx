@@ -73,12 +73,12 @@ class Api {
    */
 
   /**
-   * create - name,json,userid : survey.id
+   * create - name,json,deadline : survey.id
    */
   createSurvey(Idata: any) {
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .get(CONFIG.API_SERVER + "/survey/UnitSurveyList", authHeader(Idata))
+        .post(CONFIG.API_SERVER + "/survey", Idata, authHeader({}))
         .then((res: any) => resolve(res.data))
         .catch(reject);
     });
@@ -118,6 +118,9 @@ export default new Api();
 function authHeader(Iany: any) {
   const tokenStr = localStorage.getItem("accessToken");
   return tokenStr
-    ? { headers: { "x-access-token": tokenStr }, ...Iany }
+    ? {
+        headers: { "x-access-token": tokenStr },
+        ...Iany,
+      }
     : { ...Iany };
 }

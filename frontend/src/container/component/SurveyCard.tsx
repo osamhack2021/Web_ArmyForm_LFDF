@@ -14,20 +14,20 @@ import "style/SurveyCard.scss";
 interface Icard {
   type: Number;
   name: string;
-  survey_id: string;
+  id: string;
   // target: string;
   // deadline: number;
 }
 // target = "없습니다",
 // deadline,
-const SurveyCard = ({ type, name, survey_id }: Icard) => {
+const SurveyCard = ({ type, name, id }: Icard) => {
   // const CARD_RESURT = 0;
   const CARD_INCOMPLETED = 1;
   const CARD_PROCEEDING = 2;
   const CARD_COMPLETED = 3;
-  const CARD_CREATE_INCOMPLETED = 4;
-  const CARD_CREATE_PROCEEDING = 5;
-  const CARD_CREATE_COMPLETED = 6;
+  const CARD_CREATE_INCOMPLETED = 4; //제작중
+  const CARD_CREATE_PROCEEDING = 5; //진향중
+  const CARD_CREATE_COMPLETED = 6; //끝
 
   let buttonName;
   let statusClass = "card_circle ";
@@ -80,8 +80,8 @@ const SurveyCard = ({ type, name, survey_id }: Icard) => {
   const doAction = () => {
     switch (type) {
       case CARD_INCOMPLETED:
-        // buttonName = "시작하기";
-        history.push("/Survey/Page/" + survey_id);
+        buttonName = "시작하기";
+        history.push("/Survey/Page/" + id);
         break;
       case CARD_PROCEEDING:
         buttonName = "수정하기";
@@ -100,12 +100,14 @@ const SurveyCard = ({ type, name, survey_id }: Icard) => {
         statusImage = Pen;
         break;
       case CARD_CREATE_PROCEEDING:
+        history.push("/Survey/Page/" + id);
         buttonName = "결과확인";
         statusClass += "yellow";
         statusImage = Setting;
         break;
       case CARD_CREATE_COMPLETED:
         // d_day = "";
+        history.push("/Survey/Page/" + id);
         buttonName = "결과확인";
         statusClass += "green";
         statusImage = Confirm;

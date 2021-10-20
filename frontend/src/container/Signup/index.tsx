@@ -72,11 +72,11 @@ const Signup = () => {
             required: { value: true, message: "입력값이 필요합니다." },
             minLength: 8,
             maxLength: 20,
-            // pattern: {
-            //   value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-            //   message:
-            //     "최소 8글자, 최대 20글자, 최소 하나의 문자 및 하나의 숫자로 이루어져야합니다.",
-            // },
+            pattern: {
+              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              message:
+                "최소 8글자, 최대 20글자, 최소 하나의 문자 및 하나의 숫자로 이루어져야합니다.",
+            },
           })}
           placeholder="비밀번호"
         />

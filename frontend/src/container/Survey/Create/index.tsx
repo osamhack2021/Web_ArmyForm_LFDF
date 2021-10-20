@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
@@ -10,90 +10,268 @@ import Pen from "static/pen.png";
 import Nav from "container/component/Nav";
 import SurveySlider from "container/component/SurveySlider";
 
-//설문조사 데이터
-const SurveyData = [
-  {
-    title: "Test Form",
-    contents: "테스트 데이터입니다.",
-  },
-];
+import Api from "shared/components/Api/Api";
 
 const SurveyCreate = () => {
-  const [SurveyPages, setSurveyPages] = useState(SurveyData.length);
-  const [SurveyCursor, setCursor] = useState(0);
+  const SurveyTypeDefault = [
+    {
+      type: "text",
+      name: "name",
+      visible: true,
+      title: "당신의 이름은 무엇입니까",
+    },
+    {
+      type: "dropdown",
+      name: "name",
+      visible: true,
+      title: "당신의 성별은 무엇입니까",
+      choices: ["남성", "여성"],
+    },
+  ];
+
+  const [SurveyData, setSurveyData] = useState({
+    title: "test",
+    progressBarType: "defaults",
+    showProgressBar: "top",
+    sendResultOnPageNext: true,
+    pages: [
+      {
+        name: "Test Form",
+        elements: SurveyTypeDefault,
+      },
+    ],
+  });
+
+  const [date, setDate] = useState(new Date());
+
+  const [SurveyPages, setSurveyPages] = useState([
+    {
+      name: "Test Form",
+      elements: SurveyTypeDefault,
+    },
+  ]);
+
+  const [SurveyCursor, setSurveyCursor] = useState(0);
   const [editMode, setEditMode] = useState(true);
+  const [toggle, setToggle] = useState(0);
 
   function updateCursor(cursor: number) {
-    if (0 <= cursor && cursor < SurveyPages) {
+    if (0 <= cursor && cursor < SurveyPages.length + 1) {
       window.scrollTo(0, 0);
-      setCursor(cursor);
+      setSurveyCursor(cursor);
     }
   }
 
   function addPage() {
-    SurveyData.push(
-      {
-        title: "Test Form",
-        contents: "테스트 데이터입니다.",
-      }
-    );
-
     window.scrollTo(0, 0);
-    setCursor(SurveyCursor + 1);
-    setSurveyPages(SurveyPages + 1);
+    SurveyPages.push({
+      name: SurveyCursor.toString(),
+      elements: [SurveyTypeDefault[0]],
+    });
+    setSurveyPages(SurveyPages);
+    setSurveyCursor(SurveyCursor + 1);
   }
 
+  function removePage() {
+    SurveyPages.splice(SurveyCursor, 1);
+    window.scrollTo(0, 0);
+    setSurveyPages(SurveyPages);
+    setSurveyCursor(SurveyCursor - 1);
+  }
+
+  const handleSave = () => {
+    SurveyData.pages = SurveyPages;
+    Api.createSurvey({
+      name: SurveyData.title,
+      json: JSON.stringify(SurveyData),
+      deadline: date,
+    }).then((info) => {
+      alert("저장되었습니다.");
+    });
+  };
+
+  const handleToggle = (e: ChangeEvent<HTMLSelectElement>) => {
+    setToggle(Number(e.target.value));
+  };
+
+  const addQuestion = () => {
+    SurveyPages[SurveyCursor - 1].elements.push(SurveyTypeDefault[toggle]);
+    setSurveyPages([...SurveyPages]);
+  };
+
+  const deleteQuestion = (question: number) => {
+    SurveyPages[SurveyCursor - 1].elements.splice(question, 1);
+    setSurveyPages([...SurveyPages]);
+  };
+
+  const addSelect = (question: number) => {
+    SurveyPages[SurveyCursor - 1].elements[question].choices?.push("");
+    setSurveyPages([...SurveyPages]);
+  };
+
+  const deleteSelect = (question: number, answer: number) => {
+    console.log(answer);
+    SurveyPages[SurveyCursor - 1].elements[question].choices?.splice(
+      answer - 1,
+      1
+    );
+    setSurveyPages([...SurveyPages]);
+  };
+
+  const handleDropdown = (
+    e: ChangeEvent<HTMLInputElement>,
+    question: number,
+    answer: number
+  ) => {
+    // let a = { [e.target.name]: e.target.value };
+    (SurveyPages[SurveyCursor - 1].elements[question].choices as string[])[
+      answer
+    ] = e.target.value;
+    setSurveyPages([...SurveyPages]);
+  };
+
+  const handleTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    SurveyData.title = e.target.value;
+    setSurveyData({ ...SurveyData });
+  };
+
+  const handleQuestionTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    const question = parseInt(e.target.name);
+    SurveyPages[SurveyCursor - 1].elements[question].title = e.target.value;
+    setSurveyData({ ...SurveyData });
+  };
+
+  const handleDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setDate(new Date(e.target.value));
+  };
   return (
     <>
-      <Nav type="" title={SurveyData[0].title}>
+      <Nav type="" title={SurveyData.title}>
         <button className="flat" onClick={() => setEditMode(!editMode)}>
-          { editMode ?
+          {editMode ? (
             <img src={Eye} alt="keep" />
-            :
+          ) : (
             <img src={Pen} alt="edit" />
-          }
+          )}
         </button>
         <button className="flat">
-          <img src={Save} alt="save" />
+          <img src={Save} alt="save" onClick={handleSave} />
         </button>
       </Nav>
 
       <div className="spread_row background_green">
-        <button className="flat" onClick={() => updateCursor(SurveyCursor -1)}>
-          { SurveyCursor === 0 ?
-            <img className="invisible" src={LeftArrow} alt="<" />
-            :
-            <img src={LeftArrow} alt="<" />
-          }
+        <button className="flat">
+          <img
+            className={SurveyCursor === 0 ? "invisible" : ""}
+            src={LeftArrow}
+            alt="<"
+            onClick={() => updateCursor(SurveyCursor - 1)}
+          />
+          <div
+            className={SurveyCursor === 0 ? "invisible" : ""}
+            onClick={removePage}
+          >
+            삭제
+          </div>
         </button>
         <div>
           <div className="big_card">
-            { SurveyCursor === 0 ?
+            {SurveyCursor === 0 ? (
               <>
-                <h2>{SurveyData[0].title}</h2>
-                <p>{SurveyData[0].contents}</p>
+                <input
+                  type="text"
+                  name="title"
+                  value={SurveyData.title}
+                  placeholder="설문조사 제목"
+                  onChange={(e) => handleTitle(e)}
+                />
+                마감기한
+                <input
+                  type="date"
+                  name="bday"
+                  onChange={(e) => handleDate(e)}
+                />
               </>
-              :
+            ) : (
               <>
-                <h2>{SurveyData[0].title}</h2>
+                - {SurveyCursor}페이지 -
+                <br />
+                {SurveyPages[SurveyCursor - 1].elements.map((e, idx) => {
+                  return (
+                    <div key={idx}>
+                      {"<"}
+                      {idx + 1}번 질문{">"}
+                      <input
+                        type="text"
+                        name={idx.toString()}
+                        value={e.title}
+                        placeholder={idx + 1 + "번 질문 제목"}
+                        onChange={handleQuestionTitle}
+                      />
+                      <button onClick={() => deleteQuestion(idx)}>
+                        {idx + 1}번 질문 삭제
+                      </button>
+                      {/* IF TEXT */}
+                      {e.type === "text" ? <div></div> : ""}
+                      {/* IF DROPDOWN*/}
+                      {e.type === "dropdown" ? (
+                        <>
+                          {e.choices?.map((e2, idx2) => (
+                            <div key={idx2}>
+                              <input
+                                type="text"
+                                value={e2}
+                                placeholder={
+                                  idx +
+                                  1 +
+                                  "번 질문 " +
+                                  (idx2 + 1) +
+                                  "번 선택지"
+                                }
+                                onChange={(e) => handleDropdown(e, idx, idx2)}
+                              />
+                              <button onClick={() => deleteSelect(idx, idx2)}>
+                                {idx + 1}번 질문의 {idx2 + 1}번 선택지 삭제
+                              </button>
+                            </div>
+                          ))}
+                          <button onClick={() => addSelect(idx)}>
+                            {idx + 1}번 질문의 선택지 추가
+                          </button>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  );
+                })}
+                <select onChange={handleToggle}>
+                  <option value={0}>서술형</option>
+                  <option value={1}>객관식</option>
+                </select>
+                <button onClick={addQuestion}>질문 추가</button>
               </>
-            }
+            )}
             <SurveySlider
               current={SurveyCursor}
-              length={SurveyPages}
+              length={SurveyPages.length + 1}
               moveFunc={(index) => updateCursor(index)}
             />
           </div>
         </div>
-        { SurveyCursor === SurveyPages-1 ?
-          <button className="flat" onClick={() => addPage()}>
-            <img src={Plus} alt="+" />
+        {SurveyCursor === SurveyPages.length ? (
+          <button className="flat">
+            <img src={Plus} alt="+" onClick={addPage} />
           </button>
-          :
-          <button className="flat" onClick={() => updateCursor(SurveyCursor +1)}>
-              <img src={RightArrow} alt=">" />
+        ) : (
+          <button className="flat">
+            <img
+              src={RightArrow}
+              alt=">"
+              onClick={() => updateCursor(SurveyCursor + 1)}
+            />
           </button>
-        }
+        )}
       </div>
     </>
   );

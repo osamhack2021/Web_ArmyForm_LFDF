@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
@@ -19,14 +20,37 @@ const Survey = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState("");
   const [survey_ongoing, setSurveyOngoing] = useState([
-    { survey_id: "test", name: "Test" },
+    {
+      survey_id: "test",
+      name: "Test",
+      endTime: "2021-10-18T15:00:00.000Z",
+      id: "730b6aa8-68d9-4d0c-b267-3e94b84092a1",
+      ownerId: "7ef0d4bc-39d0-4467-854c-88b9eb352434",
+      startTime: "2021-10-17T15:00:00.000Z",
+    },
   ]);
   const [survey_result, setSurveyResult] = useState([
-    { survey_id: "test", name: "Test" },
+    {
+      survey_id: "test",
+      name: "Test",
+      endTime: "2021-10-18T15:00:00.000Z",
+      id: "730b6aa8-68d9-4d0c-b267-3e94b84092a1",
+      ownerId: "7ef0d4bc-39d0-4467-854c-88b9eb352434",
+      startTime: "2021-10-17T15:00:00.000Z",
+    },
   ]);
   const [survey_created, setSurveyCreated] = useState([
-    { survey_id: "test", name: "Test" },
+    {
+      survey_id: "test",
+      name: "Test",
+      endTime: "2021-10-18T15:00:00.000Z",
+      id: "730b6aa8-68d9-4d0c-b267-3e94b84092a1",
+      ownerId: "7ef0d4bc-39d0-4467-854c-88b9eb352434",
+      startTime: "2021-10-17T15:00:00.000Z",
+    },
   ]);
+
+  const history = useHistory();
 
   let LIST_ITEM_COUNT = getComputedItemCount();
 
@@ -121,13 +145,35 @@ const Survey = () => {
     setPageList(page_list);
   }
 
+  function unitTimeCalc(starttime: string, endtime: string) {
+    if (new Date() < new Date(starttime)) {
+      return 1;
+    } else if (new Date() < new Date(endtime)) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  // function timeCalc() {}
+  function ownerTimeCalc(starttime: string, endtime: string) {
+    if (new Date() < new Date(starttime)) {
+      return 4;
+    } else if (new Date() < new Date(endtime)) {
+      return 5;
+    } else {
+      return 6;
+    }
+  }
+
   if (isLoading) return <Loader />;
   if (isError) return <Error e={isError} />;
 
   return (
     <>
       <Nav type="" title="ArmyForm">
-        <button className="flat">설문조사 추가</button>
+        <button className="flat" onClick={() => history.push("/Survey/Create")}>
+          설문조사 추가
+        </button>
       </Nav>
 
       <div className="background_green">
@@ -149,9 +195,9 @@ const Survey = () => {
                 .map((item, idx) => {
                   return (
                     <SurveyCard
-                      type={1}
+                      type={unitTimeCalc(item.startTime, item.endTime)}
                       name={item.name}
-                      survey_id={item.survey_id}
+                      id={item.id}
                       // target={item.target}
                       // deadline={item.deadline}
                     />
@@ -194,7 +240,7 @@ const Survey = () => {
                     <SurveyCard
                       type={0}
                       name={item.name}
-                      survey_id={item.survey_id}
+                      id={item.id}
                       // target={item.target}
                       // deadline={item.deadline}
                     />
@@ -235,9 +281,9 @@ const Survey = () => {
                 .map((item) => {
                   return (
                     <SurveyCard
-                      type={4}
+                      type={ownerTimeCalc(item.startTime, item.endTime)}
                       name={item.name}
-                      survey_id={item.survey_id}
+                      id={item.id}
                       // target={item.target}
                       // deadline={item.deadline}
                     />
