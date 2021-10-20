@@ -15,7 +15,7 @@ class SurveyController {
       name: req.body.name,
       json: req.body.json,
       deadline: req.body.deadline,
-      ownerId: res.locals.user
+      ownerId: res.locals.user.id
     });
     return res.send(200).json({ result: survey.id });
   }
@@ -53,7 +53,7 @@ class SurveyController {
     if (survey === null) {
       return res.status(404).json({ result: 'Survey not found' });
     }
-    return res.status(200).json({ result: survey.results });
+    return res.status(200).json({ result: survey.json });
   }
 
   public static async OwnerSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {

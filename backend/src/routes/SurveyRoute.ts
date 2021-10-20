@@ -23,7 +23,7 @@ router.post('/commit', [checkToken], asyncHandler(SurveyController.commit));
 router.get('/OwnerSurveyList', [checkToken], asyncHandler(SurveyController.OwnerSurveyList));
 router.get('/UnitSurveyList', [checkToken], asyncHandler(SurveyController.UnitSurveyList));
 
-router.get('/results', [checkToken], asyncHandler(SurveyController.results));
+router.post('/results', [checkToken], asyncHandler(SurveyController.results));
 
 router.get('*', (req: Request, res: Response, next: NextFunction) => {
   /* TODO: error handle */
