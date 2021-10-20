@@ -10,29 +10,20 @@ class SurveyController {
     });
   }
 
-  public static async create(req: Request, res: Response, next: NextFunction): Promise<any> {
-    const survey = await Survey.create({
-      name: req.body.name,
-      json: req.body.json,
-      startTime:req.body.startline,
-      endTime: req.body.deadline,
-      ownerId: res.locals.user.id
+  public static async save(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const [survey, _] = await Survey.findOrCreate({
+      where: {
+        name: req.body.name,
+        ownerId: res.locals.user.id
+      },
+      defaults: {
+        json: req.body.json,
+        unitId: res.locals.user.armyUnitId,
+        startTime:req.body.startline,
+        endTime: req.body.deadline,
+      }
     });
     return res.send(200).json({ result: survey.id });
-  }
-
-  public static async modify(req: Request, res: Response, next: NextFunction): Promise<any> {
-    const [n, _] = await Survey.update({
-      name: req.body.name,
-      json: req.body.json,
-      startline:req.body.startline,
-      deadline: req.body.deadline
-    },
-    { where: { id: req.body.survey_id }});
-    if (n === 0) {
-      return res.status(404).send('Survey not found');
-    }
-    return res.send(200).json({ result: 'Success' });
   }
 
   public static async commit(req: Request, res: Response, next: NextFunction): Promise<any> {

@@ -49,16 +49,23 @@ class ResultController {
       return res.status(404).json({ result: 'Survey not found' });
     }
     var stats: any = {};
+    const count = survey.results.length;
     for (var i = 0; i < survey.results.length; i++) {
       var json: any = JSON.parse(survey.results[i].json);
       for (var key in json) {
         if (!(key in stats)) {
-          stats[key] = {}
+          stats[key] = {};
         }
         if (!(json[key] in stats[key])) {
-          stats[key][json[key]] = 0
+          stats[key][json[key]] = 0;
         }
-        stats[key][json[key]] += 1
+        stats[key][json[key]] += 1;
+      }
+    }
+    for (var key in stats) {
+      for (var value in stats[key]) {
+        stats[key][value] /= count;
+        stats[key][value] *= 100;
       }
     }
     return res.send(200).json({ result: stats });

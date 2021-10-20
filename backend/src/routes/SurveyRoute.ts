@@ -14,8 +14,7 @@ router.get('/', SurveyController.index);
 
 // TODO: May consider divide file to Survey Management and Survey View.
 // TODO: Should add AuthMiddleware (check token etc...)
-router.post('/', [checkToken], asyncHandler(SurveyController.create));
-router.put('/', [checkToken], asyncHandler(SurveyController.modify));
+router.post('/', [checkToken], asyncHandler(SurveyController.save));
 router.delete('/', [checkToken], asyncHandler(SurveyController.remove));
 
 router.post('/commit', [checkToken], asyncHandler(SurveyController.commit));
