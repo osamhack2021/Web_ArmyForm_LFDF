@@ -94,7 +94,7 @@ const routes = [
   },
   {
     name: "대시보드 페이지",
-    path: "/Survey/Dashboard",
+    path: "/Survey/Dashboard/:survey_id",
     exact: false,
     component: DashboardPage,
     needAuth: true,

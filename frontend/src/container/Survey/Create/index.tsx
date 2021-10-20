@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import LeftArrow from "static/left-arrow.png";
 import RightArrow from "static/right-arrow.png";
 import Plus from "static/plus.png";
@@ -13,21 +15,31 @@ import SurveySlider from "container/component/SurveySlider";
 import Api from "shared/components/Api/Api";
 
 const SurveyCreate = () => {
-  const SurveyTypeDefault = [
+  const history = useHistory();
+  const [SurveyCursor, setSurveyCursor] = useState(0);
+  const [editMode, setEditMode] = useState(true);
+  const [toggle, setToggle] = useState(0);
+  const SurveyType = [
     {
       type: "text",
-      name: "name",
+      name: "1-1",
       visible: true,
       title: "당신의 이름은 무엇입니까",
     },
     {
       type: "dropdown",
-      name: "name",
+      name: "1-2",
       visible: true,
       title: "당신의 성별은 무엇입니까",
       choices: ["남성", "여성"],
     },
   ];
+
+  const SurveyTypeDefault = (type: number, question: number) => {
+    let _SurveyType = SurveyType[type];
+    _SurveyType.name = SurveyCursor + "-" + question;
+    return _SurveyType;
+  };
 
   const [SurveyData, setSurveyData] = useState({
     title: "test",
@@ -37,24 +49,19 @@ const SurveyCreate = () => {
     pages: [
       {
         name: "Test Form",
-        elements: SurveyTypeDefault,
+        elements: [SurveyTypeDefault(0, 0)],
       },
     ],
   });
-
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
   const [SurveyPages, setSurveyPages] = useState([
     {
       name: "Test Form",
-      elements: SurveyTypeDefault,
+      elements: [SurveyTypeDefault(0, 0)],
     },
   ]);
-
-  const [SurveyCursor, setSurveyCursor] = useState(0);
-  const [editMode, setEditMode] = useState(true);
-  const [toggle, setToggle] = useState(0);
 
   function updateCursor(cursor: number) {
     if (0 <= cursor && cursor < SurveyPages.length + 1) {
@@ -67,7 +74,7 @@ const SurveyCreate = () => {
     window.scrollTo(0, 0);
     SurveyPages.push({
       name: SurveyCursor.toString(),
-      elements: [SurveyTypeDefault[0]],
+      elements: [SurveyTypeDefault(0, SurveyCursor)],
     });
     setSurveyPages(SurveyPages);
     setSurveyCursor(SurveyCursor + 1);
@@ -89,6 +96,7 @@ const SurveyCreate = () => {
       deadline: endDate,
     }).then((info) => {
       alert("저장되었습니다.");
+      history.push("/Survey");
     });
   };
 
@@ -97,7 +105,9 @@ const SurveyCreate = () => {
   };
 
   const addQuestion = () => {
-    SurveyPages[SurveyCursor - 1].elements.push(SurveyTypeDefault[toggle]);
+    SurveyPages[SurveyCursor - 1].elements.push(
+      SurveyTypeDefault(toggle, SurveyCursor - 1)
+    );
     setSurveyPages([...SurveyPages]);
   };
 
@@ -143,12 +153,13 @@ const SurveyCreate = () => {
     setSurveyData({ ...SurveyData });
   };
 
-  const handleStartDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartDate(new Date(e.target.value));
+
+  const handleSDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setStartdate(new Date(e.target.value));
   };
 
-  const handleEndDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setEndDate(new Date(e.target.value));
+  const handleEDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setEnddate(new Date(e.target.value));
   };
   return (
     <>
@@ -194,14 +205,15 @@ const SurveyCreate = () => {
                 시작기한
                 <input
                   type="date"
-                  name="bday"
-                  onChange={(e) => handleStartDate(e)}
+
+                  name="start"
+                  onChange={(e) => handleSDate(e)}
                 />
                 마감기한
                 <input
                   type="date"
-                  name="bday"
-                  onChange={(e) => handleEndDate(e)}
+                  name="end"
+                  onChange={(e) => handleEDate(e)}
                 />
               </>
             ) : (

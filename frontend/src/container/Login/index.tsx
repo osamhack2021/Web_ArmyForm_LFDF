@@ -88,7 +88,7 @@ function Login() {
             비밀번호 찾기
           </button>
         </div>
-        <div
+        {/* <div
           style={{ background: "green" }}
           onClick={() => {
             User.parseLogin(
@@ -105,7 +105,7 @@ function Login() {
           }}
         >
           테스트용 로그인 버튼입니다.
-        </div>
+        </div> */}
       </div>
     </>
   );
