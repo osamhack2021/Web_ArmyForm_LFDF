@@ -40,8 +40,9 @@ const EditableWidget = ({data, onChange, onDelete}: Idata) => {
         />
         :
         data.elements.map((value: number, index: number) => {
-          const indexData = [...(data.index)].push(index);
-          console.log(value);
+          const indexData = [...(data.index)];
+          indexData.push(index);
+
           if(true) {
             <EditText
               text={data.value}
