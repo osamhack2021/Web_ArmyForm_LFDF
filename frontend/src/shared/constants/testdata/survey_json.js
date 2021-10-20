@@ -1,6 +1,8 @@
-export var json = {
+const data = {
   title: "무슨무슨검사",
+  progressBarType: "defaults",
   showProgressBar: "top",
+  sendResultOnPageNext: true,
   pages: [
     {
       name: "1페이지",
@@ -71,6 +73,8 @@ export var json = {
     },
   ],
 };
+
+export default data;
 
 // export var json = {
 //   title: "Product Feedback Survey Example",
