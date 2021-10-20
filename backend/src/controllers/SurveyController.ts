@@ -14,7 +14,8 @@ class SurveyController {
     const survey = await Survey.create({
       name: req.body.name,
       json: req.body.json,
-      deadline: req.body.deadline,
+      startTime:req.body.startline,
+      endTime: req.body.deadline,
       ownerId: res.locals.user.id
     });
     return res.send(200).json({ result: survey.id });
@@ -24,6 +25,7 @@ class SurveyController {
     const [n, _] = await Survey.update({
       name: req.body.name,
       json: req.body.json,
+      startline:req.body.startline,
       deadline: req.body.deadline
     },
     { where: { id: req.body.survey_id }});
