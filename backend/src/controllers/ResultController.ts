@@ -19,9 +19,9 @@ class ResultController {
     });
     assert(result.surveyId === req.body.survey_id);
     assert(result.ownerId === res.locals.user.id);
-
+    console.log(JSON.stringify(req.body.json))
     const [n] = await Result.update({
-      json: req.body.json
+      json: JSON.stringify(req.body.json)
     }, { where: { id: result.id } });
     if (n === 0) {
       return res.send(500).json({ result: 'Internal DB error' });
@@ -48,6 +48,7 @@ class ResultController {
     if (survey === null) {
       return res.status(404).json({ result: 'Survey not found' });
     }
+    console.log(survey.results)
     var stats: any = {};
     const count = survey.results.length;
     for (var i = 0; i < survey.results.length; i++) {

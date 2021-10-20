@@ -49,6 +49,15 @@ class SurveyController {
     return res.status(200).json({ result: survey.json });
   }
 
+  public static async SurveyResultList(req: Request, res: Response, next: NextFunction): Promise<any> {
+    const time = new Date( (new Date()).getTime() + 9 * 60 * 60 * 1000 );
+    const survey = await Survey.findAll({ where: { ownerId: res.locals.user.id , endTime: { [Op.lt]: time }} });
+    if (survey === null) {
+      return res.status(200).send("none");
+    }
+    return res.status(200).send(survey);
+  }
+
   public static async OwnerSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
     const owner = await User.findOne({
       where: {
@@ -64,6 +73,7 @@ class SurveyController {
   }
 
   public static async UnitSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
+    console.log
     const time = new Date( (new Date()).getTime() + 9 * 60 * 60 * 1000 );
     const list = await Survey.findAll({
       where: {
