@@ -42,7 +42,8 @@ const SurveyCreate = () => {
     ],
   });
 
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const [SurveyPages, setSurveyPages] = useState([
     {
@@ -84,7 +85,8 @@ const SurveyCreate = () => {
     Api.createSurvey({
       name: SurveyData.title,
       json: JSON.stringify(SurveyData),
-      deadline: date,
+      startline: startDate,
+      deadline: endDate,
     }).then((info) => {
       alert("저장되었습니다.");
     });
@@ -141,8 +143,12 @@ const SurveyCreate = () => {
     setSurveyData({ ...SurveyData });
   };
 
-  const handleDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(new Date(e.target.value));
+  const handleStartDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setStartDate(new Date(e.target.value));
+  };
+
+  const handleEndDate = (e: ChangeEvent<HTMLInputElement>) => {
+    setEndDate(new Date(e.target.value));
   };
   return (
     <>
@@ -185,11 +191,17 @@ const SurveyCreate = () => {
                   placeholder="설문조사 제목"
                   onChange={(e) => handleTitle(e)}
                 />
+                시작기한
+                <input
+                  type="date"
+                  name="bday"
+                  onChange={(e) => handleStartDate(e)}
+                />
                 마감기한
                 <input
                   type="date"
                   name="bday"
-                  onChange={(e) => handleDate(e)}
+                  onChange={(e) => handleEndDate(e)}
                 />
               </>
             ) : (

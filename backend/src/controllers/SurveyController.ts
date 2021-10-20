@@ -64,7 +64,7 @@ class SurveyController {
   }
 
   public static async UnitSurveyList(req: Request, res: Response, next: NextFunction): Promise<any> {
-    const time = new Date();
+    const time = new Date( (new Date()).getTime() + 9 * 60 * 60 * 1000 );
     const list = await Survey.findAll({
       where: {
         unitId: res.locals.user.armyUnitId,
