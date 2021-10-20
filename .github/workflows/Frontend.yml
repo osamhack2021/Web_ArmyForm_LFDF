@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: production-files
-        path: ./frontend/build
+        path: ./WEB(FE)/build
         
   
   deploy:
@@ -54,10 +54,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: production-files
-        path: ./frontend/build
+        path: ./WEB(FE)/build
 
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./frontend/build
+        publish_dir: ./WEB(FE)/build
