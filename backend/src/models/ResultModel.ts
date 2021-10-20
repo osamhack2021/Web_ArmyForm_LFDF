@@ -10,7 +10,7 @@ class Result extends Model {
   @Column(DataType.UUID)
   id!: string;
 
-  @Column(DataType.STRING)
+  @Column(DataType.STRING(10000))
   json!: string;
 
   @ForeignKey(() => User)
