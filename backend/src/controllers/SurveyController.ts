@@ -84,9 +84,7 @@ class SurveyController {
     if (list === null) {
       return res.status(200).send("none");
     }
-    console.log(list)
-    const surveyList = list.map((survey) => survey.name);
-    return res.status(200).send(surveyList);
+    return res.status(200).send(list);
   }
 }
 
