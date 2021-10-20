@@ -155,11 +155,11 @@ const SurveyCreate = () => {
 
 
   const handleSDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setStartdate(new Date(e.target.value));
+    setStartDate(new Date(e.target.value));
   };
 
   const handleEDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setEnddate(new Date(e.target.value));
+    setEndDate(new Date(e.target.value));
   };
   return (
     <>
