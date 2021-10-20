@@ -49,19 +49,14 @@ Army Form
    - 제출 기한 내 답변 제출을 하지 않는다면 언제든지 수정이 가능합니다.
    - 최종적으로 답변 제출을 누르게 되면 설문이 제출됩니다.
    
-   ### :monocle_face: 설문조사 결과보기
+   ### :bar_chart: 설문조사 결과보기
    
-   <img src="./readme_img/surveyresult.png" alt="설문조사 결과 페이지" width="800" height="450" />
+   <img src="./readme_img/dashboard.png" alt="설문조사 결과 페이지" width="800" height="450" />
    
    - 답변이 필요한 설문조사의 경우 답변을 입력하여 설문조사를 참여한 장병들에게 조치 내용을 알릴 수 있습니다.
      (예시 : 화장실에 화장지를 배치하겠습니다. -> 장병들이 어떠한 조치를 하겠다는 내용을 확인할 수 있습니다.)
    - 각 질문 형태에 알맞는 결과를 보여줍니다.
      (예시 : 선택형 질문 -> 막대 그래프 / 주관식 질문 -> 워드클라우드 또는 각 질문에 대한 퍼센트치)
-   
-   ### 	:bar_chart: 대쉬보드 페이지
-   
-   <img src="./readme_img/dashboard.png" alt="대쉬보드 페이지" width="800" height="450" />
-   
    - 전체적인 내용을 한 번에 확인할 수 있습니다.
 
 ## 	:computer: 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
@@ -90,9 +85,18 @@ React.js |
         $ curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash -
         $ sudo apt install -y nodejs
     ```
+- Git을 이용해 저장소를 불러옵니다.
+    ```bash
+        $ git clone https://github.com/osamhack2021/Web_ArmyForm_LFDF
+    ```
 - Frontend 빌드
     ```bash
         $ cd frontend
+        $ npm run build
+    ```
+- Backend 빌드
+    ```bash
+        $ cd backend
         $ npm run build
     ```
 
@@ -100,6 +104,14 @@ React.js |
 - Api 서버 실행
     ```bash
         $ cd backend
+        $ npm install
+        $ npm run build
+        $ npm start
+    ```
+    
+- Web 서버 실행
+    ```bash
+        $ cd frontend
         $ npm install
         $ npm run build
         $ npm start
