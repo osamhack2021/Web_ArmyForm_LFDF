@@ -69,7 +69,7 @@ Army Form
 Node.js | Express.js | PostgreSQL | Sequelize
 :------: | :------: | :------: | :------: 
 <a href="https://nodejs.org/ko/"><img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" width="60" height="60"></a> | <a href="https://expressjs.com/ko/"><img src="https://fungsitama.web.id/wp-content/uploads/2020/08/0_cQTv5n6xV7opBBIB.png" width="60" height="60"></a> | <a href="https://www.postgresql.org/"><img src="https://ww.namu.la/s/0cf2b87053ba7ebc546e8a1c320a91b2a4c112cd5948f15239d4fdc0dcaff2b24576e95d4677d5a5f519176099be47f208387ff673520f4e83bf04eebacfac2d2e3a5dcade8a7d9aaec43775c1cbe8a2" width="60" height="60"></a> | <a href="https://sequelize.org/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX3X2S3KgOHkTvL1zYVIeBWpzJSfNGBetJw&usqp=CAU" width="60" height="60"></a>
-14.17.6 | ^4.17.1 |  |
+14.17.6 | ^4.17.1 | 9.5.25 | ^4.28.10
 
 <!-- https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md -->
 
@@ -77,7 +77,7 @@ Node.js | Express.js | PostgreSQL | Sequelize
 React.js | Survey.js
 :------: | :------:
 <a href="https://ko.reactjs.org/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUlR1AfuW3JJkBrY52Tqoo-s-nxuLLB3pvYA&usqp=CAU" width="50" height="50"></a> | <a href="https://surveyjs.io/"><img src="https://avatars.githubusercontent.com/u/25198306?s=200&v=4" width="50" height="50"></a>
-^17.0.24 | 
+^17.0.24 | v1.8.66
 
 ## 	:floppy_disk: 설치 안내 (Installation Process)
 - 기본적으로 Node.js 의 설치가 필요합니다.
