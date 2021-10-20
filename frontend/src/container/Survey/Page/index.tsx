@@ -8,28 +8,9 @@ import Nav from "container/component/Nav";
 import Api from "shared/components/Api/Api";
 // import Loader from "shared/components/Api/Loader";
 
-import test_json from "shared/constants/testdata/survey_json.js";
+// import test_json from "shared/constants/testdata/survey_json.js";
 
 import "style/Survey/Page.scss";
-
-// interface Iquestion {
-//   type: string;
-//   name: string;
-//   visible: true;
-//   title: string;
-// }
-
-// interface Ipage {
-//   name: string;
-//   elements: Iquestion[];
-// }
-
-// interface Iconfig {
-//   title: string;
-//   progressBarType: string;
-//   showProgressBar: string;
-//   pages: Ipage[];
-// }
 
 const Page = ({ match, location }: RouteComponentProps) => {
   const [isStart, setIsStart] = useState(false); //SurveyModel.currentPageNo
@@ -41,6 +22,7 @@ const Page = ({ match, location }: RouteComponentProps) => {
     Api.getSurvey({ survey_id: (match.params as any).survey_id })
       .then((info) => {
         setInfo(Api.get(JSON.stringify(info)).result);
+        console.log(Api.get(JSON.stringify(info)).result);
       })
       .catch((e) => {
         setIsError("서버와 접속이 되지않습니다.");
@@ -65,11 +47,20 @@ const Page = ({ match, location }: RouteComponentProps) => {
   };
 
   const onComplete = (result: SurveyModel) => {
-    console.log("Complete! ");
-    console.log(result);
+    Api.saveSurvey({
+      survey_id: (match.params as any).survey_id,
+      json: result.data,
+    })
+      .then((info) => {
+        console.log(info);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const onAfterRenderSurvey = (result: SurveyModel, options: any) => {
+    console.log(info);
     console.log("render");
     console.log(result);
   };
@@ -77,7 +68,10 @@ const Page = ({ match, location }: RouteComponentProps) => {
   const onPartialSend = (result: SurveyModel) => {
     console.log("onsend");
     console.log({ id: (match.params as any).survey_id, json: result.data });
-    Api.saveSurvey({ id: (match.params as any).survey_id, json: result.data })
+    Api.saveSurvey({
+      survey_id: (match.params as any).survey_id,
+      json: result.data,
+    })
       .then((info) => {
         console.log(info);
       })
@@ -101,7 +95,7 @@ const Page = ({ match, location }: RouteComponentProps) => {
               {isError ? (
                 <>
                   {isError}
-                  <div
+                  {/* <div
                     style={{ background: "green" }}
                     onClick={() => {
                       setIsError("");
@@ -109,7 +103,7 @@ const Page = ({ match, location }: RouteComponentProps) => {
                     }}
                   >
                     테스트용 설문 버튼입니다.
-                  </div>
+                  </div> */}
                 </>
               ) : (
                 <>

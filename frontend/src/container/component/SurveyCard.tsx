@@ -37,12 +37,12 @@ const SurveyCard = ({ type, name, id }: Icard) => {
 
   switch (type) {
     case CARD_INCOMPLETED:
-      buttonName = "시작하기";
+      buttonName = "설문전";
       statusClass += "red";
       statusImage = Pen;
       break;
     case CARD_PROCEEDING:
-      buttonName = "수정하기";
+      buttonName = "시작하기";
       statusClass += "yellow";
       statusImage = Pen;
       break;
@@ -58,13 +58,13 @@ const SurveyCard = ({ type, name, id }: Icard) => {
       statusImage = Pen;
       break;
     case CARD_CREATE_PROCEEDING:
-      buttonName = "결과확인";
+      buttonName = "진행중인 결과";
       statusClass += "yellow";
       statusImage = Setting;
       break;
     case CARD_CREATE_COMPLETED:
       // d_day = "";
-      buttonName = "결과확인";
+      buttonName = "결과보기";
       statusClass += "green";
       statusImage = Confirm;
       break;
@@ -80,40 +80,43 @@ const SurveyCard = ({ type, name, id }: Icard) => {
   const doAction = () => {
     switch (type) {
       case CARD_INCOMPLETED:
-        buttonName = "시작하기";
-        history.push("/Survey/Page/" + id);
+        buttonName = "설문전";
         break;
       case CARD_PROCEEDING:
-        buttonName = "수정하기";
+        buttonName = "진행중";
+        history.push("/Survey/Page/" + id);
         statusClass += "yellow";
         statusImage = Pen;
         break;
       case CARD_COMPLETED:
-        buttonName = "수정하기";
+        buttonName = "결과보기";
+        history.push("/Survey/DashBoard/" + id);
         statusClass += "green";
         statusImage = Confirm;
         break;
       case CARD_CREATE_INCOMPLETED:
         // d_day = "";
         buttonName = "수정하기";
+        history.push("/Survey/Create/" + id);
         statusClass += "red";
         statusImage = Pen;
         break;
       case CARD_CREATE_PROCEEDING:
-        history.push("/Survey/Page/" + id);
-        buttonName = "결과확인";
+        history.push("/Survey/DashBoard/" + id);
+        buttonName = "진행중인 결과";
         statusClass += "yellow";
         statusImage = Setting;
         break;
       case CARD_CREATE_COMPLETED:
         // d_day = "";
-        history.push("/Survey/Page/" + id);
-        buttonName = "결과확인";
+        history.push("/Survey/DashBoard/" + id);
+        buttonName = "결과보기";
         statusClass += "green";
         statusImage = Confirm;
         break;
       default:
         // d_day = "";
+        history.push("/Survey/DashBoard/" + id);
         buttonName = "결과보기";
         statusClass += "invisible";
         break;

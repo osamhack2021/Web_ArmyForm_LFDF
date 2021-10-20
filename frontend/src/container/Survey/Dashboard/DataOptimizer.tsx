@@ -48,6 +48,7 @@ const optimize = (data: any) => {
       }
     }
   }
+  console.log(data);
   return data;
 };
 

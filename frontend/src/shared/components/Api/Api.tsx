@@ -58,6 +58,17 @@ class Api {
     });
   }
   /**
+   * OwnerSurveyList 제작한 설문
+   */
+  getSurveyResult() {
+    return new Promise((resolve, reject) => {
+      Interceptor.getInstance()
+        .get(CONFIG.API_SERVER + "/survey/SurveyResult", authHeader({}))
+        .then((res: any) => resolve(res.data))
+        .catch(reject);
+    });
+  }
+  /**
    * UnitSurveyList - :surveyList
    */
   getUnitSurveyList() {
@@ -91,9 +102,10 @@ class Api {
    * save - json, id : id
    */
   saveSurvey(Iconfig: any) {
+    console.log(Iconfig);
     return new Promise((resolve, reject) => {
       Interceptor.getInstance()
-        .put(CONFIG.API_SERVER + "/result", Iconfig, authHeader({}))
+        .post(CONFIG.API_SERVER + "/result", Iconfig, authHeader({}))
         .then((res: any) => resolve(res.data))
         .catch(reject);
     });
@@ -102,6 +114,18 @@ class Api {
   /**
    * find : id : result
    */
+
+  /**
+   * stats - survey_id
+   */
+  getStat(survey_id: any) {
+    return new Promise((resolve, reject) => {
+      Interceptor.getInstance()
+        .post(CONFIG.API_SERVER + "/result/stats", survey_id, authHeader({}))
+        .then((res: any) => resolve(res.data))
+        .catch(reject);
+    });
+  }
 
   get(info: any) {
     localStorage.setItem("temp", info);

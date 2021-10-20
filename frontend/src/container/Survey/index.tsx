@@ -78,13 +78,13 @@ const Survey = () => {
       .finally(() => {
         setIsLoading(false);
       });
-    Api.getUnitSurveyList() // need to replace
+    Api.getSurveyResult() // need to replace
       .then((result) => {
         setSurveyResult(Api.get(JSON.stringify(result)));
       })
       .catch((e) => {
         console.log(e);
-        setIsError("서버와 접속이 되지않습니다.[UNIT]");
+        setIsError("서버와 접속이 되지않습니다.[RESULT]");
       })
       .finally(() => {
         setIsLoading(false);
